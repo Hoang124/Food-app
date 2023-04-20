@@ -47,12 +47,12 @@ class AppColors {
     400: Color(0xff499D2F),
   });
   static const defaultBackgroundImageColor = Color(0xffF1ECFB);
-  static const defaultTextColor = Color(0xff000000);
+  static const defaultTextColor = Color(0xff323142);
   static const disableTextColor = Color(0xff2C303E);
   static const black = Color(0xff000000);
   static const white = Color(0xffFFFFFF);
   static const disableButtonBackground = Color(0xffD9D9D9);
-  static const defaultBackground = Color(0xffFFFFFF);
+  static const defaultBackground = Color(0xffE5E5E5);
   static const darkScrollbarColor = Color(0xffC7B2EF);
   static const iconColor = Color(0xFF0F6EFA);
   static const hideContent = Color(0xFF4A5054);
@@ -62,6 +62,14 @@ class AppColors {
   static const lightPurple = Color(0xFF7E7DD1);
   static const popupColor = Color(0xff313544);
   static const colorChoosePlan = Color(0xff2C303E);
+  static const primaryColor = Color(0xff6C5FBC);
+  static const lightPrimaryColor = Color(0xffDBD9EE);
+  static const blackColor = Color(0xff323142);
+  static const darkGrey = Color(0xffACADB9);
+  static const lightGrey = Color(0xffC2C3CB);
+  static const fullWhite = Color(0xffFFFFFF);
+  static const ligthPrimaryColor2 = Color(0xffD3CFEB);
+  static const pink = Color(0xffFF94C7);
 }
 
 class AppProperties {
