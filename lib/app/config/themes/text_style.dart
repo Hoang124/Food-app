@@ -6,7 +6,7 @@ class AppTextStyles {
     return const TextStyle(
       fontWeight: FontWeight.w600,
       fontSize: 80,
-      color: AppColors.black,
+      color: AppColors.blackColor,
       fontFamily: AppProperties.fontFamilyName,
     );
   }
@@ -22,7 +22,7 @@ class AppTextStyles {
 
   static TextStyle body1() {
     return const TextStyle(
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
       fontSize: 16,
       color: AppColors.defaultTextColor,
       fontFamily: AppProperties.fontFamilyName,
@@ -31,7 +31,7 @@ class AppTextStyles {
 
   static TextStyle body2() {
     return const TextStyle(
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
       fontSize: 14,
       color: AppColors.white,
       fontFamily: AppProperties.fontFamilyName,
@@ -48,7 +48,7 @@ class AppTextStyles {
 
   static TextStyle largeHeading1() {
     return const TextStyle(
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
       fontSize: 40,
       color: AppColors.defaultTextColor,
       fontFamily: AppProperties.fontFamilyName,
@@ -57,7 +57,7 @@ class AppTextStyles {
 
   static TextStyle largeHeading2() {
     return const TextStyle(
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
       fontSize: 32,
       color: AppColors.defaultTextColor,
       fontFamily: AppProperties.fontFamilyName,
@@ -66,7 +66,7 @@ class AppTextStyles {
 
   static TextStyle heading1() {
     return const TextStyle(
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
       fontSize: 24,
       color: AppColors.defaultTextColor,
       fontFamily: AppProperties.fontFamilyName,
@@ -75,7 +75,7 @@ class AppTextStyles {
 
   static TextStyle heading2() {
     return const TextStyle(
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
       fontSize: 20,
       color: AppColors.defaultTextColor,
       fontFamily: AppProperties.fontFamilyName,
@@ -140,7 +140,7 @@ class AppTextStyles {
 
   static TextStyle button() {
     return const TextStyle(
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
       fontSize: 14,
       fontFamily: AppProperties.fontFamilyName,
     );
@@ -172,7 +172,7 @@ class AppTextStyles {
 
   static TextStyle subHeading1() {
     return const TextStyle(
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w600,
       fontSize: 18,
       color: AppColors.defaultTextColor,
       fontFamily: AppProperties.fontFamilyName,

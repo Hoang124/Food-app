@@ -22,10 +22,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "appName": MessageLookupByLibrary.simpleMessage("ECOVELO"),
+        "appName": MessageLookupByLibrary.simpleMessage("AppFood"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "desOnboarding1":
+            MessageLookupByLibrary.simpleMessage("With Best Of Love"),
+        "desOnboarding2":
+            MessageLookupByLibrary.simpleMessage("With Super Riders"),
+        "desOnboarding3":
+            MessageLookupByLibrary.simpleMessage("With Fantastic Tastes"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
@@ -33,6 +39,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing..."),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "titleOnboarding1": MessageLookupByLibrary.simpleMessage("Find Food"),
+        "titleOnboarding2":
+            MessageLookupByLibrary.simpleMessage("Fast Delivery "),
+        "titleOnboarding3":
+            MessageLookupByLibrary.simpleMessage("Skilled Chefs"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome!"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };

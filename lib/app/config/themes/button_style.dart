@@ -46,7 +46,7 @@ class FilledBtnStyle {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
-      primary: background ?? AppColors.main.shade200,
+      primary: background ?? AppColors.primaryColor,
       splashFactory: NoSplash.splashFactory,
       fixedSize: fixedSize,
       tapTargetSize: tapTargetSize,
@@ -59,7 +59,7 @@ class FilledBtnStyle {
     double borderRadius = 30,
   }) {
     return ElevatedButton.styleFrom(
-      primary: AppColors.disableButtonBackground,
+      primary: AppColors.lightPrimaryColor,
       onPrimary: AppColors.disableTextColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),

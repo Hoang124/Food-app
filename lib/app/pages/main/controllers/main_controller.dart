@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
 import '../../../core.dart';
@@ -8,7 +9,7 @@ class MainController extends GetxController {
   static MainController get to => Get.find();
   @override
   void onInit() {
-   appInitializer();
+    appInitializer();
     super.onInit();
   }
 
@@ -54,6 +55,7 @@ class MainController extends GetxController {
 
     //Delay for show Splash screen
     await Future.delayed(const Duration(seconds: 2), () {
+      Get.offNamed(Routes.onboarding);
     });
   }
 }

@@ -1,7 +1,6 @@
 import 'package:foodapp/app/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:simple_shadow/simple_shadow.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({Key? key}) : super(key: key);
@@ -15,43 +14,30 @@ class SplashView extends StatelessWidget {
 
   Widget buildBody(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.main.shade300,
-      body: Stack(
+      backgroundColor: AppColors.defaultBackground,
+      body: Column(
         children: [
-          Positioned(
-            top: 0,
-            left: 0,
-            child: SvgPicture.asset(AssetsConst.line1Splash),
-          ),
-          Positioned(
-            top: 0,
-            right: 0,
-            child: SvgPicture.asset(AssetsConst.line2Splash),
-          ),
-          Positioned(
-            bottom: 30,
-            right: 0,
-            child: SvgPicture.asset(AssetsConst.line3Splash),
-          ),
-          SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SimpleShadow(
-                  opacity: 0.6,
-                  color: AppColors.main.shade300,
-                  offset: const Offset(0, 0),
-                  sigma: 12,
-                  child: SvgPicture.asset(AssetsConst.logoSplash),
-                ),
-                const SizedBox(height: 10),
-                SvgPicture.asset(AssetsConst.textSplash),
-              ],
+          Padding(
+            padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height / 2 - 50),
+            child: Center(
+              child: SvgPicture.asset(AssetsConst.logo),
             ),
           ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 30,
+                decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(5.0),
+                      topRight: Radius.circular(5.0),
+                    ),
+                    color: AppColors.primaryColor),
+              ),
+            ),
+          )
         ],
       ),
     );

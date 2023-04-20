@@ -1,5 +1,5 @@
 {
-    "appName": "ECOVELO",
+    "appName": "AppFood",
     "processing": "Processing...",
     "ok": "Ok",
     "cancel": "Cancel",
@@ -11,5 +11,11 @@
     "back": "Back",
     "skip": "Skip",
     "welcome": "Welcome!",
-    "home": "Home"
+    "home": "Home",
+    "titleOnboarding1": "Find Food",
+    "titleOnboarding2": "Fast Delivery ",
+    "titleOnboarding3": "Skilled Chefs",
+    "desOnboarding1": "With Best Of Love",
+    "desOnboarding2": "With Super Riders",
+    "desOnboarding3": "With Fantastic Tastes"
 }

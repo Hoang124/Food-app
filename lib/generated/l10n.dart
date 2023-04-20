@@ -50,10 +50,10 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `ECOVELO`
+  /// `AppFood`
   String get appName {
     return Intl.message(
-      'ECOVELO',
+      'AppFood',
       name: 'appName',
       desc: '',
       args: [],
@@ -175,6 +175,66 @@ class S {
     return Intl.message(
       'Home',
       name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Find Food`
+  String get titleOnboarding1 {
+    return Intl.message(
+      'Find Food',
+      name: 'titleOnboarding1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fast Delivery `
+  String get titleOnboarding2 {
+    return Intl.message(
+      'Fast Delivery ',
+      name: 'titleOnboarding2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Skilled Chefs`
+  String get titleOnboarding3 {
+    return Intl.message(
+      'Skilled Chefs',
+      name: 'titleOnboarding3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `With Best Of Love`
+  String get desOnboarding1 {
+    return Intl.message(
+      'With Best Of Love',
+      name: 'desOnboarding1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `With Super Riders`
+  String get desOnboarding2 {
+    return Intl.message(
+      'With Super Riders',
+      name: 'desOnboarding2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `With Fantastic Tastes`
+  String get desOnboarding3 {
+    return Intl.message(
+      'With Fantastic Tastes',
+      name: 'desOnboarding3',
       desc: '',
       args: [],
     );
