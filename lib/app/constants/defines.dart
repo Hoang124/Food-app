@@ -70,6 +70,7 @@ class AppColors {
   static const fullWhite = Color(0xffFFFFFF);
   static const ligthPrimaryColor2 = Color(0xffD3CFEB);
   static const pink = Color(0xffFF94C7);
+  static const primaryText = Color(0xff201D67);
 }
 
 class AppProperties {

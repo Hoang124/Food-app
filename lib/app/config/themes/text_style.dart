@@ -49,7 +49,7 @@ class AppTextStyles {
   static TextStyle largeHeading1() {
     return const TextStyle(
       fontWeight: FontWeight.w600,
-      fontSize: 40,
+      fontSize: 38,
       color: AppColors.defaultTextColor,
       fontFamily: AppProperties.fontFamilyName,
     );

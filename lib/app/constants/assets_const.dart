@@ -17,4 +17,8 @@ class AssetsConst {
   static const String bottomSplash = "${preIconPath}bottom_splash.svg";
   static const String sideWave = "${preIconPath}side_wave.svg";
   static const String onboardingPicture1 = "${preIconPath}onboarding_01.svg";
+  static const String coffeeSignIn = "${preIconPath}coffee_signin.svg";
+  static const String signInPink = "${preIconPath}signIn_pink.svg";
+  static const String signInPinkSmall = "${preIconPath}signIn_pink_small.svg";
+  static const String signInPurple = "${preIconPath}signIn_purple.svg";
 }

@@ -33,12 +33,34 @@ class MessageLookup extends MessageLookupByLibrary {
         "desOnboarding3":
             MessageLookupByLibrary.simpleMessage("With Fantastic Tastes"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
+        "email": MessageLookupByLibrary.simpleMessage("Enter Your Email"),
+        "forgotPassword":
+            MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "invalidEmailAddress": MessageLookupByLibrary.simpleMessage(
+            "Please enter your email address in format: yourname@example.com"),
+        "invalidPasswordLength":
+            MessageLookupByLibrary.simpleMessage("At least eight characters"),
+        "invalidPasswordOneCapitalLetter":
+            MessageLookupByLibrary.simpleMessage("At least one capital letter"),
+        "invalidPasswordOneLetter":
+            MessageLookupByLibrary.simpleMessage("At least one letter"),
+        "invalidPasswordOneNumber":
+            MessageLookupByLibrary.simpleMessage("At least one number"),
+        "invalidPasswordOneSpecialLetter":
+            MessageLookupByLibrary.simpleMessage("At least one special letter"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
+        "noAccount":
+            MessageLookupByLibrary.simpleMessage("Create New Account?"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing..."),
+        "signIn": MessageLookupByLibrary.simpleMessage("Login"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "titleLogin":
+            MessageLookupByLibrary.simpleMessage("Login Your Account"),
         "titleOnboarding1": MessageLookupByLibrary.simpleMessage("Find Food"),
         "titleOnboarding2":
             MessageLookupByLibrary.simpleMessage("Fast Delivery "),
