@@ -13,40 +13,16 @@ class OnboardingView extends GetView<OnBoardingController> {
     );
   }
 
-  void _skipClick() {}
+  void _skipClick() {
+    Get.offNamed(Routes.signIn);
+  }
 
   Widget buildBody(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.defaultBackground,
       body: Stack(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SvgPicture.asset(AssetsConst.sideWave),
-              Expanded(
-                child: SafeArea(
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: GestureDetector(
-                      onTap: _skipClick,
-                      child: Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Text(
-                          S.of(context).skip,
-                          style: AppTextStyles.subHeading1().copyWith(
-                            color: AppColors.lightGrey,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          SvgPicture.asset(AssetsConst.sideWave),
           Padding(
             padding: const EdgeInsets.only(top: 50),
             child: Column(
@@ -84,6 +60,27 @@ class OnboardingView extends GetView<OnBoardingController> {
                   child: _bottomIndicator(context),
                 ),
               ],
+            ),
+          ),
+          Positioned(
+            right: 10,
+            child: SafeArea(
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: GestureDetector(
+                  onTap: _skipClick,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Text(
+                      S.of(context).skip,
+                      style: AppTextStyles.subHeading1().copyWith(
+                        color: AppColors.lightGrey,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         ],

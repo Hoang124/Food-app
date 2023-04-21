@@ -22,5 +22,11 @@ class AppPages {
       binding: OnboardingBinding(),
       transition: Transition.rightToLeft,
     ),
+     GetPage<dynamic>(
+      name: Routes.signIn,
+      page: () => const SignInView(),
+      binding: AuthBinding(),
+      transition: Transition.rightToLeft,
+    ),
   ];
 }

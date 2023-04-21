@@ -17,5 +17,18 @@
     "titleOnboarding3": "Skilled Chefs",
     "desOnboarding1": "With Best Of Love",
     "desOnboarding2": "With Super Riders",
-    "desOnboarding3": "With Fantastic Tastes"
+    "desOnboarding3": "With Fantastic Tastes",
+    "invalidEmailAddress": "Please enter your email address in format: yourname@example.com",
+    "password": "Password",
+    "signIn": "Login",
+    "forgotPassword": "Forgot password?",
+    "email": "Enter Your Email",
+    "signUp": "Sign Up",
+    "noAccount": "Create New Account?",
+    "invalidPasswordLength": "At least eight characters",
+    "invalidPasswordOneLetter": "At least one letter",
+    "invalidPasswordOneSpecialLetter": "At least one special letter",
+    "invalidPasswordOneNumber" : "At least one number",
+    "invalidPasswordOneCapitalLetter": "At least one capital letter",
+    "titleLogin": "Login Your Account"
 }
