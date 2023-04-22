@@ -21,4 +21,12 @@ class AssetsConst {
   static const String signInPink = "${preIconPath}signIn_pink.svg";
   static const String signInPinkSmall = "${preIconPath}signIn_pink_small.svg";
   static const String signInPurple = "${preIconPath}signIn_purple.svg";
+  static const String homeIcon = "${preIconPath}home.svg";
+  static const String tymIcon = "${preIconPath}heart.svg";
+  static const String bellIcon = "${preIconPath}bell.svg";
+  static const String personIcon = "${preIconPath}profile.svg";
+    static const String homeIconUn = "${preIconPath}home_un.svg";
+  static const String tymIconUn = "${preIconPath}heart_un.svg";
+  static const String bellIconUn = "${preIconPath}bell_un.svg";
+  static const String personIconUn = "${preIconPath}profile_un.svg";
 }

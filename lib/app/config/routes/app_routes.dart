@@ -5,4 +5,5 @@ abstract class Routes {
   static const home = '/home_view';
   static const onboarding = '/onboarding_view';
   static const signIn = '/signIn_view';
+  static const notification = '/notification_view';
 }
