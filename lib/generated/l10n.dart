@@ -369,6 +369,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Location`
+  String get location {
+    return Intl.message(
+      'Location',
+      name: 'location',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Most Popular`
+  String get mostPopular {
+    return Intl.message(
+      'Most Popular',
+      name: 'mostPopular',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nearby Restautant`
+  String get nearby {
+    return Intl.message(
+      'Nearby Restautant',
+      name: 'nearby',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

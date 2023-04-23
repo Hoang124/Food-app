@@ -30,5 +30,8 @@
     "invalidPasswordOneSpecialLetter": "At least one special letter",
     "invalidPasswordOneNumber" : "At least one number",
     "invalidPasswordOneCapitalLetter": "At least one capital letter",
-    "titleLogin": "Login Your Account"
+    "titleLogin": "Login Your Account",
+    "location": "Location",
+    "mostPopular": "Most Popular",
+    "nearby": "Nearby Restautant"
 }
