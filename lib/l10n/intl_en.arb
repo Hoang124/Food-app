@@ -33,5 +33,9 @@
     "titleLogin": "Login Your Account",
     "location": "Location",
     "mostPopular": "Most Popular",
-    "nearby": "Nearby Restautant"
+    "nearby": "Nearby Restautant",
+    "healthy": "Healthy",
+    "description": "Description",
+    "addToCard": "Add To Card",
+    "showRestaurent": "View Restautant"
 }

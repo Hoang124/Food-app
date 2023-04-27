@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addToCard": MessageLookupByLibrary.simpleMessage("Add To Card"),
         "appName": MessageLookupByLibrary.simpleMessage("AppFood"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -32,10 +33,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("With Super Riders"),
         "desOnboarding3":
             MessageLookupByLibrary.simpleMessage("With Fantastic Tastes"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "email": MessageLookupByLibrary.simpleMessage("Enter Your Email"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
+        "healthy": MessageLookupByLibrary.simpleMessage("Healthy"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "invalidEmailAddress": MessageLookupByLibrary.simpleMessage(
             "Please enter your email address in format: yourname@example.com"),
@@ -59,6 +62,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing..."),
+        "showRestaurent":
+            MessageLookupByLibrary.simpleMessage("View Restautant"),
         "signIn": MessageLookupByLibrary.simpleMessage("Login"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),

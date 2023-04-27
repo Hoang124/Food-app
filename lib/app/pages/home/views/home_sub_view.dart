@@ -331,89 +331,94 @@ class HomeSubView extends GetView<HomeSubController> {
     String nameFood,
     double money,
   ) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 15,
-        vertical: 20,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            children: [
-              Image.asset(picture),
-              Positioned(
-                right: 0,
-                child: Transform.translate(
-                  offset: const Offset(10, -10),
-                  child: SvgPicture.asset(
-                    AssetsConst.tymIcon,
-                    height: 20,
+    return InkWell(
+      onTap: () {
+        Get.toNamed(Routes.foodDetail);
+      },
+      child: Container(
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: 20,
+        ),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                Image.asset(picture),
+                Positioned(
+                  right: 0,
+                  child: Transform.translate(
+                    offset: const Offset(10, -10),
+                    child: SvgPicture.asset(
+                      AssetsConst.tymIcon,
+                      height: 20,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          Text(
-            nameFood,
-            style: AppTextStyles.body1().copyWith(
-              color: AppColors.defaultTextColor,
+              ],
             ),
-          ),
-          const SizedBox(height: 5),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                "24min - ",
-                style: AppTextStyles.tiny().copyWith(
-                  color: const Color(0xff8E97A6),
-                ),
+            const SizedBox(height: 20),
+            Text(
+              nameFood,
+              style: AppTextStyles.body1().copyWith(
+                color: AppColors.defaultTextColor,
               ),
-              SvgPicture.asset(AssetsConst.star),
-              const SizedBox(width: 5),
-              Text(
-                "4.8",
-                style: AppTextStyles.tiny().copyWith(
-                  color: const Color(0xff8E97A6),
+            ),
+            const SizedBox(height: 5),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "24min - ",
+                  style: AppTextStyles.tiny().copyWith(
+                    color: const Color(0xff8E97A6),
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                money.toString(),
-                style: AppTextStyles.big().copyWith(
-                  color: AppColors.defaultTextColor,
-                  fontWeight: FontWeight.w700,
+                SvgPicture.asset(AssetsConst.star),
+                const SizedBox(width: 5),
+                Text(
+                  "4.8",
+                  style: AppTextStyles.tiny().copyWith(
+                    color: const Color(0xff8E97A6),
+                  ),
                 ),
-              ),
-              const SizedBox(width: 40),
-              Container(
-                height: 35,
-                width: 35,
-                decoration: BoxDecoration(
-                  color: AppColors.defaultTextColor,
-                  borderRadius: BorderRadius.circular(10),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  money.toString(),
+                  style: AppTextStyles.big().copyWith(
+                    color: AppColors.defaultTextColor,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-                child: const Icon(
-                  Icons.add,
-                  color: AppColors.white,
-                ),
-              )
-            ],
-          ),
-        ],
+                const SizedBox(width: 40),
+                Container(
+                  height: 35,
+                  width: 35,
+                  decoration: BoxDecoration(
+                    color: AppColors.defaultTextColor,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Icon(
+                    Icons.add,
+                    color: AppColors.white,
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
