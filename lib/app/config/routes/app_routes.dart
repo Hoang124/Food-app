@@ -6,4 +6,5 @@ abstract class Routes {
   static const onboarding = '/onboarding_view';
   static const signIn = '/signIn_view';
   static const notification = '/notification_view';
+  static const foodDetail = '/food-detail-view';
 }
