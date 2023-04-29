@@ -22,10 +22,16 @@ class AppPages {
       binding: OnboardingBinding(),
       transition: Transition.rightToLeft,
     ),
-     GetPage<dynamic>(
+    GetPage<dynamic>(
       name: Routes.signIn,
       page: () => const SignInView(),
       binding: AuthBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage<dynamic>(
+      name: Routes.foodDetail,
+      page: () => const FoodDetailView(),
+      binding: FoodDetailBinding(),
       transition: Transition.rightToLeft,
     ),
   ];

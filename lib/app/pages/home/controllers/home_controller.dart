@@ -3,6 +3,19 @@ import 'package:flutter/material.dart';
 
 class HomeController extends GetxController
     with GetSingleTickerProviderStateMixin, WidgetsBindingObserver {
+  final RxInt _currentTab = 0.obs;
+  set currentTab(int value) => _currentTab.value = value;
+  int get currentTab => _currentTab.value;
+  final PageStorageBucket bucket = PageStorageBucket();
+
+  List<Widget> screen = [
+     const HomeSubView(),
+     const NotificationView(),
+     const NotificationView(),
+     const NotificationView(),
+  ];
+
+  Widget currentScreen = const HomeSubView();
 
   @override
   void onInit() {
@@ -24,6 +37,9 @@ class HomeController extends GetxController
       LogUtil.d('Home: on app ressume!');
     }
   }
+    Widget getWidget() {
+    return screen[currentTab];
+  }
 
- 
+
 }

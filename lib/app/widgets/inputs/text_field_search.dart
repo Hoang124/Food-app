@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:foodapp/app/core.dart';
 
-
 class TextFieldSearch extends StatefulWidget {
   final bool enabled;
   final double? width;
@@ -115,34 +114,34 @@ class _TextFieldSearchState extends State<TextFieldSearch> {
 
   Color? getFillColor() {
     if (!_isFocus && widget.inputController.text.isEmpty) {
-      return AppColors.grey.shade100;
+      return AppColors.white;
     }
 
-    return AppColors.main.shade600;
+    return AppColors.white;
   }
 
   Color getTextColor() {
     if (!widget.enabled) {
-      return AppColors.grey.shade300;
+      return AppColors.primaryColor;
     }
 
     if (_isSearched) {
-      return AppColors.main;
+      return AppColors.primaryColor;
     }
 
-    return AppColors.grey.shade900;
+    return AppColors.primaryColor;
   }
 
   Color getHintColor() {
     if (!widget.enabled) {
-      return AppColors.grey.shade300;
+      return AppColors.primaryColor;
     }
 
     if (_isFilled) {
-      return AppColors.main.shade400;
+      return AppColors.lightGrey;
     }
 
-    return AppColors.main;
+    return AppColors.primaryColor;
   }
 
   @override
@@ -230,19 +229,19 @@ class _TextFieldSearchState extends State<TextFieldSearch> {
           suffixIconConstraints: widget.suffixIconConstraints,
           border: OutlineInputBorder(
             borderSide: BorderSide(
-              color: AppColors.main,
+              color: AppColors.primaryColor,
               width: 1,
               style: _isFilled ? BorderStyle.none : BorderStyle.solid,
             ),
-            borderRadius: const BorderRadius.all(Radius.circular(6.0)),
+            borderRadius: const BorderRadius.all(Radius.circular(18.0)),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color: AppColors.main,
+              color: AppColors.primaryColor,
               width: 1,
               style: _isFilled ? BorderStyle.none : BorderStyle.solid,
             ),
-            borderRadius: const BorderRadius.all(Radius.circular(6.0)),
+            borderRadius: const BorderRadius.all(Radius.circular(18.0)),
           ),
           disabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(
@@ -250,15 +249,15 @@ class _TextFieldSearchState extends State<TextFieldSearch> {
               width: 1,
               style: BorderStyle.solid,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(6.0)),
+            borderRadius: BorderRadius.all(Radius.circular(18.0)),
           ),
           focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(
-              color: AppColors.main,
+              color: AppColors.primaryColor,
               width: 1,
               style: BorderStyle.solid,
             ),
-            borderRadius: BorderRadius.all(Radius.circular(6.0)),
+            borderRadius: BorderRadius.all(Radius.circular(18.0)),
           ),
         ),
         textCapitalization: TextCapitalization.sentences,

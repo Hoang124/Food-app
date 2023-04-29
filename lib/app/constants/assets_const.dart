@@ -6,6 +6,8 @@ class AssetsConst {
   static const String onboarding01 = "${preImgPath}onboarding01.png";
   static const String onboarding02 = "${preImgPath}onboarding02.png";
   static const String onboarding03 = "${preImgPath}onboarding03.png";
+  static const String food = "${preImgPath}food.png";
+  static const String avatarr = "${preImgPath}avatar.jpg";
 
   //icons
   static const String logoSplash = "${preIconPath}logo_splash.svg";
@@ -21,4 +23,19 @@ class AssetsConst {
   static const String signInPink = "${preIconPath}signIn_pink.svg";
   static const String signInPinkSmall = "${preIconPath}signIn_pink_small.svg";
   static const String signInPurple = "${preIconPath}signIn_purple.svg";
+  static const String homeIcon = "${preIconPath}home.svg";
+  static const String tymIcon = "${preIconPath}heart.svg";
+  static const String bellIcon = "${preIconPath}bell.svg";
+  static const String personIcon = "${preIconPath}profile.svg";
+  static const String homeIconUn = "${preIconPath}home_un.svg";
+  static const String tymIconUn = "${preIconPath}heart_un.svg";
+  static const String bellIconUn = "${preIconPath}bell_un.svg";
+  static const String personIconUn = "${preIconPath}profile_un.svg";
+  static const String iconFillter = "${preIconPath}icon_fillter.svg";
+  static const String doughnut = "${preIconPath}doughnut.svg";
+  static const String hotdog = "${preIconPath}hotdog.svg";
+  static const String pizza = "${preIconPath}pizza.svg";
+  static const String ice = "${preIconPath}icecream.svg";
+  static const String zongzi = "${preIconPath}zongzi.svg";
+  static const String star = "${preIconPath}star.svg";
 }

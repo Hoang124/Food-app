@@ -13,8 +13,8 @@ class AppTextStyles {
 
   static TextStyle subLead() {
     return const TextStyle(
-      fontWeight: FontWeight.w400,
-      fontSize: 28,
+      fontWeight: FontWeight.w600,
+      fontSize: 25,
       color: AppColors.black,
       fontFamily: AppProperties.fontFamilyName,
     );
@@ -76,7 +76,7 @@ class AppTextStyles {
   static TextStyle heading2() {
     return const TextStyle(
       fontWeight: FontWeight.w600,
-      fontSize: 20,
+      fontSize: 22,
       color: AppColors.defaultTextColor,
       fontFamily: AppProperties.fontFamilyName,
     );
@@ -164,8 +164,8 @@ class AppTextStyles {
 
   static TextStyle big() {
     return const TextStyle(
-      fontWeight: FontWeight.w800,
-      fontSize: 18,
+      fontWeight: FontWeight.w300,
+      fontSize: 20,
       fontFamily: AppProperties.fontFamilyName,
     );
   }
