@@ -439,6 +439,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Show Comment`
+  String get showComment {
+    return Intl.message(
+      'Show Comment',
+      name: 'showComment',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
