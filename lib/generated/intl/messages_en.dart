@@ -64,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing..."),
+        "showComment": MessageLookupByLibrary.simpleMessage("Show Comment"),
         "showRestaurent":
             MessageLookupByLibrary.simpleMessage("View Restautant"),
         "signIn": MessageLookupByLibrary.simpleMessage("Login"),
