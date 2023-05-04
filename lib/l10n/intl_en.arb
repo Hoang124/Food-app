@@ -38,5 +38,7 @@
     "description": "Description",
     "addToCard": "Add To Card",
     "showRestaurent": "View Restautant",
+    "addedItems": "Added Items",
+    "goToCart": "Go To Cart",
     "showComment": "Show Comment"
 }

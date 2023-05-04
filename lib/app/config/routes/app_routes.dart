@@ -7,5 +7,6 @@ abstract class Routes {
   static const signIn = '/signIn_view';
   static const notification = '/notification_view';
   static const foodDetail = '/food-detail-view';
+  static const basket = '/basket';
   static const store = '/store-view';
 }

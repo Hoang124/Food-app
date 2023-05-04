@@ -35,6 +35,12 @@ class AppPages {
       transition: Transition.rightToLeft,
     ),
     GetPage<dynamic>(
+      name: Routes.basket,
+      page: () => const BasketView(),
+      binding: BasketBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage<dynamic>(
       name: Routes.store,
       page: () => const StoreView(),
       binding: StoreBinding(),
