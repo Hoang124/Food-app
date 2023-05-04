@@ -9,10 +9,10 @@ class HomeController extends GetxController
   final PageStorageBucket bucket = PageStorageBucket();
 
   List<Widget> screen = [
-     const HomeSubView(),
-     const NotificationView(),
-     const NotificationView(),
-     const NotificationView(),
+    const HomeSubView(),
+    const NotificationView(),
+    const NotificationView(),
+    const NotificationView(),
   ];
 
   Widget currentScreen = const HomeSubView();
@@ -20,7 +20,6 @@ class HomeController extends GetxController
   @override
   void onInit() {
     WidgetsBinding.instance.addObserver(this);
-
     super.onInit();
   }
 
@@ -37,9 +36,8 @@ class HomeController extends GetxController
       LogUtil.d('Home: on app ressume!');
     }
   }
-    Widget getWidget() {
+
+  Widget getWidget() {
     return screen[currentTab];
   }
-
-
 }

@@ -37,5 +37,7 @@
     "healthy": "Healthy",
     "description": "Description",
     "addToCard": "Add To Card",
-    "showRestaurent": "View Restautant"
+    "showRestaurent": "View Restautant",
+    "addedItems": "Added Items",
+    "goToCart": "Go To Cart"
 }

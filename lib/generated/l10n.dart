@@ -439,6 +439,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Added Items`
+  String get addedItems {
+    return Intl.message(
+      'Added Items',
+      name: 'addedItems',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go To Cart`
+  String get goToCart {
+    return Intl.message(
+      'Go To Cart',
+      name: 'goToCart',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
