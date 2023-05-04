@@ -289,10 +289,15 @@ class FoodDetailView extends GetView<FoodDetailController> {
           ),
           Row(
             children: [
-              Text(
-                S.of(context).showRestaurent,
-                style: AppTextStyles.body2().copyWith(
-                  color: AppColors.primaryColor,
+              InkWell(
+                onTap: () {
+                  Get.toNamed(Routes.store);
+                },
+                child: Text(
+                  S.of(context).showRestaurent,
+                  style: AppTextStyles.body2().copyWith(
+                    color: AppColors.primaryColor,
+                  ),
                 ),
               ),
               const SizedBox(width: 10),

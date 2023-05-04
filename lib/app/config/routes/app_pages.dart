@@ -34,5 +34,11 @@ class AppPages {
       binding: FoodDetailBinding(),
       transition: Transition.rightToLeft,
     ),
+    GetPage<dynamic>(
+      name: Routes.store,
+      page: () => const StoreView(),
+      binding: StoreBinding(),
+      transition: Transition.rightToLeft,
+    ),
   ];
 }
