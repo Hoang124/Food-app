@@ -56,6 +56,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("At least one special letter"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
         "mostPopular": MessageLookupByLibrary.simpleMessage("Most Popular"),
+        "nameCart": MessageLookupByLibrary.simpleMessage("Cart"),
         "nearby": MessageLookupByLibrary.simpleMessage("Nearby Restautant"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
