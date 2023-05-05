@@ -70,16 +70,13 @@ final ThemeData lightTheme = ThemeData(
         ),
       ),
       textStyle: MaterialStateProperty.all(
-        AppTextStyles.button().copyWith(color: AppColors.grey)
-      ),
+          AppTextStyles.button().copyWith(color: AppColors.grey)),
       shape: MaterialStateProperty.all(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
         ),
       ),
-      padding: MaterialStateProperty.all(
-          AppProperties.defaultButtonPadding
-      ),
+      padding: MaterialStateProperty.all(AppProperties.defaultButtonPadding),
       overlayColor: MaterialStateProperty.all(AppColors.main[100]),
     ),
   ),
@@ -88,9 +85,9 @@ final ThemeData lightTheme = ThemeData(
       elevation: MaterialStateProperty.all(.5),
       backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
         if (states.contains(MaterialState.disabled)) {
-          return AppColors.main.shade300; // Disabled color
+          return AppColors.primaryColor; // Disabled color
         }
-        return AppColors.main; // Regular color
+        return AppColors.primaryColor; // Regular color
       }),
       textStyle: MaterialStateProperty.all(AppTextStyles.button()),
       shape: MaterialStateProperty.all(
@@ -98,26 +95,20 @@ final ThemeData lightTheme = ThemeData(
           borderRadius: BorderRadius.circular(6),
         ),
       ),
-      padding: MaterialStateProperty.all(
-          AppProperties.defaultButtonPadding
-      ),
+      padding: MaterialStateProperty.all(AppProperties.defaultButtonPadding),
       foregroundColor: MaterialStateProperty.all(AppColors.white),
       overlayColor: MaterialStateProperty.all(AppColors.main[300]),
     ),
   ),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
-      textStyle: MaterialStateProperty.all(
-          AppTextStyles.textButton()
-      ),
+      textStyle: MaterialStateProperty.all(AppTextStyles.textButton()),
       shape: MaterialStateProperty.all(
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(6),
         ),
       ),
-      padding: MaterialStateProperty.all(
-          AppProperties.defaultButtonPadding
-      ),
+      padding: MaterialStateProperty.all(AppProperties.defaultButtonPadding),
     ),
   ),
   buttonTheme: const ButtonThemeData(
@@ -412,11 +403,10 @@ final ThemeData lightTheme = ThemeData(
     ),
   ),
   tabBarTheme: const TabBarTheme(
-    indicatorSize: TabBarIndicatorSize.tab,
-    labelColor: Color(0xffffffff),
-    unselectedLabelColor: Color(0xb2ffffff),
-    labelPadding: EdgeInsets.zero
-  ),
+      indicatorSize: TabBarIndicatorSize.tab,
+      labelColor: Color(0xffffffff),
+      unselectedLabelColor: Color(0xb2ffffff),
+      labelPadding: EdgeInsets.zero),
   chipTheme: const ChipThemeData(
     backgroundColor: Color(0x1f06192d),
     brightness: Brightness.light,
