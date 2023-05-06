@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/app/core.dart';
 
-class BasketView extends GetView<BasketController> {
-  const BasketView({Key? key}) : super(key: key);
-
-  void _cartClick() {
-    Get.toNamed(Routes.cart);
-  }
+class CartView extends GetView<CartController> {
+  const CartView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,25 +22,18 @@ class BasketView extends GetView<BasketController> {
         backgroundColor: AppColors.primaryColor,
         centerTitle: true,
         title: Text(
-          "Cart",
+          "Review Payment",
           style: AppTextStyles.body1().copyWith(color: AppColors.white),
         ),
       ),
-      bottomNavigationBar: _goToCartBtn(context),
+      bottomNavigationBar: _reviewPaymentBtn(context),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  S.of(context).addedItems,
-                  style: AppTextStyles.heading1(),
-                ),
-              ),
-              _mainBasketView(context),
+              _mainReviewPaymentView(context),
             ],
           ),
         ),
@@ -52,7 +41,7 @@ class BasketView extends GetView<BasketController> {
     );
   }
 
-  Widget _itemBasketWidget(BuildContext context, String name, String price) {
+  Widget _itemCartWidget(BuildContext context, String name, String price) {
     return Container(
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.all(8),
@@ -110,6 +99,23 @@ class BasketView extends GetView<BasketController> {
     );
   }
 
+  Widget dis(BuildContext context) {
+    return Dismissible(
+        key: const Key("1"),
+        onDismissed: (direction) {},
+        background: Container(
+          color: Colors.red,
+          child: const Icon(Icons.delete),
+          alignment: Alignment.centerRight,
+          padding: const EdgeInsets.only(right: 20),
+        ),
+        direction: DismissDirection.endToStart,
+        dismissThresholds: const {
+          DismissDirection.endToStart: 0.8,
+        },
+        child: _itemCartWidget(context, "pizza", "19.00"));
+  }
+
   Widget _minusWiget(BuildContext context) {
     return Container(
       width: 30,
@@ -142,31 +148,26 @@ class BasketView extends GetView<BasketController> {
     );
   }
 
-  Widget _goToCartBtn(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: FloatingActionButton(
-        onPressed: _cartClick,
-        child: ElevatedButton(
-          onPressed: null,
-          style: FilledBtnStyle.enable(
-            isFullWidth: true,
-            borderRadius: 16,
-            background: AppColors.primaryColor,
-          ),
-          child: Text(S.of(context).goToCart),
-        ),
+  Widget _reviewPaymentBtn(BuildContext context) {
+    return ElevatedButton(
+      onPressed: null,
+      style: FilledBtnStyle.enable(
+        isFullWidth: true,
+        borderRadius: 16,
+        background: AppColors.primaryColor,
       ),
+      child: Text(S.of(context).reviewPayment),
     );
   }
 
-  Widget _mainBasketView(BuildContext context) {
+  Widget _mainReviewPaymentView(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _itemBasketWidget(context, "Pizza", "19.00"),
-          _itemBasketWidget(context, "Pasta", "21.00"),
+          // _itemCartWidget(context, "Pizza", "19.00"),
+          dis(context),
+          _itemCartWidget(context, "Pasta", "21.00"),
           const SizedBox(height: 20),
         ],
       ),

@@ -469,6 +469,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Review Payment`
+  String get reviewPayment {
+    return Intl.message(
+      'Review Payment',
+      name: 'reviewPayment',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
