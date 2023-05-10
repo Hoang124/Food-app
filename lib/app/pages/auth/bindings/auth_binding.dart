@@ -1,5 +1,3 @@
-
-
 import 'package:foodapp/app/core.dart';
 
 class AuthBinding extends Bindings {

@@ -5,13 +5,14 @@ class DevEnv extends Env {
   DevEnv();
 
   @override
-  String baseApi = "";
+  // String baseApi = "http://127.0.0.1:8080/api/v1";
+  String baseApi = "https://d1a1-1-55-36-127.ngrok-free.app/api/v1";
 
   @override
   EnvType buildType = EnvType.development;
 
   @override
-  String dbName = "ecovelo-dev";
+  String dbName = "food-app-dev";
 
   @override
   String dbVersion = "1.2";

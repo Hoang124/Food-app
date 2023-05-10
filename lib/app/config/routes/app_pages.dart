@@ -46,5 +46,11 @@ class AppPages {
       binding: StoreBinding(),
       transition: Transition.rightToLeft,
     ),
+    GetPage<dynamic>(
+      name: Routes.cart,
+      page: () => const CartView(),
+      binding: CartBinding(),
+      transition: Transition.rightToLeft,
+    ),
   ];
 }

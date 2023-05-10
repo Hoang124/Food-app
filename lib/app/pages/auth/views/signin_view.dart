@@ -18,7 +18,10 @@ class SignInView extends GetView<SignInController> {
     controller.checkFormValidation();
   }
 
-  void _signInOnClicked() {}
+  void _signInOnClicked() {
+    controller.signIn();
+  }
+
   void _forgotPasswordOnClicked() {
     Get.offNamed(Routes.home);
   }

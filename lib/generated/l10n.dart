@@ -470,11 +470,31 @@ class S {
     );
   }
 
+  /// `Review Payment`
+  String get reviewPayment {
+    return Intl.message(
+      'Review Payment',
+      name: 'reviewPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cart`
   String get nameCart {
     return Intl.message(
       'Cart',
       name: 'nameCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your email or password is incorrect`
+  String get erEmailOrPasswordInvalid {
+    return Intl.message(
+      'Your email or password is incorrect',
+      name: 'erEmailOrPasswordInvalid',
       desc: '',
       args: [],
     );

@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "email": MessageLookupByLibrary.simpleMessage("Enter Your Email"),
+        "erEmailOrPasswordInvalid": MessageLookupByLibrary.simpleMessage(
+            "Your email or password is incorrect"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "goToCart": MessageLookupByLibrary.simpleMessage("Go To Cart"),
@@ -65,6 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing..."),
+        "reviewPayment": MessageLookupByLibrary.simpleMessage("Review Payment"),
         "showComment": MessageLookupByLibrary.simpleMessage("Show Comment"),
         "showRestaurent":
             MessageLookupByLibrary.simpleMessage("View Restautant"),
