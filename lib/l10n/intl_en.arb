@@ -41,5 +41,7 @@
     "addedItems": "Added Items",
     "goToCart": "Go To Cart",
     "showComment": "Show Comment",
-    "reviewPayment": "Review Payment"
+    "reviewPayment": "Review Payment",
+    "nameCart": "Cart",
+    "erEmailOrPasswordInvalid": "Your email or password is incorrect"
 }

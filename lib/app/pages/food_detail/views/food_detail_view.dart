@@ -23,7 +23,7 @@ class FoodDetailView extends GetView<FoodDetailController> {
             color: AppColors.primaryColor,
           ),
           onPressed: () {
-            // Do something when menu icon is pressed
+            Get.back();
           },
         ),
         actions: <Widget>[
@@ -164,8 +164,6 @@ class FoodDetailView extends GetView<FoodDetailController> {
             ),
             textAlign: TextAlign.justify,
           )
-
-          // const SizedBox(height: 5),
         ],
       ),
     );

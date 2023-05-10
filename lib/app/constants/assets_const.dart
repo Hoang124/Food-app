@@ -38,4 +38,5 @@ class AssetsConst {
   static const String ice = "${preIconPath}icecream.svg";
   static const String zongzi = "${preIconPath}zongzi.svg";
   static const String star = "${preIconPath}star.svg";
+  static const String trash = "${preIconPath}trash.svg";
 }

@@ -21,32 +21,30 @@ class BasketView extends GetView<BasketController> {
       appBar: AppBar(
         iconTheme: const IconThemeData(
           color: AppColors.white,
-          size: 30,
+          size: 18,
         ),
         backgroundColor: AppColors.primaryColor,
         centerTitle: true,
         title: Text(
-          "Cart",
-          style: AppTextStyles.body1().copyWith(color: AppColors.white),
+          S.of(context).nameCart,
+          style: AppTextStyles.subLead().copyWith(color: AppColors.white),
         ),
       ),
       bottomNavigationBar: _goToCartBtn(context),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  S.of(context).addedItems,
-                  style: AppTextStyles.heading1(),
-                ),
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                S.of(context).addedItems,
+                style: AppTextStyles.heading1(),
               ),
-              _mainBasketView(context),
-            ],
-          ),
+            ),
+            _mainBasketView(context),
+          ],
         ),
       ),
     );
@@ -63,27 +61,37 @@ class BasketView extends GetView<BasketController> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Image.asset(
-                AssetsConst.food,
-                height: 100,
-              ),
-              const SizedBox(width: 10),
-              Column(
-                children: [
-                  Text(
-                    name,
-                    style: AppTextStyles.body1(),
-                    overflow: TextOverflow.ellipsis,
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  AssetsConst.food,
+                  height: 100,
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Column(
+                      children: [
+                        Text(
+                          name,
+                          style: AppTextStyles.body1(),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                        Text(
+                          price,
+                          style: AppTextStyles.body1(),
+                        )
+                      ],
+                    ),
                   ),
-                  Text(
-                    price,
-                    style: AppTextStyles.body1(),
-                  )
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
           Column(
             children: [
@@ -144,17 +152,19 @@ class BasketView extends GetView<BasketController> {
 
   Widget _goToCartBtn(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: FloatingActionButton(
+      padding: const EdgeInsets.fromLTRB(15, 10, 15, 30),
+      child: ElevatedButton(
         onPressed: _cartClick,
-        child: ElevatedButton(
-          onPressed: null,
-          style: FilledBtnStyle.enable(
-            isFullWidth: true,
-            borderRadius: 16,
-            background: AppColors.primaryColor,
+        style: FilledBtnStyle.enable(
+          isFullWidth: true,
+          borderRadius: 16,
+        ),
+        child: Text(
+          S.of(context).goToCart,
+          style: AppTextStyles.subHeading1().copyWith(
+            color: AppColors.white,
+            fontWeight: FontWeight.w600,
           ),
-          child: Text(S.of(context).goToCart),
         ),
       ),
     );
@@ -165,7 +175,7 @@ class BasketView extends GetView<BasketController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _itemBasketWidget(context, "Pizza", "19.00"),
+          _itemBasketWidget(context, "Pizzaa", "19.00"),
           _itemBasketWidget(context, "Pasta", "21.00"),
           const SizedBox(height: 20),
         ],

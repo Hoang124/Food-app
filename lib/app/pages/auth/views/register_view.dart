@@ -12,18 +12,6 @@ class RegisterView extends GetView<SignUpController> {
     );
   }
 
-  void _formOnChange() {
-    controller.checkFormValidation();
-  }
-
-  void _signInOnClicked() {
-   // Get.offAllNamed(Routes.signin);
-  }
-
-  void _signupOnClicked() {
-    //Get.offAllNamed(Routes.signin);
-  }
-
   Widget _buildBody(BuildContext context) {
     return Scaffold(
       body: Container()

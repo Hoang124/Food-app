@@ -479,6 +479,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Cart`
+  String get nameCart {
+    return Intl.message(
+      'Cart',
+      name: 'nameCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your email or password is incorrect`
+  String get erEmailOrPasswordInvalid {
+    return Intl.message(
+      'Your email or password is incorrect',
+      name: 'erEmailOrPasswordInvalid',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

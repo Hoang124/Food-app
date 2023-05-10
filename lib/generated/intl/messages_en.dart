@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "email": MessageLookupByLibrary.simpleMessage("Enter Your Email"),
+        "erEmailOrPasswordInvalid": MessageLookupByLibrary.simpleMessage(
+            "Your email or password is incorrect"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "goToCart": MessageLookupByLibrary.simpleMessage("Go To Cart"),
@@ -56,6 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("At least one special letter"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
         "mostPopular": MessageLookupByLibrary.simpleMessage("Most Popular"),
+        "nameCart": MessageLookupByLibrary.simpleMessage("Cart"),
         "nearby": MessageLookupByLibrary.simpleMessage("Nearby Restautant"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),

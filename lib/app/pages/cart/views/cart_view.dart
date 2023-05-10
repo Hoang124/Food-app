@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodapp/app/core.dart';
 
 class CartView extends GetView<CartController> {
@@ -99,21 +100,38 @@ class CartView extends GetView<CartController> {
     );
   }
 
-  Widget dis(BuildContext context) {
+  Widget _dismissibleWidget(BuildContext context, String name, String price) {
     return Dismissible(
-        key: const Key("1"),
-        onDismissed: (direction) {},
-        background: Container(
-          color: Colors.red,
-          child: const Icon(Icons.delete),
+      key: Key(name),
+      onDismissed: (direction) {},
+      confirmDismiss: (direction) async {
+        return false;
+      },
+      background: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 50),
+        child: Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(16),
+              bottomRight: Radius.circular(16),
+            ),
+            color: AppColors.primaryColor,
+          ),
+          child: SvgPicture.asset(AssetsConst.trash),
           alignment: Alignment.centerRight,
           padding: const EdgeInsets.only(right: 20),
         ),
-        direction: DismissDirection.endToStart,
-        dismissThresholds: const {
-          DismissDirection.endToStart: 0.8,
-        },
-        child: _itemCartWidget(context, "pizza", "19.00"));
+      ),
+      direction: DismissDirection.endToStart,
+      // onResize: () {
+      //   return;
+      // },
+      child: _itemCartWidget(
+        context,
+        name,
+        price,
+      ),
+    );
   }
 
   Widget _minusWiget(BuildContext context) {
@@ -149,14 +167,22 @@ class CartView extends GetView<CartController> {
   }
 
   Widget _reviewPaymentBtn(BuildContext context) {
-    return ElevatedButton(
-      onPressed: null,
-      style: FilledBtnStyle.enable(
-        isFullWidth: true,
-        borderRadius: 16,
-        background: AppColors.primaryColor,
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(15, 10, 15, 30),
+      child: ElevatedButton(
+        onPressed: null,
+        style: FilledBtnStyle.enable(
+          isFullWidth: true,
+          borderRadius: 16,
+        ),
+        child: Text(
+          S.of(context).reviewPayment,
+          style: AppTextStyles.subHeading1().copyWith(
+            color: AppColors.white,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ),
-      child: Text(S.of(context).reviewPayment),
     );
   }
 
@@ -166,8 +192,8 @@ class CartView extends GetView<CartController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // _itemCartWidget(context, "Pizza", "19.00"),
-          dis(context),
-          _itemCartWidget(context, "Pasta", "21.00"),
+          _dismissibleWidget(context, "pizza", "19.00"),
+          _dismissibleWidget(context, "Pasta", "21.00"),
           const SizedBox(height: 20),
         ],
       ),
