@@ -6,7 +6,7 @@ class SignInController extends GetxController {
   TextEditingController accountFieldController = TextEditingController();
   TextEditingController passwordFieldController = TextEditingController();
   FocusNode accountNode = FocusNode();
-  final _enableSignInBtn = false.obs;
+  final RxBool _enableSignInBtn = false.obs;
 
   late LoginManager _loginManager;
 
@@ -63,10 +63,11 @@ class SignInController extends GetxController {
   }
 
   void checkFormValidation() {
-    if (enableSignInBtn && !isFormValided) {
-      enableSignInBtn = false;
-    } else if (!enableSignInBtn && isFormValided) {
+    if (isFormValided) {
       enableSignInBtn = true;
+    }
+    {
+      enableSignInBtn = false;
     }
   }
 

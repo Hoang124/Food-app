@@ -203,23 +203,24 @@ class SignInView extends GetView<SignInController> {
               width: double.infinity,
               child: Obx(
                 () {
-                  bool enable = controller.enableSignInBtn;
-                  ButtonStyle btnStyle = FilledBtnStyle.disable(
-                    sizeType: SizeButtonType.custom,
-                    borderRadius: 16,
-                    customPadding: const EdgeInsets.symmetric(vertical: 18),
-                  );
-                  if (enable) {
-                    btnStyle = FilledBtnStyle.enable(
-                      sizeType: SizeButtonType.custom,
-                      borderRadius: 16,
-                      customPadding: const EdgeInsets.symmetric(vertical: 18),
-                    );
-                  }
                   return ElevatedButton(
                     key: const ValueKey('signInButton'),
-                    style: btnStyle,
-                    onPressed: _signInOnClicked,
+                    style: controller.enableSignInBtn == true
+                        ? FilledBtnStyle.enable(
+                            sizeType: SizeButtonType.custom,
+                            borderRadius: 16,
+                            customPadding:
+                                const EdgeInsets.symmetric(vertical: 18),
+                          )
+                        : FilledBtnStyle.disable(
+                            sizeType: SizeButtonType.custom,
+                            borderRadius: 16,
+                            customPadding:
+                                const EdgeInsets.symmetric(vertical: 18),
+                          ),
+                    onPressed: controller.enableSignInBtn == true
+                        ? _signInOnClicked
+                        : null,
                     child: Text(
                       S.of(context).signIn,
                       style: AppTextStyles.body1().copyWith(
