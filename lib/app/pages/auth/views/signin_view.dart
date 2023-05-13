@@ -26,8 +26,11 @@ class SignInView extends GetView<SignInController> {
     Get.offNamed(Routes.home);
   }
 
-  void _signupOnClicked() {
-    // Get.toNamed(Routes.register);
+  Future<void> _signupOnClicked() async {
+    var result = await Get.toNamed(Routes.register);
+    if (result != null && result == true) {
+      SnackBars.complete(message: S.current.signupsucess).show();
+    }
   }
 
   Widget _buildBody(BuildContext context) {
@@ -107,7 +110,7 @@ class SignInView extends GetView<SignInController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
-              key: const ValueKey('emailSignInField'),
+              key: const ValueKey('emailignInField'),
               maxLines: 1,
               textInputAction: TextInputAction.next,
               controller: controller.accountFieldController,
@@ -125,7 +128,7 @@ class SignInView extends GetView<SignInController> {
                   color: AppColors.lightGrey,
                   size: 22,
                 ),
-                hintText: S.of(context).email,
+                hintText: S.of(context).emailInput,
                 hintStyle: AppTextStyles.body1().copyWith(
                   color: AppColors.lightGrey,
                   fontWeight: FontWeight.w400,
@@ -160,7 +163,7 @@ class SignInView extends GetView<SignInController> {
                   size: 22,
                   color: AppColors.lightGrey,
                 ),
-                hintText: S.of(context).password,
+                hintText: S.of(context).passwordInput,
                 hintStyle: AppTextStyles.body1().copyWith(
                   color: AppColors.lightGrey,
                   fontWeight: FontWeight.w400,
@@ -203,27 +206,30 @@ class SignInView extends GetView<SignInController> {
               width: double.infinity,
               child: Obx(
                 () {
-                  bool enable = controller.enableSignInBtn;
-                  ButtonStyle btnStyle = FilledBtnStyle.disable(
-                    sizeType: SizeButtonType.custom,
-                    borderRadius: 16,
-                    customPadding: const EdgeInsets.symmetric(vertical: 18),
-                  );
-                  if (enable) {
-                    btnStyle = FilledBtnStyle.enable(
-                      sizeType: SizeButtonType.custom,
-                      borderRadius: 16,
-                      customPadding: const EdgeInsets.symmetric(vertical: 18),
-                    );
-                  }
                   return ElevatedButton(
                     key: const ValueKey('signInButton'),
-                    style: btnStyle,
-                    onPressed: _signInOnClicked,
+                    style: controller.enableSignInBtn == true
+                        ? FilledBtnStyle.enable(
+                            sizeType: SizeButtonType.custom,
+                            borderRadius: 16,
+                            customPadding:
+                                const EdgeInsets.symmetric(vertical: 15),
+                          )
+                        : FilledBtnStyle.disable(
+                            sizeType: SizeButtonType.custom,
+                            borderRadius: 16,
+                            customPadding:
+                                const EdgeInsets.symmetric(vertical: 15),
+                          ),
+                    onPressed: () {
+                      controller.enableSignInBtn == true
+                          ? _signInOnClicked()
+                          : null;
+                    },
                     child: Text(
                       S.of(context).signIn,
                       style: AppTextStyles.body1().copyWith(
-                        color: AppColors.defaultBackground,
+                        color: AppColors.main.shade400,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -231,7 +237,19 @@ class SignInView extends GetView<SignInController> {
                 },
               ),
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 30),
+            Center(
+              child: Text.rich(
+                TextSpan(
+                    text: S.of(context).forgotPassword,
+                    style: AppTextStyles.body1().copyWith(
+                      color: AppColors.main.shade200,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = _forgotPasswordOnClicked),
+              ),
+            ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
