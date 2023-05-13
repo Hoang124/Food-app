@@ -22,9 +22,16 @@ class SignInController extends GetxController {
 
   String get password => passwordFieldController.text.trim();
 
+  String? accountValidation(String? value) {
+    if (value != null && StringExtensions(value).isEmail()) {
+      return null;
+    } else {
+      return S.current.invalidEmailAddress;
+    }
+  }
+
   @override
   void onInit() {
-    Get.put(AuthHttpService());
     _authHttpService = Get.find<AuthHttpService>();
     _loginManager = Get.find<LoginManager>();
     _sessionManager = Get.find<SessionManager>();
@@ -32,14 +39,6 @@ class SignInController extends GetxController {
       accountFieldController.text = accountFieldController.text.trim();
     });
     super.onInit();
-  }
-
-  String? accountValidation(String? value) {
-    if (value != null && StringExtensions(value).isEmail()) {
-      return null;
-    } else {
-      return S.current.invalidEmailAddress;
-    }
   }
 
   String? passwordValidation(String? value) {
@@ -65,8 +64,7 @@ class SignInController extends GetxController {
   void checkFormValidation() {
     if (isFormValided) {
       enableSignInBtn = true;
-    }
-    {
+    } else {
       enableSignInBtn = false;
     }
   }

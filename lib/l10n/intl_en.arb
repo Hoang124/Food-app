@@ -49,5 +49,6 @@
     "showComment": "Show Comment",
     "reviewPayment": "Review Payment",
     "nameCart": "Cart",
-    "erEmailOrPasswordInvalid": "Your email or password is incorrect"
+    "erEmailOrPasswordInvalid": "Your email or password is incorrect",
+    "signupsucess": "Successful registration, login to continue."
 }

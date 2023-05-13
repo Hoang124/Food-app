@@ -83,6 +83,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("View Restautant"),
         "signIn": MessageLookupByLibrary.simpleMessage("Login"),
         "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "signupsucess": MessageLookupByLibrary.simpleMessage(
+            "Successful registration, login to continue."),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "titleLogin":
             MessageLookupByLibrary.simpleMessage("Login Your Account"),
