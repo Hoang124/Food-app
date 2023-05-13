@@ -250,11 +250,11 @@ class S {
     );
   }
 
-  /// `Password`
-  String get password {
+  /// `Password not match`
+  String get passwordAganNotMatch {
     return Intl.message(
-      'Password',
-      name: 'password',
+      'Password not match',
+      name: 'passwordAganNotMatch',
       desc: '',
       args: [],
     );
@@ -280,11 +280,51 @@ class S {
     );
   }
 
-  /// `Enter Your Email`
-  String get email {
+  /// `Enter your email`
+  String get emailInput {
     return Intl.message(
-      'Enter Your Email',
-      name: 'email',
+      'Enter your email',
+      name: 'emailInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your name`
+  String get nameInput {
+    return Intl.message(
+      'Enter your name',
+      name: 'nameInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your phone number`
+  String get phoneNumberInput {
+    return Intl.message(
+      'Enter your phone number',
+      name: 'phoneNumberInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your password`
+  String get passwordInput {
+    return Intl.message(
+      'Enter your password',
+      name: 'passwordInput',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your password again`
+  String get passwordAgain {
+    return Intl.message(
+      'Enter your password again',
+      name: 'passwordAgain',
       desc: '',
       args: [],
     );
@@ -300,11 +340,21 @@ class S {
     );
   }
 
-  /// `Create New Account?`
+  /// `Create new account?`
   String get noAccount {
     return Intl.message(
-      'Create New Account?',
+      'Create new account?',
       name: 'noAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have an account already?`
+  String get haveAccount {
+    return Intl.message(
+      'Have an account already?',
+      name: 'haveAccount',
       desc: '',
       args: [],
     );
@@ -365,6 +415,16 @@ class S {
     return Intl.message(
       'Login Your Account',
       name: 'titleLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign Up`
+  String get titleRegister {
+    return Intl.message(
+      'Sign Up',
+      name: 'titleRegister',
       desc: '',
       args: [],
     );

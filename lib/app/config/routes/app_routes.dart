@@ -10,4 +10,5 @@ abstract class Routes {
   static const basket = '/basket';
   static const store = '/store-view';
   static const cart = '/cart';
+  static const register = '/register';
 }

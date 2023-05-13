@@ -19,4 +19,15 @@ class AuthHttpService extends BaseApiClient {
       },
     );
   }
+
+  Future<BaseResp<dynamic>> signUp(SignUpReq signUpReq) async {
+    return request<dynamic>(
+      Method.post,
+      AppApi.register,
+      data: signUpReq.toJson(),
+      onDeserialize: (dynamic jsonValue) {
+        return jsonValue;
+      },
+    );
+  }
 }

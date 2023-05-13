@@ -27,7 +27,7 @@ class SignInView extends GetView<SignInController> {
   }
 
   void _signupOnClicked() {
-    // Get.toNamed(Routes.register);
+    Get.toNamed(Routes.register);
   }
 
   Widget _buildBody(BuildContext context) {
@@ -125,7 +125,7 @@ class SignInView extends GetView<SignInController> {
                   color: AppColors.lightGrey,
                   size: 22,
                 ),
-                hintText: S.of(context).email,
+                hintText: S.of(context).emailInput,
                 hintStyle: AppTextStyles.body1().copyWith(
                   color: AppColors.lightGrey,
                   fontWeight: FontWeight.w400,
@@ -160,7 +160,7 @@ class SignInView extends GetView<SignInController> {
                   size: 22,
                   color: AppColors.lightGrey,
                 ),
-                hintText: S.of(context).password,
+                hintText: S.of(context).passwordInput,
                 hintStyle: AppTextStyles.body1().copyWith(
                   color: AppColors.lightGrey,
                   fontWeight: FontWeight.w400,

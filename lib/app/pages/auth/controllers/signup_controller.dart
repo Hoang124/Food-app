@@ -1,14 +1,16 @@
-
 import 'package:flutter/material.dart';
 import 'package:foodapp/app/core.dart';
 
 class SignUpController extends GetxController {
-  TextEditingController phoneNumberFieldController = TextEditingController();
+  final registerFormGlobalKey = GlobalKey<FormState>();
+  TextEditingController emailFieldController = TextEditingController();
   TextEditingController nameFieldController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passWordAgainController = TextEditingController();
+  TextEditingController phoneNumberFieldController = TextEditingController();
+  TextEditingController passwordAgainController = TextEditingController();
   TextEditingController passwordFieldController = TextEditingController();
-  FocusNode phoneNode = FocusNode();
+  FocusNode emailNode = FocusNode();
+
+  late AuthHttpService _authHttpService;
 
   final RxBool _enableSignUpBtn = false.obs;
   set enableSignUpBtn(bool value) => _enableSignUpBtn.value = value;
@@ -19,11 +21,23 @@ class SignUpController extends GetxController {
 
   String get password => passwordFieldController.text.trim();
 
+  String get passwordAgain => passwordAgainController.text.trim();
+
   String get name => nameFieldController.text.trim();
 
-  String get email => emailController.text.trim();
+  String get email => emailFieldController.text.trim();
 
   bool _passMatch = false;
+
+  @override
+  void onInit() {
+    Get.put(AuthHttpService());
+    _authHttpService = Get.find<AuthHttpService>();
+    emailNode.addListener(() {
+      emailFieldController.text = emailFieldController.text.trim();
+    });
+    super.onInit();
+  }
 
   String? accountValidation(String? value) {
     if (value != null && StringExtensions(value).isEmail()) {
@@ -39,7 +53,7 @@ class SignUpController extends GetxController {
       return null;
     } else {
       _passMatch = false;
-      return "S.current.noMatchPass";
+      return S.current.passwordAganNotMatch;
     }
   }
 
@@ -68,6 +82,7 @@ class SignUpController extends GetxController {
   }
 
   void checkFormValidation() {
+    passWordAgain(passwordAgain);
     if (phoneNumber.isEmpty ||
         password.isEmpty ||
         name.isEmpty ||
@@ -76,6 +91,29 @@ class SignUpController extends GetxController {
       enableSignUpBtn = false;
     } else {
       enableSignUpBtn = true;
+    }
+  }
+
+  Future<void> signUpClick() async {
+    SignUpReq signUpReq = SignUpReq(
+      phoneNumber: phoneNumber,
+      email: email,
+      nameUser: name,
+      password: password,
+    );
+    ProcessingDialog processingDialog = ProcessingDialog.show();
+    final res = await _authHttpService.signUp(signUpReq);
+    if (res.isSuccess()) {
+      processingDialog.hide();
+      phoneNumberFieldController.clear();
+      nameFieldController.clear();
+      emailFieldController.clear();
+      passwordFieldController.clear();
+      passwordAgainController.clear();
+      Get.back(result: true);
+    } else {
+      processingDialog.hide();
+      SnackBars.error(message: res.response.toString()).show();
     }
   }
 }

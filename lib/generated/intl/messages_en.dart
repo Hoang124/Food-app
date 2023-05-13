@@ -36,12 +36,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("With Fantastic Tastes"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
-        "email": MessageLookupByLibrary.simpleMessage("Enter Your Email"),
+        "emailInput": MessageLookupByLibrary.simpleMessage("Enter your email"),
         "erEmailOrPasswordInvalid": MessageLookupByLibrary.simpleMessage(
             "Your email or password is incorrect"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "goToCart": MessageLookupByLibrary.simpleMessage("Go To Cart"),
+        "haveAccount":
+            MessageLookupByLibrary.simpleMessage("Have an account already?"),
         "healthy": MessageLookupByLibrary.simpleMessage("Healthy"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "invalidEmailAddress": MessageLookupByLibrary.simpleMessage(
@@ -59,13 +61,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "location": MessageLookupByLibrary.simpleMessage("Location"),
         "mostPopular": MessageLookupByLibrary.simpleMessage("Most Popular"),
         "nameCart": MessageLookupByLibrary.simpleMessage("Cart"),
+        "nameInput": MessageLookupByLibrary.simpleMessage("Enter your name"),
         "nearby": MessageLookupByLibrary.simpleMessage("Nearby Restautant"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noAccount":
-            MessageLookupByLibrary.simpleMessage("Create New Account?"),
+            MessageLookupByLibrary.simpleMessage("Create new account?"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
-        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordAgain":
+            MessageLookupByLibrary.simpleMessage("Enter your password again"),
+        "passwordAganNotMatch":
+            MessageLookupByLibrary.simpleMessage("Password not match"),
+        "passwordInput":
+            MessageLookupByLibrary.simpleMessage("Enter your password"),
+        "phoneNumberInput":
+            MessageLookupByLibrary.simpleMessage("Enter your phone number"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing..."),
         "reviewPayment": MessageLookupByLibrary.simpleMessage("Review Payment"),
         "showComment": MessageLookupByLibrary.simpleMessage("Show Comment"),
@@ -81,6 +91,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Fast Delivery "),
         "titleOnboarding3":
             MessageLookupByLibrary.simpleMessage("Skilled Chefs"),
+        "titleRegister": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome!"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };

@@ -4,5 +4,5 @@ class AppApi {
   //static resources
   //auth
   static const String login = "$apiVer/auth/login";
-  static const String signUp = "$apiVer/auth/register";
+  static const String register = "$apiVer/auth/register";
 }
