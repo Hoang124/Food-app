@@ -11,4 +11,6 @@ abstract class Routes {
   static const store = '/store-view';
   static const cart = '/cart';
   static const register = '/register';
+  static const setting = '/setting';
+  static const language = '/language';
 }

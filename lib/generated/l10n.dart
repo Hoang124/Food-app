@@ -569,6 +569,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Subtotal`
+  String get subtotal {
+    return Intl.message(
+      'Subtotal',
+      name: 'subtotal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery`
+  String get delivery {
+    return Intl.message(
+      'Delivery',
+      name: 'delivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get total {
+    return Intl.message(
+      'Total',
+      name: 'total',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message(
+      'Language',
+      name: 'language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hi {name}`
+  String hi(Object name) {
+    return Intl.message(
+      'Hi $name',
+      name: 'hi',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Have nice day`
+  String get niceDay {
+    return Intl.message(
+      'Have nice day',
+      name: 'niceDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VietNamese`
+  String get vietnamese {
+    return Intl.message(
+      'VietNamese',
+      name: 'vietnamese',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get changePass {
+    return Intl.message(
+      'Change Password',
+      name: 'changePass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification`
+  String get notifi {
+    return Intl.message(
+      'Notification',
+      name: 'notifi',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customer Support`
+  String get helpCenter {
+    return Intl.message(
+      'Customer Support',
+      name: 'helpCenter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log Out`
+  String get logout {
+    return Intl.message(
+      'Log Out',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `About`
+  String get about {
+    return Intl.message(
+      'About',
+      name: 'about',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

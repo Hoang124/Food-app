@@ -50,5 +50,18 @@
     "reviewPayment": "Review Payment",
     "nameCart": "Cart",
     "erEmailOrPasswordInvalid": "Your email or password is incorrect",
-    "signupsucess": "Successful registration, login to continue."
+    "signupsucess": "Successful registration, login to continue.",
+    "subtotal": "Subtotal",
+    "delivery": "Delivery",
+    "total": "Total",
+    "language": "Language",
+    "hi": "Hi {name}",
+    "niceDay": "Have nice day",
+    "english": "English",
+    "vietnamese": "VietNamese",
+    "changePass": "Change Password",
+    "notifi": "Notification",
+    "helpCenter": "Customer Support",
+    "logout": "Log Out",
+    "about": "About"
 }
