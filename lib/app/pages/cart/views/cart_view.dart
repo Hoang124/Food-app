@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodapp/app/core.dart';
@@ -31,11 +32,15 @@ class CartView extends GetView<CartController> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _mainReviewPaymentView(context),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _mainReviewPaymentView(context),
+                const SizedBox(height: 20),
+                _totalWidget(context),
+              ],
+            ),
           ),
         ),
       ),
@@ -105,7 +110,28 @@ class CartView extends GetView<CartController> {
       key: Key(name),
       onDismissed: (direction) {},
       confirmDismiss: (direction) async {
-        return false;
+        final bool shouldDelete = await showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("Xác nhận"),
+              content: Text("Bạn có chắc chắn muốn xoá $name không?"),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: const Text("Xoá"),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: const Text("Huỷ"),
+                ),
+              ],
+            );
+          },
+        );
+
+        // Trả về false để ngăn không cho widget bị xoá
+        return shouldDelete;
       },
       background: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 50),
@@ -122,10 +148,8 @@ class CartView extends GetView<CartController> {
           padding: const EdgeInsets.only(right: 20),
         ),
       ),
+      dragStartBehavior: DragStartBehavior.down,
       direction: DismissDirection.endToStart,
-      // onResize: () {
-      //   return;
-      // },
       child: _itemCartWidget(
         context,
         name,
@@ -197,6 +221,60 @@ class CartView extends GetView<CartController> {
           const SizedBox(height: 20),
         ],
       ),
+    );
+  }
+
+  Widget _totalWidget(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Column(
+        children: [
+          _totalItem(
+            context,
+            S.of(context).subtotal,
+            100,
+            false,
+          ),
+          const SizedBox(height: 10),
+          _totalItem(
+            context,
+            S.of(context).delivery,
+            0,
+            false,
+          ),
+          const SizedBox(height: 10),
+          _totalItem(
+            context,
+            S.of(context).total,
+            100,
+            true,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _totalItem(
+    BuildContext context,
+    String name,
+    double money,
+    bool isTotal,
+  ) {
+    TextStyle style = isTotal
+        ? AppTextStyles.big().copyWith(fontWeight: FontWeight.w600)
+        : AppTextStyles.body1().copyWith(fontWeight: FontWeight.w400);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          name,
+          style: style,
+        ),
+        Text(
+          money.toString(),
+          style: style,
+        ),
+      ],
     );
   }
 }

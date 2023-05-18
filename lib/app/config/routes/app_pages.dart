@@ -57,6 +57,18 @@ class AppPages {
       page: () => const RegisterView(),
       binding: AuthBinding(),
       transition: Transition.rightToLeft,
+    ),
+    GetPage<dynamic>(
+      name: Routes.setting,
+      page: () => const SettingView(),
+      binding: SettingBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage<dynamic>(
+      name: Routes.language,
+      page: () => const LanguageView(),
+      binding: SettingBinding(),
+      transition: Transition.rightToLeft,
     )
   ];
 }
