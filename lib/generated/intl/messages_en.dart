@@ -110,6 +110,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "vietnamese": MessageLookupByLibrary.simpleMessage("VietNamese"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome!"),
-        "yes": MessageLookupByLibrary.simpleMessage("Yes")
+        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
+        "yourFavorate": MessageLookupByLibrary.simpleMessage("My Favorate")
       };
 }

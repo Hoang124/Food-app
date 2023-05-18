@@ -10,7 +10,7 @@ class HomeController extends GetxController
 
   List<Widget> screen = [
     const HomeSubView(),
-    const NotificationView(),
+    const FavorateView(),
     const NotificationView(),
     const SettingView(),
   ];
