@@ -12,7 +12,7 @@ class HomeController extends GetxController
     const HomeSubView(),
     const NotificationView(),
     const NotificationView(),
-    const NotificationView(),
+    const SettingView(),
   ];
 
   Widget currentScreen = const HomeSubView();

@@ -167,6 +167,7 @@ class AppTextStyles {
       fontWeight: FontWeight.w300,
       fontSize: 20,
       fontFamily: AppProperties.fontFamilyName,
+      color: AppColors.defaultTextColor,
     );
   }
 

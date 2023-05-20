@@ -20,14 +20,19 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(name) => "Hi ${name}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("About"),
         "addToCard": MessageLookupByLibrary.simpleMessage("Add To Card"),
         "addedItems": MessageLookupByLibrary.simpleMessage("Added Items"),
         "appName": MessageLookupByLibrary.simpleMessage("AppFood"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "changePass": MessageLookupByLibrary.simpleMessage("Change Password"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "delivery": MessageLookupByLibrary.simpleMessage("Delivery"),
         "desOnboarding1":
             MessageLookupByLibrary.simpleMessage("With Best Of Love"),
         "desOnboarding2":
@@ -37,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "emailInput": MessageLookupByLibrary.simpleMessage("Enter your email"),
+        "english": MessageLookupByLibrary.simpleMessage("English"),
         "erEmailOrPasswordInvalid": MessageLookupByLibrary.simpleMessage(
             "Your email or password is incorrect"),
         "forgotPassword":
@@ -45,6 +51,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "haveAccount":
             MessageLookupByLibrary.simpleMessage("Have an account already?"),
         "healthy": MessageLookupByLibrary.simpleMessage("Healthy"),
+        "helpCenter": MessageLookupByLibrary.simpleMessage("Customer Support"),
+        "hi": m0,
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "invalidEmailAddress": MessageLookupByLibrary.simpleMessage(
             "Please enter your email address in format: yourname@example.com"),
@@ -58,15 +66,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("At least one number"),
         "invalidPasswordOneSpecialLetter":
             MessageLookupByLibrary.simpleMessage("At least one special letter"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
         "location": MessageLookupByLibrary.simpleMessage("Location"),
+        "logout": MessageLookupByLibrary.simpleMessage("Log Out"),
         "mostPopular": MessageLookupByLibrary.simpleMessage("Most Popular"),
         "nameCart": MessageLookupByLibrary.simpleMessage("Cart"),
         "nameInput": MessageLookupByLibrary.simpleMessage("Enter your name"),
         "nearby": MessageLookupByLibrary.simpleMessage("Nearby Restautant"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "niceDay": MessageLookupByLibrary.simpleMessage("Have nice day"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "noAccount":
             MessageLookupByLibrary.simpleMessage("Create new account?"),
+        "notifi": MessageLookupByLibrary.simpleMessage("Notification"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "passwordAgain":
             MessageLookupByLibrary.simpleMessage("Enter your password again"),
@@ -86,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signupsucess": MessageLookupByLibrary.simpleMessage(
             "Successful registration, login to continue."),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),
         "titleLogin":
             MessageLookupByLibrary.simpleMessage("Login Your Account"),
         "titleOnboarding1": MessageLookupByLibrary.simpleMessage("Find Food"),
@@ -94,6 +107,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "titleOnboarding3":
             MessageLookupByLibrary.simpleMessage("Skilled Chefs"),
         "titleRegister": MessageLookupByLibrary.simpleMessage("Sign Up"),
+        "total": MessageLookupByLibrary.simpleMessage("Total"),
+        "vietnamese": MessageLookupByLibrary.simpleMessage("VietNamese"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome!"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };

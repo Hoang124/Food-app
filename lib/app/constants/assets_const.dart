@@ -39,4 +39,11 @@ class AssetsConst {
   static const String zongzi = "${preIconPath}zongzi.svg";
   static const String star = "${preIconPath}star.svg";
   static const String trash = "${preIconPath}trash.svg";
+  static const String flagVietNam = "${preIconPath}flag_vietnam.svg";
+  static const String flagUS = "${preIconPath}us.svg";
+  static const String icChangPass = "${preIconPath}icon_change_pass.svg";
+  static const String icHelp = "${preIconPath}icon_help.svg";
+  static const String icAbout = "${preIconPath}icon_about.svg";
+  static const String icLogout = "${preIconPath}icon_logout.svg";
+  static const String icLanguage = "${preIconPath}icon_language.svg";
 }
