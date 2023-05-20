@@ -69,6 +69,12 @@ class AppPages {
       page: () => const LanguageView(),
       binding: SettingBinding(),
       transition: Transition.rightToLeft,
+    ),
+      GetPage<dynamic>(
+      name: Routes.favorate,
+      page: () => const FavorateView(),
+      binding: FavorateBinding(),
+      transition: Transition.rightToLeft,
     )
   ];
 }

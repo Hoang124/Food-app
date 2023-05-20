@@ -233,6 +233,8 @@ class HomeSubView extends GetView<HomeSubController> {
         _mostPopular(context),
         const SizedBox(height: 20),
         _nearByRestaurant(context),
+        const SizedBox(height: 20),
+        _menuStore(context),
       ],
     );
   }
@@ -498,6 +500,128 @@ class HomeSubView extends GetView<HomeSubController> {
             ],
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _menuStore(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Menu",
+          style: AppTextStyles.subLead().copyWith(
+            color: AppColors.defaultTextColor,
+          ),
+        ),
+        _foodStore(
+          context,
+          AssetsConst.food,
+          "Chicken Hell",
+          25000,
+        ),
+        _foodStore(
+          context,
+          AssetsConst.food,
+          "Chicken Hell",
+          25000,
+        ),
+        _foodStore(
+          context,
+          AssetsConst.food,
+          "Chicken Hell",
+          25000,
+        ),
+        _foodStore(
+          context,
+          AssetsConst.food,
+          "Chicken Hell",
+          25000,
+        ),
+      ],
+    );
+  }
+
+  Widget _foodStore(
+    BuildContext context,
+    String picture,
+    String nameFood,
+    double money,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(Routes.store);
+      },
+      child: Container(
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 5,
+          vertical: 5,
+        ),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const SizedBox(height: 20),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      nameFood,
+                      style: AppTextStyles.big().copyWith(
+                        color: AppColors.defaultTextColor,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.location_on,
+                          color: AppColors.primaryColor,
+                          size: 18,
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          "1,8 km",
+                          style: AppTextStyles.tiny().copyWith(
+                            color: const Color(0xff8E97A6),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: const Color(0xffF7EDD0).withOpacity(0.7),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        money.toString(),
+                        style: AppTextStyles.subHeading1().copyWith(
+                          color: AppColors.defaultTextColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 5),
+                Image.asset(
+                  picture,
+                  height: 120,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

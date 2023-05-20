@@ -28,39 +28,44 @@ class StoreView extends GetView<StoreController> {
           },
         ),
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: Builder(builder: (context) {
-              return Stack(
-                children: [
-                  Container(
-                    height: 55,
-                    width: 55,
-                    decoration: const BoxDecoration(
-                      color: AppColors.white,
-                      shape: BoxShape.circle,
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(Routes.basket);
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: Builder(builder: (context) {
+                return Stack(
+                  children: [
+                    Container(
+                      height: 55,
+                      width: 55,
+                      decoration: const BoxDecoration(
+                        color: AppColors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.add_shopping_cart_sharp,
+                        color: AppColors.primaryColor,
+                        size: 30,
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.add_shopping_cart_sharp,
-                      color: AppColors.primaryColor,
-                      size: 30,
-                    ),
-                  ),
-                  Positioned(
-                    top: 0,
-                    right: 10,
-                    child: Center(
-                      child: Text(
-                        "5",
-                        style: AppTextStyles.subHeading1().copyWith(
-                          color: AppColors.primaryColor,
+                    Positioned(
+                      top: 0,
+                      right: 10,
+                      child: Center(
+                        child: Text(
+                          "5",
+                          style: AppTextStyles.subHeading1().copyWith(
+                            color: AppColors.primaryColor,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              );
-            }),
+                  ],
+                );
+              }),
+            ),
           ),
         ],
       ),
@@ -356,110 +361,115 @@ class StoreView extends GetView<StoreController> {
     String nameFood,
     double money,
   ) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 5,
-        vertical: 5,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(height: 20),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    nameFood,
-                    style: AppTextStyles.heading1().copyWith(
-                      color: AppColors.defaultTextColor,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      SvgPicture.asset(AssetsConst.star),
-                      const SizedBox(width: 5),
-                      Text(
-                        "4.8",
-                        style: AppTextStyles.tiny().copyWith(
-                          color: const Color(0xff8E97A6),
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      const Icon(
-                        Icons.sell,
-                        color: Color(0xffF9998A),
-                        size: 15,
-                      ),
-                      const SizedBox(width: 5),
-                      Text(
-                        "100+",
-                        style: AppTextStyles.body2().copyWith(
-                          color: const Color(0xff8E97A6),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical: 10),
-                    padding: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: const Color(0xffF7EDD0).withOpacity(0.7),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Text(
-                      S.of(context).healthy,
-                      style: AppTextStyles.body2().copyWith(
-                        color: const Color(0xffDAA31A),
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 5),
-              Image.asset(picture),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 30,
-              vertical: 8,
-            ),
-            child: Row(
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(Routes.foodDetail);
+      },
+      child: Container(
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 5,
+          vertical: 5,
+        ),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  money.toString(),
-                  style: AppTextStyles.big().copyWith(
-                    color: AppColors.defaultTextColor,
-                    fontWeight: FontWeight.w700,
-                  ),
+                const SizedBox(height: 20),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      nameFood,
+                      style: AppTextStyles.heading1().copyWith(
+                        color: AppColors.defaultTextColor,
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        SvgPicture.asset(AssetsConst.star),
+                        const SizedBox(width: 5),
+                        Text(
+                          "4.8",
+                          style: AppTextStyles.tiny().copyWith(
+                            color: const Color(0xff8E97A6),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        const Icon(
+                          Icons.sell,
+                          color: Color(0xffF9998A),
+                          size: 15,
+                        ),
+                        const SizedBox(width: 5),
+                        Text(
+                          "100+",
+                          style: AppTextStyles.body2().copyWith(
+                            color: const Color(0xff8E97A6),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 10),
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: const Color(0xffF7EDD0).withOpacity(0.7),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(
+                        S.of(context).healthy,
+                        style: AppTextStyles.body2().copyWith(
+                          color: const Color(0xffDAA31A),
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                Container(
-                  height: 35,
-                  width: 70,
-                  decoration: BoxDecoration(
-                    color: AppColors.defaultTextColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Icon(
-                    Icons.add,
-                    color: AppColors.white,
-                  ),
-                )
+                const SizedBox(height: 5),
+                Image.asset(picture),
               ],
             ),
-          )
-        ],
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 30,
+                vertical: 8,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    money.toString(),
+                    style: AppTextStyles.big().copyWith(
+                      color: AppColors.defaultTextColor,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Container(
+                    height: 35,
+                    width: 70,
+                    decoration: BoxDecoration(
+                      color: AppColors.defaultTextColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Icon(
+                      Icons.add,
+                      color: AppColors.white,
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
