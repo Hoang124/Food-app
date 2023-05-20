@@ -5,4 +5,5 @@ class AppApi {
   //auth
   static const String login = "$apiVer/auth/login";
   static const String register = "$apiVer/auth/register";
+  static const String getFood = "$apiVer/food";
 }

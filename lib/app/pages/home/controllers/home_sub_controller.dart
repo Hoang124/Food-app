@@ -8,8 +8,11 @@ class HomeSubController extends GetxController
   final RxInt _indexTabBar = 0.obs;
   int get indexTabBar => _indexTabBar.value;
   set indexTabBar(int value) => _indexTabBar.value = value;
+  late FoodHttpService _foodHttpService;
+
   @override
   void onInit() {
+    _foodHttpService = Get.find<FoodHttpService>();
     tabController = TabController(length: 5, vsync: this)
       ..addListener(
         () {
@@ -20,6 +23,11 @@ class HomeSubController extends GetxController
           }
         },
       );
+    getFoods();
     super.onInit();
+  }
+
+  Future<void> getFoods() async {
+    final result = await _foodHttpService.getFoods(1);
   }
 }
