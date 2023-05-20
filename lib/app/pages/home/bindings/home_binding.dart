@@ -7,5 +7,6 @@ class HomeBinding extends Bindings {
     Get.put<HomeSubController>(HomeSubController());
     Get.put<NotificationController>(NotificationController());
     Get.put<SettingController>(SettingController());
+    Get.put<FavorateController>(FavorateController());
   }
 }
