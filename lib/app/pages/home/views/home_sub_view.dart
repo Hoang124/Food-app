@@ -1,6 +1,7 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:foodapp/app/core.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class HomeSubView extends GetView<HomeSubController> {
   const HomeSubView({Key? key}) : super(key: key);
@@ -243,42 +244,31 @@ class HomeSubView extends GetView<HomeSubController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          S.of(context).mostPopular,
-          style: AppTextStyles.subLead().copyWith(
-            color: AppColors.defaultTextColor,
-          ),
-        ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           physics: const BouncingScrollPhysics(),
-          child: Row(
-            children: [
-              _cardMostPopular(
-                context,
-                AssetsConst.food,
-                "Chicken Hell",
-                25000,
-              ),
-              _cardMostPopular(
-                context,
-                AssetsConst.food,
-                "Chicken Hell",
-                25000,
-              ),
-              _cardMostPopular(
-                context,
-                AssetsConst.food,
-                "Chicken Hell",
-                25000,
-              ),
-              _cardMostPopular(
-                context,
-                AssetsConst.food,
-                "Chicken Hell",
-                25000,
-              ),
-            ],
+          child: Obx(
+            () => controller.isLoading
+                ? controller.listFood != null
+                    ? Column(
+                        children: [
+                          Text(
+                            S.of(context).mostPopular,
+                            style: AppTextStyles.subLead().copyWith(
+                              color: AppColors.defaultTextColor,
+                            ),
+                          ),
+                          Row(
+                            children:
+                                controller.listFood!.asMap().entries.map((e) {
+                              return _cardMostPopular(
+                                  context, controller.listFood![e.key]);
+                            }).toList(),
+                          ),
+                        ],
+                      )
+                    : const SizedBox()
+                : ThreeBounceLoading(),
           ),
         ),
       ],
@@ -329,98 +319,127 @@ class HomeSubView extends GetView<HomeSubController> {
 
   Widget _cardMostPopular(
     BuildContext context,
-    String picture,
-    String nameFood,
-    double money,
+    FoodResponse foodResponse,
   ) {
     return InkWell(
       onTap: () {
         Get.toNamed(Routes.foodDetail);
       },
-      child: Container(
-        margin: const EdgeInsets.all(10),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 15,
-          vertical: 20,
-        ),
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                Image.asset(picture),
-                Positioned(
-                  right: 0,
-                  child: Transform.translate(
-                    offset: const Offset(10, -10),
-                    child: SvgPicture.asset(
-                      AssetsConst.tymIcon,
-                      height: 20,
+      child: Stack(
+        children: [
+          Container(
+            width: 180,
+            height: 280,
+            margin: const EdgeInsets.all(10),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15,
+              vertical: 15,
+            ),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  foodResponse.image != null
+                      ? Center(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            height: 120,
+                            width: 130,
+                            child: FittedBox(
+                              fit: BoxFit.cover,
+                              child: Image.network(
+                                foodResponse.image!,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        )
+                      : const SizedBox(),
+                  const SizedBox(height: 20),
+                  Expanded(
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Text(
+                        foodResponse.name ?? "",
+                        style: AppTextStyles.body1().copyWith(
+                          color: AppColors.defaultTextColor,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Text(
-              nameFood,
-              style: AppTextStyles.body1().copyWith(
-                color: AppColors.defaultTextColor,
+                  const SizedBox(height: 5),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "24min - ",
+                        style: AppTextStyles.tiny().copyWith(
+                          color: const Color(0xff8E97A6),
+                        ),
+                      ),
+                      SvgPicture.asset(AssetsConst.star),
+                      const SizedBox(width: 5),
+                      Text(
+                        foodResponse.rate.toString(),
+                        style: AppTextStyles.tiny().copyWith(
+                          color: const Color(0xff8E97A6),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        NumberFormat.currency(locale: 'vi_VN', symbol: '₫')
+                            .format(foodResponse.price ?? 0),
+                        style: AppTextStyles.subHeading1().copyWith(
+                          color: AppColors.defaultTextColor,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(width: 40),
+                      Expanded(
+                        child: Container(
+                          height: 35,
+                          width: 35,
+                          decoration: BoxDecoration(
+                            color: AppColors.defaultTextColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: const Icon(
+                            Icons.add,
+                            color: AppColors.white,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
               ),
             ),
-            const SizedBox(height: 5),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  "24min - ",
-                  style: AppTextStyles.tiny().copyWith(
-                    color: const Color(0xff8E97A6),
-                  ),
-                ),
-                SvgPicture.asset(AssetsConst.star),
-                const SizedBox(width: 5),
-                Text(
-                  "4.8",
-                  style: AppTextStyles.tiny().copyWith(
-                    color: const Color(0xff8E97A6),
-                  ),
-                ),
-              ],
+          ),
+          Positioned(
+            right: 0,
+            child: Transform.translate(
+              offset: const Offset(-20, 20),
+              child: SvgPicture.asset(
+                AssetsConst.tymIcon,
+                height: 20,
+              ),
             ),
-            const SizedBox(height: 10),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  money.toString(),
-                  style: AppTextStyles.big().copyWith(
-                    color: AppColors.defaultTextColor,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                const SizedBox(width: 40),
-                Container(
-                  height: 35,
-                  width: 35,
-                  decoration: BoxDecoration(
-                    color: AppColors.defaultTextColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: const Icon(
-                    Icons.add,
-                    color: AppColors.white,
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

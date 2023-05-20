@@ -19,7 +19,7 @@ final ThemeData lightTheme = ThemeData(
   ),
   fontFamily: AppProperties.fontFamilyName,
   brightness: Brightness.light,
-  primaryColor: const Color(0xff0F6EFA),
+  primaryColor: const Color(0xff3c1a7f),
   primaryColorLight: const Color(0xffe0d5f6),
   primaryColorDark: const Color(0xff3c1a7f),
   appBarTheme: const AppBarTheme(
@@ -57,7 +57,7 @@ final ThemeData lightTheme = ThemeData(
   secondaryHeaderColor: const Color(0xffe9f2fc),
   backgroundColor: const Color(0xffc6d4c4),
   dialogBackgroundColor: const Color(0xffffffff),
-  indicatorColor: const Color(0xff0F6EFA),
+  indicatorColor: const Color(0xff3c1a7f),
   hintColor: const Color(0x8a000000),
   errorColor: const Color(0xffEE5E78),
   outlinedButtonTheme: OutlinedButtonThemeData(

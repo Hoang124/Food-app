@@ -9,6 +9,11 @@ class HomeSubController extends GetxController
   int get indexTabBar => _indexTabBar.value;
   set indexTabBar(int value) => _indexTabBar.value = value;
   late FoodHttpService _foodHttpService;
+  List<FoodResponse>? listFood;
+
+  final RxBool _isLoading = false.obs;
+  set isLoading(bool value) => _isLoading.value = value;
+  bool get isLoading => _isLoading.value;
 
   @override
   void onInit() {
@@ -23,11 +28,14 @@ class HomeSubController extends GetxController
           }
         },
       );
-    getFoods();
+    getFoods().then((value) => isLoading=true);
     super.onInit();
   }
 
   Future<void> getFoods() async {
     final result = await _foodHttpService.getFoods(1);
+    if (result.isSuccess() && result.data != null) {
+      listFood = result.data;
+    }
   }
 }

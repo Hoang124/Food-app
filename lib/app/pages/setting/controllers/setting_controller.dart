@@ -80,7 +80,7 @@ class SettingController extends GetxController {
      // await _authHttpService.logout();
       await _sessionM.cleanSession();
       processingDialog.hide();
-     // Get.offAllNamed(Routes.signin);
+     Get.offAllNamed(Routes.signIn);
     });
     processingDialog.hide();
   }

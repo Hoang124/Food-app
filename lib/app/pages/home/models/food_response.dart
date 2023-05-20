@@ -6,14 +6,14 @@ part 'food_response.g.dart';
 class FoodResponse {
   int? id;
   String? name;
-  String? description;
+  double? rate;
   String? image;
   double? price;
 
   FoodResponse({
     this.id,
     this.name,
-    this.description,
+    this.rate,
     this.image,
     this.price,
   });

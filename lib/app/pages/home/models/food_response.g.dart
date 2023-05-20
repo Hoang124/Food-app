@@ -9,7 +9,7 @@ part of 'food_response.dart';
 FoodResponse _$FoodResponseFromJson(Map<String, dynamic> json) => FoodResponse(
       id: json['id'] as int?,
       name: json['name'] as String?,
-      description: json['description'] as String?,
+      rate: (json['rate'] as num?)?.toDouble(),
       image: json['image'] as String?,
       price: (json['price'] as num?)?.toDouble(),
     );
@@ -18,7 +18,7 @@ Map<String, dynamic> _$FoodResponseToJson(FoodResponse instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'description': instance.description,
+      'rate': instance.rate,
       'image': instance.image,
       'price': instance.price,
     };
