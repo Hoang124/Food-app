@@ -13,6 +13,10 @@ class HomeSubView extends GetView<HomeSubController> {
     );
   }
 
+  void _mostFoodPopularClick(FoodResponse foodResponse) {
+    Get.toNamed(Routes.foodDetail, arguments: foodResponse);
+  }
+
   Widget _buildBody(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.defaultBackground,
@@ -241,37 +245,32 @@ class HomeSubView extends GetView<HomeSubController> {
   }
 
   Widget _mostPopular(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          physics: const BouncingScrollPhysics(),
-          child: Obx(
-            () => controller.isLoading
-                ? controller.listFood != null
-                    ? Column(
-                        children: [
-                          Text(
-                            S.of(context).mostPopular,
-                            style: AppTextStyles.subLead().copyWith(
-                              color: AppColors.defaultTextColor,
-                            ),
-                          ),
-                          Row(
-                            children:
-                                controller.listFood!.asMap().entries.map((e) {
-                              return _cardMostPopular(
-                                  context, controller.listFood![e.key]);
-                            }).toList(),
-                          ),
-                        ],
-                      )
-                    : const SizedBox()
-                : ThreeBounceLoading(),
-          ),
-        ),
-      ],
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      physics: const BouncingScrollPhysics(),
+      child: Obx(
+        () => controller.isLoading
+            ? controller.listFood != null
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        S.of(context).mostPopular,
+                        style: AppTextStyles.subLead().copyWith(
+                          color: AppColors.defaultTextColor,
+                        ),
+                      ),
+                      Row(
+                        children: controller.listFood!.asMap().entries.map((e) {
+                          return _cardMostPopular(
+                              context, controller.listFood![e.key]);
+                        }).toList(),
+                      ),
+                    ],
+                  )
+                : const SizedBox()
+            : ThreeBounceLoading(),
+      ),
     );
   }
 
@@ -323,7 +322,7 @@ class HomeSubView extends GetView<HomeSubController> {
   ) {
     return InkWell(
       onTap: () {
-        Get.toNamed(Routes.foodDetail);
+        _mostFoodPopularClick(foodResponse);
       },
       child: Stack(
         children: [
@@ -346,16 +345,19 @@ class HomeSubView extends GetView<HomeSubController> {
                   foodResponse.image != null
                       ? Center(
                           child: Container(
+                            width: 130.0,
+                            height: 130.0,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            height: 120,
-                            width: 130,
-                            child: FittedBox(
-                              fit: BoxFit.cover,
-                              child: Image.network(
-                                foodResponse.image!,
+                              image: DecorationImage(
+                                image: NetworkImage(foodResponse.image!),
                                 fit: BoxFit.cover,
+                              ),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(30.0),
+                              ),
+                              border: Border.all(
+                                color: AppColors.lightPrimaryColor,
+                                width: 2.0,
                               ),
                             ),
                           ),
@@ -371,7 +373,7 @@ class HomeSubView extends GetView<HomeSubController> {
                           color: AppColors.defaultTextColor,
                         ),
                         maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                        overflow: TextOverflow.fade,
                       ),
                     ),
                   ),

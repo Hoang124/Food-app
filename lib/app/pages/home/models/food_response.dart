@@ -9,6 +9,9 @@ class FoodResponse {
   double? rate;
   String? image;
   double? price;
+  String? description;
+  int? restaurantId;
+  bool? favorite;
 
   FoodResponse({
     this.id,
@@ -16,6 +19,9 @@ class FoodResponse {
     this.rate,
     this.image,
     this.price,
+    this.description,
+    this.restaurantId,
+    this.favorite,
   });
 
   factory FoodResponse.fromJson(Map<String, dynamic> json) =>
