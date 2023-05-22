@@ -93,6 +93,8 @@ dependencies:
   f_logs: ^2.0.1
   flutter_email_sender: ^5.2.0
 
+  cached_network_image: ^3.2.0
+
 
  
   # The "flutter_lints" package below contains a set of recommended lints to

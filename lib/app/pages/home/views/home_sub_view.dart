@@ -2,6 +2,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:foodapp/app/core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class HomeSubView extends GetView<HomeSubController> {
   const HomeSubView({Key? key}) : super(key: key);
@@ -348,10 +349,6 @@ class HomeSubView extends GetView<HomeSubController> {
                             width: 130.0,
                             height: 130.0,
                             decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(foodResponse.image!),
-                                fit: BoxFit.cover,
-                              ),
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(30.0),
                               ),
@@ -359,6 +356,13 @@ class HomeSubView extends GetView<HomeSubController> {
                                 color: AppColors.lightPrimaryColor,
                                 width: 2.0,
                               ),
+                            ),
+                            child: CachedNetworkImage(
+                              imageUrl: foodResponse.image!,
+                              placeholder: (context, url) =>
+                                  const CircularProgressIndicator(),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
                             ),
                           ),
                         )
