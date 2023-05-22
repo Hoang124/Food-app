@@ -14,7 +14,7 @@ FoodResponse _$FoodResponseFromJson(Map<String, dynamic> json) => FoodResponse(
       price: (json['price'] as num?)?.toDouble(),
       description: json['description'] as String?,
       restaurantId: json['restaurantId'] as int?,
-      favorite: json['favorite'] as bool?,
+      isFavorite: json['isFavorite'] as bool?,
     );
 
 Map<String, dynamic> _$FoodResponseToJson(FoodResponse instance) =>
@@ -26,5 +26,5 @@ Map<String, dynamic> _$FoodResponseToJson(FoodResponse instance) =>
       'price': instance.price,
       'description': instance.description,
       'restaurantId': instance.restaurantId,
-      'favorite': instance.favorite,
+      'isFavorite': instance.isFavorite,
     };

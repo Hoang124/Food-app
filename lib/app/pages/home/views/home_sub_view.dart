@@ -357,12 +357,19 @@ class HomeSubView extends GetView<HomeSubController> {
                                 width: 2.0,
                               ),
                             ),
-                            child: CachedNetworkImage(
-                              imageUrl: foodResponse.image!,
-                              placeholder: (context, url) =>
-                                  const CircularProgressIndicator(),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(28.0),
+                              child: CachedNetworkImage(
+                                imageUrl: foodResponse.image!,
+                                placeholder: (context, url) =>
+                                    ThreeBounceLoading(),
+                                fit: BoxFit.cover,
+                                errorWidget: (context, url, error) =>
+                                    SvgPicture.asset(
+                                  AssetsConst.food,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
                             ),
                           ),
                         )
@@ -440,7 +447,9 @@ class HomeSubView extends GetView<HomeSubController> {
             child: Transform.translate(
               offset: const Offset(-20, 20),
               child: SvgPicture.asset(
-                AssetsConst.tymIcon,
+                foodResponse.isFavorite == true
+                    ? AssetsConst.tymIcon
+                    : AssetsConst.tymIconUn,
                 height: 20,
               ),
             ),
