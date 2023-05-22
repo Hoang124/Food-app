@@ -47,6 +47,7 @@ class FoodDetailView extends GetView<FoodDetailController> {
       ),
       bottomNavigationBar: _bottomNavigator(context),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -289,81 +290,85 @@ class FoodDetailView extends GetView<FoodDetailController> {
       padding: const EdgeInsets.all(8.0),
       child: Obx(
         () => controller.isLoading
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(right: 10),
-                          width: 45.0,
-                          height: 45.0,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  controller.restaurantModel!.image!),
-                              fit: BoxFit.cover,
-                            ),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(20.0),
-                            ),
-                            border: Border.all(
-                              color: AppColors.lightPrimaryColor,
-                              width: 2.0,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                controller.restaurantModel!.name!,
-                                style: AppTextStyles.subHeading1().copyWith(
-                                  color: AppColors.defaultTextColor,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                                overflow: TextOverflow.clip,
-                              ),
-                              Text(
-                                controller.restaurantModel!.address!,
-                                style: AppTextStyles.small().copyWith(
-                                  color: AppColors.blackColor,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                overflow: TextOverflow.clip,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Row(
+            ? controller.restaurantModel != null
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      InkWell(
-                        onTap: () {
-                          Get.toNamed(Routes.store);
-                        },
-                        child: Text(
-                          S.of(context).showRestaurent,
-                          style: AppTextStyles.body2().copyWith(
-                            color: AppColors.primaryColor,
-                          ),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            controller.restaurantModel!.image != null
+                                ? Container(
+                                    margin: const EdgeInsets.only(right: 10),
+                                    width: 45.0,
+                                    height: 45.0,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                            controller.restaurantModel!.image!),
+                                        fit: BoxFit.cover,
+                                      ),
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(20.0),
+                                      ),
+                                      border: Border.all(
+                                        color: AppColors.lightPrimaryColor,
+                                        width: 2.0,
+                                      ),
+                                    ),
+                                  )
+                                : const SizedBox(),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    controller.restaurantModel!.name!,
+                                    style: AppTextStyles.subHeading1().copyWith(
+                                      color: AppColors.defaultTextColor,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    overflow: TextOverflow.clip,
+                                  ),
+                                  Text(
+                                    controller.restaurantModel!.address!,
+                                    style: AppTextStyles.small().copyWith(
+                                      color: AppColors.blackColor,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                    overflow: TextOverflow.clip,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(width: 10),
-                      const Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: AppColors.primaryColor,
-                        size: 15,
+                      Row(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.store);
+                            },
+                            child: Text(
+                              S.of(context).showRestaurent,
+                              style: AppTextStyles.body2().copyWith(
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 10),
+                          const Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            color: AppColors.primaryColor,
+                            size: 15,
+                          )
+                        ],
                       )
                     ],
                   )
-                ],
-              )
+                : const SizedBox()
             : ThreeBounceLoading(),
       ),
     );
