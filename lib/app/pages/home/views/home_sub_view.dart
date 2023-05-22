@@ -2,6 +2,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:foodapp/app/core.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class HomeSubView extends GetView<HomeSubController> {
   const HomeSubView({Key? key}) : super(key: key);
@@ -348,16 +349,26 @@ class HomeSubView extends GetView<HomeSubController> {
                             width: 130.0,
                             height: 130.0,
                             decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(foodResponse.image!),
-                                fit: BoxFit.cover,
-                              ),
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(30.0),
                               ),
                               border: Border.all(
                                 color: AppColors.lightPrimaryColor,
                                 width: 2.0,
+                              ),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(28.0),
+                              child: CachedNetworkImage(
+                                imageUrl: foodResponse.image!,
+                                placeholder: (context, url) =>
+                                    ThreeBounceLoading(),
+                                fit: BoxFit.cover,
+                                errorWidget: (context, url, error) =>
+                                    SvgPicture.asset(
+                                  AssetsConst.food,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
@@ -436,7 +447,9 @@ class HomeSubView extends GetView<HomeSubController> {
             child: Transform.translate(
               offset: const Offset(-20, 20),
               child: SvgPicture.asset(
-                AssetsConst.tymIcon,
+                foodResponse.isFavorite == true
+                    ? AssetsConst.tymIcon
+                    : AssetsConst.tymIconUn,
                 height: 20,
               ),
             ),

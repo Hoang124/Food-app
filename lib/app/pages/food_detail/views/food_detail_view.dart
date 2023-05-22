@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:foodapp/app/core.dart';
@@ -39,7 +40,9 @@ class FoodDetailView extends GetView<FoodDetailController> {
           Padding(
             padding: const EdgeInsets.only(right: 20),
             child: SvgPicture.asset(
-              AssetsConst.tymIcon,
+              controller.foodResponse?.isFavorite == true
+                  ? AssetsConst.tymIcon
+                  : AssetsConst.tymIconUn,
               height: 20,
             ),
           ),
@@ -77,16 +80,24 @@ class FoodDetailView extends GetView<FoodDetailController> {
                     width: 250.0,
                     height: 250.0,
                     decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(controller.foodResponse!.image!),
-                        fit: BoxFit.cover,
-                      ),
                       borderRadius: const BorderRadius.all(
-                        Radius.circular(50.0),
+                        Radius.circular(35.0),
                       ),
                       border: Border.all(
                         color: AppColors.lightPrimaryColor,
                         width: 2.0,
+                      ),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30.0),
+                      child: CachedNetworkImage(
+                        imageUrl: controller.foodResponse!.image!,
+                        placeholder: (context, url) => ThreeBounceLoading(),
+                        fit: BoxFit.cover,
+                        errorWidget: (context, url, error) => SvgPicture.asset(
+                          AssetsConst.food,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                   )
@@ -300,15 +311,9 @@ class FoodDetailView extends GetView<FoodDetailController> {
                           children: [
                             controller.restaurantModel!.image != null
                                 ? Container(
-                                    margin: const EdgeInsets.only(right: 10),
                                     width: 45.0,
                                     height: 45.0,
                                     decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                            controller.restaurantModel!.image!),
-                                        fit: BoxFit.cover,
-                                      ),
                                       borderRadius: const BorderRadius.all(
                                         Radius.circular(20.0),
                                       ),
@@ -317,8 +322,24 @@ class FoodDetailView extends GetView<FoodDetailController> {
                                         width: 2.0,
                                       ),
                                     ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      child: CachedNetworkImage(
+                                        imageUrl:
+                                            controller.restaurantModel!.image!,
+                                        placeholder: (context, url) =>
+                                            ThreeBounceLoading(),
+                                        fit: BoxFit.cover,
+                                        errorWidget: (context, url, error) =>
+                                            SvgPicture.asset(
+                                          AssetsConst.food,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
                                   )
                                 : const SizedBox(),
+                            const SizedBox(width: 10),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -404,16 +425,26 @@ class FoodDetailView extends GetView<FoodDetailController> {
                             width: 130.0,
                             height: 130.0,
                             decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: NetworkImage(foodResponse.image!),
-                                fit: BoxFit.cover,
-                              ),
                               borderRadius: const BorderRadius.all(
                                 Radius.circular(30.0),
                               ),
                               border: Border.all(
                                 color: AppColors.lightPrimaryColor,
                                 width: 2.0,
+                              ),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(28.0),
+                              child: CachedNetworkImage(
+                                imageUrl: foodResponse.image!,
+                                placeholder: (context, url) =>
+                                    ThreeBounceLoading(),
+                                fit: BoxFit.cover,
+                                errorWidget: (context, url, error) =>
+                                    SvgPicture.asset(
+                                  AssetsConst.food,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ),
@@ -492,7 +523,9 @@ class FoodDetailView extends GetView<FoodDetailController> {
             child: Transform.translate(
               offset: const Offset(-20, 20),
               child: SvgPicture.asset(
-                AssetsConst.tymIcon,
+                foodResponse.isFavorite == true
+                    ? AssetsConst.tymIcon
+                    : AssetsConst.tymIconUn,
                 height: 20,
               ),
             ),
