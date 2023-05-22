@@ -4,7 +4,7 @@ class FoodHttpService extends BaseApiClient {
   Future<BaseResp<List<FoodResponse>>> getFoods(int pageNumber) async {
     return request<List<FoodResponse>>(
       Method.get,
-      AppApi.getFood,
+      AppApi.getFood(10,1),
       onDeserialize: (dynamic jsonValue) {
         if (jsonValue is List) {
           return jsonValue
