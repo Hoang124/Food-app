@@ -55,9 +55,7 @@ class FoodDetailController extends GetxController {
       if (result.isSuccess() && result.data != null) {
         restaurantModel = result.data;
       }
-    } else {
-      
-    }
+    } else {}
     return true;
   }
 }

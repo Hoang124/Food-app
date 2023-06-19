@@ -22,6 +22,10 @@ class FoodDetailView extends GetView<FoodDetailController> {
     controller.minusFood();
   }
 
+  void _commentClick(int? foodId) {
+    Get.toNamed(Routes.comment, arguments: foodId);
+  }
+
   Widget _buildBody(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.defaultBackground,
@@ -560,14 +564,16 @@ class FoodDetailView extends GetView<FoodDetailController> {
   Widget _commentWidget(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(15.0),
-      child: Column(
-        children: [
-          Text(
+      child: ElevatedButton(
+          onPressed: () => _commentClick(controller.foodResponse?.id),
+          style: FilledBtnStyle.enable(
+            isFullWidth: true,
+            borderRadius: 16,
+          ),
+          child: Text(
             "Comment",
             style: AppTextStyles.body1(),
-          )
-        ],
-      ),
+          )),
     );
   }
 }

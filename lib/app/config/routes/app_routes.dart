@@ -14,4 +14,5 @@ abstract class Routes {
   static const setting = '/setting';
   static const language = '/language';
   static const favorate = '/favorate';
+  static const comment = '/comment';
 }

@@ -1,3 +1,5 @@
+import 'package:foodapp/app/pages/comment/comment.dart';
+
 import '../../core.dart';
 part 'app_routes.dart';
 
@@ -70,10 +72,16 @@ class AppPages {
       binding: SettingBinding(),
       transition: Transition.rightToLeft,
     ),
-      GetPage<dynamic>(
+    GetPage<dynamic>(
       name: Routes.favorate,
       page: () => const FavorateView(),
       binding: FavorateBinding(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage<dynamic>(
+      name: Routes.comment,
+      page: () => const CommentView(),
+      binding: CommentBinding(),
       transition: Transition.rightToLeft,
     )
   ];

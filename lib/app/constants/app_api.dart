@@ -7,5 +7,6 @@ class AppApi {
   static const String register = "$apiVer/auth/register";
   static String getFood(int pageSize, int pageNumber) =>
       "$apiVer/food?pageNumber=$pageNumber&pageSize=$pageSize";
-  static String getRestaurantById(int id)=>"$apiVer/restaurant/$id";
+  static String getRestaurantById(int id) => "$apiVer/restaurant/$id";
+  static String getCommentByFoodId = "$apiVer/review";
 }
