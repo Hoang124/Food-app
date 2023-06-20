@@ -26,6 +26,13 @@ class FoodDetailView extends GetView<FoodDetailController> {
     Get.toNamed(Routes.comment, arguments: foodId);
   }
 
+  void _goToCart() {
+    bool check = controller.addFoodToCart();
+    if (check) {
+      Get.toNamed(Routes.cart);
+    }
+  }
+
   Widget _buildBody(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.defaultBackground,
@@ -278,20 +285,25 @@ class FoodDetailView extends GetView<FoodDetailController> {
               ),
             ),
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 30,
-              vertical: 12,
-            ),
-            decoration: BoxDecoration(
-              color: AppColors.primaryColor,
-              borderRadius: BorderRadius.circular(13),
-            ),
-            child: Text(
-              S.of(context).addToCard,
-              style: AppTextStyles.body1().copyWith(
-                color: AppColors.white,
-                fontWeight: FontWeight.w500,
+          GestureDetector(
+            onTap: () {
+              _goToCart();
+            },
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 30,
+                vertical: 12,
+              ),
+              decoration: BoxDecoration(
+                color: AppColors.primaryColor,
+                borderRadius: BorderRadius.circular(13),
+              ),
+              child: Text(
+                S.of(context).addToCard,
+                style: AppTextStyles.body1().copyWith(
+                  color: AppColors.white,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           )

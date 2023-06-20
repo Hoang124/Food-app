@@ -6,6 +6,8 @@ class AppKeys {
   static const voiceMode = "voice-mode";
   static const loginKey = "login-key";
   static const firstLaunch = "first-launch";
+  static const cartKey = "cart-key";
+  static const userID = "user-id";
 }
 
 class AppColors {

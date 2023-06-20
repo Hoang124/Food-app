@@ -12,8 +12,8 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  void _basketClick() {
-    Get.toNamed(Routes.basket);
+  void _cartClick() {
+    Get.toNamed(Routes.cart);
   }
 
   Widget _buildBody(BuildContext context) {
@@ -22,7 +22,7 @@ class HomeView extends GetView<HomeController> {
       backgroundColor: AppColors.defaultBackground,
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.white,
-        onPressed: _basketClick,
+        onPressed: _cartClick,
         child: const Icon(
           Icons.add_shopping_cart_sharp,
           color: AppColors.primaryColor,

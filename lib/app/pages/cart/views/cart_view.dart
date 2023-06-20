@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:foodapp/app/core.dart';
+import 'package:intl/intl.dart';
 
 class CartView extends GetView<CartController> {
   const CartView({Key? key}) : super(key: key);
@@ -47,7 +49,7 @@ class CartView extends GetView<CartController> {
     );
   }
 
-  Widget _itemCartWidget(BuildContext context, String name, String price) {
+  Widget _itemCartWidget(BuildContext context, FoodResponse foodResponse) {
     return Container(
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.all(8),
@@ -58,44 +60,92 @@ class CartView extends GetView<CartController> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Image.asset(
-                AssetsConst.food,
-                height: 100,
-              ),
-              const SizedBox(width: 10),
-              Column(
-                children: [
-                  Text(
-                    name,
-                    style: AppTextStyles.body1(),
-                    overflow: TextOverflow.ellipsis,
+          Expanded(
+            child: Row(
+              children: [
+                // Image.asset(
+                //   foodResponse.image ?? AssetsConst.food,
+                //   height: 100,
+                // ),
+                foodResponse.image != null
+                    ? Center(
+                        child: Container(
+                          width: 100.0,
+                          height: 100.0,
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(30.0),
+                            ),
+                            border: Border.all(
+                              color: AppColors.lightPrimaryColor,
+                              width: 2.0,
+                            ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(28.0),
+                            child: CachedNetworkImage(
+                              imageUrl: foodResponse.image!,
+                              placeholder: (context, url) =>
+                                  ThreeBounceLoading(),
+                              fit: BoxFit.cover,
+                              errorWidget: (context, url, error) =>
+                                  SvgPicture.asset(
+                                AssetsConst.food,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        foodResponse.name.toString(),
+                        style: AppTextStyles.body1(),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        foodResponse.price.toString(),
+                        style: AppTextStyles.body1(),
+                      )
+                    ],
                   ),
-                  Text(
-                    price,
-                    style: AppTextStyles.body1(),
-                  )
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
           Column(
             children: [
               Row(
                 children: [
-                  _minusWiget(context),
+                  GestureDetector(
+                    onTap: () => controller.minusQuantity(foodResponse.id ?? 0),
+                    child: _minusWiget(context),
+                  ),
                   Text(
-                    "03",
+                    foodResponse.quantity == null
+                        ? "1"
+                        : foodResponse.quantity.toString(),
                     style: AppTextStyles.body1().copyWith(
                         color: AppColors.blackColor,
                         fontWeight: FontWeight.w400),
                   ),
-                  _plusWiget(context),
+                  GestureDetector(
+                    onTap: () => controller.plusQuantity(foodResponse.id ?? 0),
+                    child: _plusWiget(context),
+                  ),
                 ],
               ),
               Text(
-                "123",
+                NumberFormat.currency(locale: 'vi_VN', symbol: '₫').format(
+                    foodResponse.quantity == null
+                        ? foodResponse.price
+                        : foodResponse.price! * foodResponse.quantity!),
                 style: AppTextStyles.body1(),
               )
             ],
@@ -105,9 +155,9 @@ class CartView extends GetView<CartController> {
     );
   }
 
-  Widget _dismissibleWidget(BuildContext context, String name, String price) {
+  Widget _dismissibleWidget(BuildContext context, FoodResponse foodResponse) {
     return Dismissible(
-      key: Key(name),
+      key: Key(foodResponse.id.toString()),
       onDismissed: (direction) {},
       confirmDismiss: (direction) async {
         final bool shouldDelete = await showDialog(
@@ -115,7 +165,8 @@ class CartView extends GetView<CartController> {
           builder: (BuildContext context) {
             return AlertDialog(
               title: const Text("Xác nhận"),
-              content: Text("Bạn có chắc chắn muốn xoá $name không?"),
+              content:
+                  Text("Bạn có chắc chắn muốn xoá ${foodResponse.name} không?"),
               actions: <Widget>[
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(true),
@@ -152,8 +203,7 @@ class CartView extends GetView<CartController> {
       direction: DismissDirection.endToStart,
       child: _itemCartWidget(
         context,
-        name,
-        price,
+        foodResponse,
       ),
     );
   }
@@ -212,14 +262,16 @@ class CartView extends GetView<CartController> {
 
   Widget _mainReviewPaymentView(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // _itemCartWidget(context, "Pizza", "19.00"),
-          _dismissibleWidget(context, "pizza", "19.00"),
-          _dismissibleWidget(context, "Pasta", "21.00"),
-          const SizedBox(height: 20),
-        ],
+      child: Obx(
+        () => controller.foodResponses.isNotEmpty
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: controller.foodResponses
+                    .map((foodResponse) =>
+                        _dismissibleWidget(context, foodResponse))
+                    .toList(),
+              )
+            : SizedBox.shrink(),
       ),
     );
   }
