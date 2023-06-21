@@ -1,4 +1,5 @@
 import 'package:foodapp/app/core.dart';
+import 'package:foodapp/app/pages/cart/services/stripe_service.dart';
 
 class CartController extends GetxController {
   late CartManager _cartManager;
@@ -9,11 +10,16 @@ class CartController extends GetxController {
   // ignore: invalid_use_of_protected_member
   List<FoodResponse> get foodResponses => _foodResponses.value;
 
+  late StripeService _stripeService;
+  set stripeService(StripeService value) => _stripeService = value;
+  StripeService get stripeService => _stripeService;
+
   @override
   void onInit() {
     _cartManager = Get.find<CartManager>();
     _cartModel = _cartManager.getCart();
     foodResponses = _cartModel?.foodResponses ?? [];
+    stripeService = Get.find<StripeService>();
     super.onInit();
   }
 
@@ -45,5 +51,9 @@ class CartController extends GetxController {
     _cartModel?.foodResponses = _foodResponses;
     _cartManager.saveCart(_cartModel);
     _foodResponses.refresh();
+  }
+
+  void payment() {
+    stripeService.payment(Prefs.getInt(AppKeys.userID).toString(), 100000);
   }
 }

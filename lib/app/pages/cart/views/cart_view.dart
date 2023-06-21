@@ -30,7 +30,10 @@ class CartView extends GetView<CartController> {
           style: AppTextStyles.body1().copyWith(color: AppColors.white),
         ),
       ),
-      bottomNavigationBar: _reviewPaymentBtn(context),
+      bottomNavigationBar: GestureDetector(
+        onTap: controller.payment,
+        child: _reviewPaymentBtn(context),
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(15.0),

@@ -8,7 +8,7 @@ class DevEnv extends Env {
   // String baseApi = "http://192.168.1.123:8080/api/v1";
   // String baseApi = "http://192.168.5.1:8080/api/v1";
   String baseApi =
-      "https://fdcd-2402-800-6294-30c6-c74-ea2e-2804-b515.ngrok-free.app/api/v1";
+      "https://c5a1-2402-800-6294-30c6-c74-ea2e-2804-b515.ngrok-free.app/api/v1";
 
   @override
   EnvType buildType = EnvType.development;
