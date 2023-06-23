@@ -26,4 +26,8 @@ class CartManager {
       },
     );
   }
+
+  Future<void> deleteCart() async {
+    await cartCacheService.repo.deleteKeys([AppKeys.cartKey]);
+  }
 }

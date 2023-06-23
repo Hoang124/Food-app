@@ -1,5 +1,3 @@
-import 'package:foodapp/app/pages/comment/comment.dart';
-
 import '../../core.dart';
 part 'app_routes.dart';
 

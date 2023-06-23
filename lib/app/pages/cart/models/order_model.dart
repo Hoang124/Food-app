@@ -8,21 +8,17 @@ class OrderModel {
     this.restaurantId,
     this.address,
     this.discount,
-    this.phoneNumber,
     this.paymentMethod,
-    this.receiveTime,
     this.totalPrice,
-    this.orderDetails,
+    this.orderDetailList,
   });
 
   int? restaurantId;
   String? address;
   int? discount;
-  String? phoneNumber;
   String? paymentMethod;
-  int? receiveTime;
   double? totalPrice;
-  List<OrderDetailModel>? orderDetails;
+  List<OrderDetailModel>? orderDetailList;
 
   factory OrderModel.fromJson(Map<String, dynamic> json) =>
       _$OrderModelFromJson(json);

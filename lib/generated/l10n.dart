@@ -540,6 +540,16 @@ class S {
     );
   }
 
+  /// `Payment`
+  String get payment {
+    return Intl.message(
+      'Payment',
+      name: 'payment',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cart`
   String get nameCart {
     return Intl.message(

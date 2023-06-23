@@ -9,4 +9,5 @@ class AppApi {
       "$apiVer/food?pageNumber=$pageNumber&pageSize=$pageSize";
   static String getRestaurantById(int id) => "$apiVer/restaurant/$id";
   static String getCommentByFoodId = "$apiVer/review";
+  static String order = "$apiVer/order/insert";
 }

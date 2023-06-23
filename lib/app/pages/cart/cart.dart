@@ -8,3 +8,4 @@ export 'repositories/cart_repo.dart';
 export 'services/cart_service.dart';
 export 'services/stripe_service.dart';
 export 'helpers/cart_manager.dart';
+export 'services/order_service.dart';

@@ -15,37 +15,51 @@ class CartView extends GetView<CartController> {
     );
   }
 
+  void deleteCart(int id) {
+    controller.deleteCart(id);
+  }
+
   Widget _buildBody(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.defaultBackground,
-      appBar: AppBar(
-        iconTheme: const IconThemeData(
-          color: AppColors.white,
-          size: 30,
+    return Obx(
+      () => Scaffold(
+        backgroundColor: controller.foodResponses.isEmpty
+            ? AppColors.fullWhite
+            : AppColors.defaultBackground,
+        appBar: AppBar(
+          iconTheme: const IconThemeData(
+            color: AppColors.white,
+            size: 30,
+          ),
+          backgroundColor: AppColors.primaryColor,
+          centerTitle: true,
+          title: Text(
+            "Review Payment",
+            style: AppTextStyles.body1().copyWith(color: AppColors.white),
+          ),
         ),
-        backgroundColor: AppColors.primaryColor,
-        centerTitle: true,
-        title: Text(
-          "Review Payment",
-          style: AppTextStyles.body1().copyWith(color: AppColors.white),
+        bottomNavigationBar: Visibility(
+          visible: controller.foodResponses.isNotEmpty,
+          child: GestureDetector(
+            onTap: controller.payment,
+            child: _reviewPaymentBtn(context),
+          ),
         ),
-      ),
-      bottomNavigationBar: GestureDetector(
-        onTap: controller.payment,
-        child: _reviewPaymentBtn(context),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _mainReviewPaymentView(context),
-                const SizedBox(height: 20),
-                _totalWidget(context),
-              ],
-            ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: controller.foodResponses.isEmpty
+                ? Center(child: Image.asset(AssetsConst.cartEmpty))
+                : SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _mainReviewPaymentView(context),
+                        const SizedBox(height: 20),
+                        _totalWidget(context),
+                        _addAddress(context),
+                      ],
+                    ),
+                  ),
           ),
         ),
       ),
@@ -66,10 +80,6 @@ class CartView extends GetView<CartController> {
           Expanded(
             child: Row(
               children: [
-                // Image.asset(
-                //   foodResponse.image ?? AssetsConst.food,
-                //   height: 100,
-                // ),
                 foodResponse.image != null
                     ? Center(
                         child: Container(
@@ -172,7 +182,10 @@ class CartView extends GetView<CartController> {
                   Text("Bạn có chắc chắn muốn xoá ${foodResponse.name} không?"),
               actions: <Widget>[
                 TextButton(
-                  onPressed: () => Navigator.of(context).pop(true),
+                  onPressed: () {
+                    deleteCart(foodResponse.id!);
+                    Navigator.of(context).pop(true);
+                  },
                   child: const Text("Xoá"),
                 ),
                 TextButton(
@@ -253,7 +266,7 @@ class CartView extends GetView<CartController> {
           borderRadius: 16,
         ),
         child: Text(
-          S.of(context).reviewPayment,
+          S.of(context).payment,
           style: AppTextStyles.subHeading1().copyWith(
             color: AppColors.white,
             fontWeight: FontWeight.w600,
@@ -284,11 +297,13 @@ class CartView extends GetView<CartController> {
       padding: const EdgeInsets.all(12.0),
       child: Column(
         children: [
-          _totalItem(
-            context,
-            S.of(context).subtotal,
-            100,
-            false,
+          Obx(
+            () => _totalItem(
+              context,
+              S.of(context).subtotal,
+              controller.totalPrice,
+              false,
+            ),
           ),
           const SizedBox(height: 10),
           _totalItem(
@@ -298,11 +313,13 @@ class CartView extends GetView<CartController> {
             false,
           ),
           const SizedBox(height: 10),
-          _totalItem(
-            context,
-            S.of(context).total,
-            100,
-            true,
+          Obx(
+            () => _totalItem(
+              context,
+              S.of(context).total,
+              controller.totalPrice,
+              true,
+            ),
           ),
         ],
       ),
@@ -326,9 +343,50 @@ class CartView extends GetView<CartController> {
           style: style,
         ),
         Text(
-          money.toString(),
+          NumberFormat.currency(locale: 'vi_VN', symbol: '₫').format(money),
           style: style,
         ),
+      ],
+    );
+  }
+
+  Widget _addAddress(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Type your address to delivery",
+          style: AppTextStyles.body1(),
+        ),
+        const SizedBox(height: 10),
+        TextFieldInput(
+          key: const ValueKey('notes'),
+          labelText: "S.of(context).notes",
+          inputController: controller.addAddress,
+          tagId: "notes",
+          textStyle: AppTextStyles.body1(),
+          textInputAction: TextInputAction.done,
+          maxLines: 1,
+          fillColor: AppColors.lightPrimaryColor,
+          validator: (String? value) {},
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              const Icon(
+                Icons.location_on,
+                color: AppColors.primaryColor,
+              ),
+              const SizedBox(width: 6),
+              Text(
+                "Use my current location",
+                style: AppTextStyles.body2()
+                    .copyWith(color: AppColors.primaryColor),
+              ),
+            ],
+          ),
+        )
       ],
     );
   }
