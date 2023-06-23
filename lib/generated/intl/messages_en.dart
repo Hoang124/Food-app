@@ -86,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Password not match"),
         "passwordInput":
             MessageLookupByLibrary.simpleMessage("Enter your password"),
+        "payment": MessageLookupByLibrary.simpleMessage("Payment"),
         "phoneNumberInput":
             MessageLookupByLibrary.simpleMessage("Enter your phone number"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing..."),

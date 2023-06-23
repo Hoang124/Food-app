@@ -8,7 +8,7 @@ class DevEnv extends Env {
   // String baseApi = "http://192.168.1.123:8080/api/v1";
   // String baseApi = "http://192.168.5.1:8080/api/v1";
   String baseApi =
-      "https://ee13-2402-800-629c-eb42-b975-b2cc-baf4-6f42.ngrok-free.app/api/v1";
+      "https://71db-2402-800-6294-30c6-95b1-94c9-c60d-4aee.ngrok-free.app/api/v1";
 
   @override
   EnvType buildType = EnvType.development;
@@ -31,7 +31,7 @@ class UATEnv extends Env {
   EnvType buildType = EnvType.uat;
 
   @override
-  String dbName = "ecovelo-uat";
+  String dbName = "food-uat";
 
   @override
   String dbVersion = "1.2";
@@ -48,7 +48,7 @@ class StagingEnv extends Env {
   EnvType buildType = EnvType.staging;
 
   @override
-  String dbName = "ecovelo-staging";
+  String dbName = "food-staging";
 
   @override
   String dbVersion = "1.2";
@@ -65,7 +65,7 @@ class ProductionEnv extends Env {
   EnvType buildType = EnvType.production;
 
   @override
-  String dbName = "ecovelo-prod";
+  String dbName = "food-prod";
 
   @override
   String dbVersion = "1.2";

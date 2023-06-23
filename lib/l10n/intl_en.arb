@@ -48,6 +48,7 @@
     "goToCart": "Go To Cart",
     "showComment": "Show Comment",
     "reviewPayment": "Review Payment",
+    "payment": "Payment",
     "nameCart": "Cart",
     "erEmailOrPasswordInvalid": "Your email or password is incorrect",
     "signupsucess": "Successful registration, login to continue.",

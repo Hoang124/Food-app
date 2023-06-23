@@ -8,6 +8,7 @@ class AssetsConst {
   static const String onboarding03 = "${preImgPath}onboarding03.png";
   static const String food = "${preImgPath}food.png";
   static const String avatarr = "${preImgPath}avatar.jpg";
+  static const String cartEmpty = "${preImgPath}cart_empty.jpg";
 
   //icons
   static const String logoSplash = "${preIconPath}logo_splash.svg";

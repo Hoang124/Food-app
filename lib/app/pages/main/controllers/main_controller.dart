@@ -1,17 +1,18 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
-
 import '../../../core.dart';
 
 class MainController extends GetxController {
   static MainController get to => Get.find();
   late LoginManager _loginManager;
   late final SessionManager _sessionM;
+  late final CartManager _cartManager;
 
   LoginResp? loginResp;
   @override
   void onInit() {
     _loginManager = Get.find<LoginManager>();
+    _cartManager = Get.find<CartManager>();
     appInitializer();
     super.onInit();
   }
@@ -49,6 +50,7 @@ class MainController extends GetxController {
     //Init Hive
     await HiveManager.init();
     await _loginManager.initSession();
+    await _cartManager.initSession();
     //Set Language
     String lang = Prefs.getString(AppKeys.languageKey, defaultValue: "en_US");
     await MyApp.of(Get.context!)?.changeLanguage(lang);

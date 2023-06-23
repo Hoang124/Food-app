@@ -15,6 +15,10 @@ class FoodDetailController extends GetxController {
   set isLoading(bool value) => _isLoading.value = value;
   bool get isLoading => _isLoading.value;
 
+  late CartManager _cartManager;
+  List<FoodResponse> foodResponses = [];
+  CartModel? _cartModel;
+
   @override
   void onInit() {
     _foodDetailHttpService = Get.find<FoodDetailHttpService>();
@@ -26,6 +30,12 @@ class FoodDetailController extends GetxController {
         isLoading = true;
       }
     });
+
+    _cartManager = Get.find<CartManager>();
+    _cartModel = _cartManager.getCart();
+    if (_cartModel != null && _cartModel!.foodResponses != null) {
+      foodResponses = _cartModel!.foodResponses!;
+    }
     super.onInit();
   }
 
@@ -37,6 +47,39 @@ class FoodDetailController extends GetxController {
     if (numFood > 1) {
       numFood -= 1;
     }
+  }
+
+  bool addFoodToCart() {
+    int quantity = numFood;
+    ProcessingDialog processingDialog = ProcessingDialog.show();
+    if (foodResponse != null) {
+      FoodResponse? food = foodResponses
+          .firstWhereOrNull((element) => foodResponse!.id == element.id);
+      if (food != null) {
+        if (food.quantity != null) {
+          food.quantity = food.quantity! + quantity;
+        } else {
+          food.quantity = quantity;
+        }
+      } else {
+        foodResponse!.quantity = quantity;
+        foodResponses.add(foodResponse!);
+      }
+      if (_cartModel != null) {
+        _cartModel!.foodResponses = foodResponses;
+        _cartManager.saveCart(_cartModel);
+      } else {
+        int userId = Prefs.getInt(AppKeys.userID);
+        _cartModel = CartModel(
+          foodResponses: foodResponses,
+          idUser: userId,
+        );
+        _cartManager.saveCart(_cartModel);
+      }
+      numFood = 1;
+    }
+    processingDialog.hide();
+    return true;
   }
 
   String getMomey() {

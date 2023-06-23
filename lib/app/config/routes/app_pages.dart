@@ -1,5 +1,3 @@
-import 'package:foodapp/app/pages/comment/comment.dart';
-
 import '../../core.dart';
 part 'app_routes.dart';
 
@@ -34,12 +32,6 @@ class AppPages {
       name: Routes.foodDetail,
       page: () => const FoodDetailView(),
       binding: FoodDetailBinding(),
-      transition: Transition.rightToLeft,
-    ),
-    GetPage<dynamic>(
-      name: Routes.basket,
-      page: () => const BasketView(),
-      binding: BasketBinding(),
       transition: Transition.rightToLeft,
     ),
     GetPage<dynamic>(
