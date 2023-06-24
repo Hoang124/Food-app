@@ -8,8 +8,31 @@ class StoreController extends GetxController {
   RxInt currentPage = 0.obs;
   int endPage = 4;
   Timer? autoNextTabSchedule;
+
+  RestaurantModel? restaurantModel;
+
+  late CartManager _cartManager;
+  CartModel? _cartModel;
+
+  List<FoodResponse>? _foodResponses;
+  int? _cartQuantity;
+  set cartQuantity(int? value) => _cartQuantity = value;
+  // ignore: unnecessary_getters_setters
+  int? get cartQuantity => _cartQuantity;
+
   @override
   void onInit() {
+    if (Get.arguments != null && Get.arguments is RestaurantModel) {
+      restaurantModel = Get.arguments as RestaurantModel;
+    }
+
+    _cartManager = Get.find<CartManager>();
+    _cartModel = _cartManager.getCart();
+    _foodResponses = _cartModel?.foodResponses;
+
+    if (_foodResponses != null && _foodResponses!.isNotEmpty) {
+      _cartQuantity = _foodResponses!.length;
+    }
     super.onInit();
     pageController = PageController(initialPage: currentPage.value);
   }

@@ -15,7 +15,11 @@ class HomeSubView extends GetView<HomeSubController> {
   }
 
   void _mostFoodPopularClick(FoodResponse foodResponse) {
-    Get.toNamed(Routes.foodDetail, arguments: foodResponse);
+    Get.offAndToNamed(Routes.foodDetail, arguments: foodResponse);
+  }
+
+  void _restaurantClick(RestaurantModel restaurantModel) {
+    Get.toNamed(Routes.store, arguments: restaurantModel);
   }
 
   Widget _buildBody(BuildContext context) {
@@ -285,32 +289,25 @@ class HomeSubView extends GetView<HomeSubController> {
             color: AppColors.defaultTextColor,
           ),
         ),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          physics: const BouncingScrollPhysics(),
-          child: Row(
-            children: [
-              _cardNearbyPopular(
-                context,
-                AssetsConst.onboarding02,
-                "The Chicken King",
-              ),
-              _cardNearbyPopular(
-                context,
-                AssetsConst.onboarding03,
-                "The Chicken King",
-              ),
-              _cardNearbyPopular(
-                context,
-                AssetsConst.onboarding01,
-                "The Chicken King",
-              ),
-              _cardNearbyPopular(
-                context,
-                AssetsConst.onboarding01,
-                "The Chicken King",
-              ),
-            ],
+        Obx(
+          () => Center(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              child: controller.isResLoading
+                  ? controller.restaurantList != null
+                      ? Row(
+                          children: controller.restaurantList!
+                              .asMap()
+                              .entries
+                              .map((e) {
+                            return _cardNearbyPopular(
+                                context, controller.restaurantList![e.key]);
+                          }).toList(),
+                        )
+                      : const SizedBox()
+                  : ThreeBounceLoading(),
+            ),
           ),
         ),
       ],
@@ -460,80 +457,108 @@ class HomeSubView extends GetView<HomeSubController> {
   }
 
   Widget _cardNearbyPopular(
-    BuildContext context,
-    String picture,
-    String nameStore,
-  ) {
-    return Container(
-      width: MediaQuery.of(context).size.width - 100,
-      margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 15,
-        vertical: 8,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: Container(
-              width: 130.0,
-              height: 130.0,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(picture),
-                  fit: BoxFit.cover,
-                ),
+      BuildContext context, RestaurantModel restaurantModel) {
+    return GestureDetector(
+      onTap: () {
+        _restaurantClick(restaurantModel);
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width - 100,
+        margin: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            restaurantModel.image != null
+                ? Center(
+                    child: Container(
+                      width: 400.0,
+                      height: 150.0,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(20.0),
+                        ),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                        child: CachedNetworkImage(
+                          imageUrl: restaurantModel.image!,
+                          placeholder: (context, url) => ThreeBounceLoading(),
+                          fit: BoxFit.cover,
+                          errorWidget: (context, url, error) =>
+                              SvgPicture.asset(
+                            AssetsConst.food,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                : const SizedBox(),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 4,
               ),
-            ),
-          ),
-          const SizedBox(height: 20),
-          Text(
-            nameStore,
-            style: AppTextStyles.heading2().copyWith(
-              color: AppColors.defaultTextColor,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "24min - ",
-                    style: AppTextStyles.tiny().copyWith(
-                      color: const Color(0xff8E97A6),
+                    restaurantModel.name!,
+                    style: AppTextStyles.heading2().copyWith(
+                      color: AppColors.defaultTextColor,
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  SvgPicture.asset(AssetsConst.star),
-                  const SizedBox(width: 5),
-                  Text(
-                    "4.8",
-                    style: AppTextStyles.tiny().copyWith(
-                      color: const Color(0xff8E97A6),
-                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Text(
+                            "24min - ",
+                            style: AppTextStyles.tiny().copyWith(
+                              color: const Color(0xff8E97A6),
+                            ),
+                          ),
+                          SvgPicture.asset(AssetsConst.star),
+                          const SizedBox(width: 5),
+                          Text(
+                            "4.8",
+                            style: AppTextStyles.tiny().copyWith(
+                              color: const Color(0xff8E97A6),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(width: 50),
+                      Container(
+                        height: 40,
+                        width: 40,
+                        decoration: BoxDecoration(
+                          color: AppColors.lightPrimaryColor,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        child: const Icon(
+                          Icons.bookmark,
+                          color: AppColors.primaryColor,
+                        ),
+                      )
+                    ],
                   ),
                 ],
               ),
-              const SizedBox(width: 50),
-              Container(
-                height: 40,
-                width: 40,
-                decoration: BoxDecoration(
-                  color: AppColors.lightPrimaryColor,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Icon(
-                  Icons.bookmark,
-                  color: AppColors.primaryColor,
-                ),
-              )
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

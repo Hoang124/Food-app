@@ -6,10 +6,15 @@ part 'user_model.g.dart';
 @JsonSerializable()
 @HiveType(typeId: ModelTypeDefine.user)
 class UserModel {
-  UserModel(
-      {this.userId, this.name, this.birthDay, this.phoneNumber, this.address});
+  UserModel({
+    this.id,
+    this.name,
+    this.birthDay,
+    this.phoneNumber,
+    this.address,
+  });
   @HiveField(0)
-  int? userId;
+  int? id;
   @HiveField(1)
   String? name;
   @HiveField(2)

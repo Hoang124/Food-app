@@ -76,7 +76,7 @@ class SignInController extends GetxController {
     if (res.isSuccess() && res.data != null) {
       LoginResp loginResp = res.data;
       _loginManager.saveUser(res.data);
-      Prefs.saveInt(AppKeys.userID, loginResp.userResponse?.userId ?? 0);
+      Prefs.saveInt(AppKeys.userID, loginResp.userResponse?.id ?? 0);
       await _sessionManager.initSession(res.data);
       processingDialog.hide();
       Get.offNamed(Routes.home);

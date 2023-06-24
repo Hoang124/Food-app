@@ -17,7 +17,7 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return UserModel(
-      userId: fields[0] as int?,
+      id: fields[0] as int?,
       name: fields[1] as String?,
       birthDay: fields[2] as String?,
       phoneNumber: fields[3] as String?,
@@ -30,7 +30,7 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
     writer
       ..writeByte(5)
       ..writeByte(0)
-      ..write(obj.userId)
+      ..write(obj.id)
       ..writeByte(1)
       ..write(obj.name)
       ..writeByte(2)
@@ -57,7 +57,7 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
 // **************************************************************************
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
-      userId: json['userId'] as int?,
+      id: json['id'] as int?,
       name: json['name'] as String?,
       birthDay: json['birthDay'] as String?,
       phoneNumber: json['phoneNumber'] as String?,
@@ -65,7 +65,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
-      'userId': instance.userId,
+      'id': instance.id,
       'name': instance.name,
       'birthDay': instance.birthDay,
       'phoneNumber': instance.phoneNumber,

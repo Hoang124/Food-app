@@ -8,7 +8,7 @@ class FoodDetailController extends GetxController {
   set numFood(int value) => _numFood.value = value;
   int get numFood => _numFood.value;
 
-  late FoodDetailHttpService _foodDetailHttpService;
+  late RestaurantService _restaurantService;
   RestaurantModel? restaurantModel;
 
   final RxBool _isLoading = false.obs;
@@ -19,9 +19,15 @@ class FoodDetailController extends GetxController {
   List<FoodResponse> foodResponses = [];
   CartModel? _cartModel;
 
+  final RxBool _isFavorite = false.obs;
+  set isFavorite(bool value) => _isFavorite.value = value;
+  bool get isFavorite => _isFavorite.value;
+
+  late FavorateFoodService _favorateFoodService;
+
   @override
   void onInit() {
-    _foodDetailHttpService = Get.find<FoodDetailHttpService>();
+    _restaurantService = Get.find<RestaurantService>();
     if (Get.arguments != null && Get.arguments is FoodResponse) {
       foodResponse = Get.arguments as FoodResponse;
     }
@@ -36,6 +42,13 @@ class FoodDetailController extends GetxController {
     if (_cartModel != null && _cartModel!.foodResponses != null) {
       foodResponses = _cartModel!.foodResponses!;
     }
+
+    if (foodResponse != null) {
+      isFavorite = foodResponse!.isFavorite!;
+    }
+
+    _favorateFoodService = Get.find<FavorateFoodService>();
+
     super.onInit();
   }
 
@@ -93,12 +106,28 @@ class FoodDetailController extends GetxController {
 
   Future<bool> getRestaurantById() async {
     if (foodResponse != null && foodResponse!.restaurantId != null) {
-      final result = await _foodDetailHttpService
+      final result = await _restaurantService
           .getRestaurantByID(foodResponse!.restaurantId!);
       if (result.isSuccess() && result.data != null) {
         restaurantModel = result.data;
       }
     } else {}
     return true;
+  }
+
+  Future<void> insertFavoriteFood(int userId, int foodId) async {
+    final result = await _favorateFoodService.insert(userId, foodId);
+    if (result.isSuccess()) {
+      isFavorite = true;
+      _isFavorite.refresh();
+    }
+  }
+
+  Future<void> deleteFavoriteFood(int userId, int foodId) async {
+    final result = await _favorateFoodService.delete(userId, foodId);
+    if (result.isSuccess()) {
+      isFavorite = false;
+      _isFavorite.refresh();
+    }
   }
 }
