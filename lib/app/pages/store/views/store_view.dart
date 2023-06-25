@@ -2,6 +2,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:foodapp/app/core.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class StoreView extends GetView<StoreController> {
   const StoreView({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class StoreView extends GetView<StoreController> {
         actions: <Widget>[
           GestureDetector(
             onTap: () {
-              Get.toNamed(Routes.basket);
+              Get.toNamed(Routes.cart);
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 20),
@@ -55,7 +56,9 @@ class StoreView extends GetView<StoreController> {
                       right: 10,
                       child: Center(
                         child: Text(
-                          "5",
+                          controller.cartQuantity != null
+                              ? controller.cartQuantity.toString()
+                              : '',
                           style: AppTextStyles.subHeading1().copyWith(
                             color: AppColors.primaryColor,
                           ),
@@ -125,28 +128,6 @@ class StoreView extends GetView<StoreController> {
             ),
             const SizedBox(height: 20),
             _contentWidget(context),
-            InkWell(
-              onTap: () {
-                _showBottomSheet(context);
-              },
-              child: Container(
-                margin: const EdgeInsets.symmetric(
-                  vertical: 10,
-                  horizontal: 20,
-                ),
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: AppColors.main.shade300,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Text(
-                  S.of(context).showComment,
-                  style: AppTextStyles.body2().copyWith(
-                    color: AppColors.grey.shade100,
-                  ),
-                ),
-              ),
-            ),
             _menuStore(context),
           ],
         ),
@@ -262,7 +243,7 @@ class StoreView extends GetView<StoreController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "The Chicken King",
+                controller.restaurantModel!.name!,
                 style: AppTextStyles.heading2().copyWith(
                   color: AppColors.defaultTextColor,
                   fontWeight: FontWeight.w500,
@@ -326,30 +307,11 @@ class StoreView extends GetView<StoreController> {
               color: AppColors.defaultTextColor,
             ),
           ),
-          _foodStore(
-            context,
-            AssetsConst.food,
-            "Chicken Hell",
-            25000,
-          ),
-          _foodStore(
-            context,
-            AssetsConst.food,
-            "Chicken Hell",
-            25000,
-          ),
-          _foodStore(
-            context,
-            AssetsConst.food,
-            "Chicken Hell",
-            25000,
-          ),
-          _foodStore(
-            context,
-            AssetsConst.food,
-            "Chicken Hell",
-            25000,
-          ),
+          Column(
+            children: controller.restaurantModel!.foodItemRespList!
+                .map((food) => _foodStore(context, food))
+                .toList(),
+          )
         ],
       ),
     );
@@ -357,9 +319,7 @@ class StoreView extends GetView<StoreController> {
 
   Widget _foodStore(
     BuildContext context,
-    String picture,
-    String nameFood,
-    double money,
+    FoodResponse foodResponse,
   ) {
     return GestureDetector(
       onTap: () {
@@ -382,60 +342,98 @@ class StoreView extends GetView<StoreController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const SizedBox(height: 20),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      nameFood,
-                      style: AppTextStyles.heading1().copyWith(
-                        color: AppColors.defaultTextColor,
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        foodResponse.name.toString(),
+                        style: AppTextStyles.big().copyWith(
+                          color: AppColors.defaultTextColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                    ),
-                    Row(
-                      children: [
-                        SvgPicture.asset(AssetsConst.star),
-                        const SizedBox(width: 5),
-                        Text(
-                          "4.8",
-                          style: AppTextStyles.tiny().copyWith(
-                            color: const Color(0xff8E97A6),
+                      Row(
+                        children: [
+                          SvgPicture.asset(AssetsConst.star),
+                          const SizedBox(width: 5),
+                          Text(
+                            "4.8",
+                            style: AppTextStyles.tiny().copyWith(
+                              color: const Color(0xff8E97A6),
+                            ),
                           ),
+                          const SizedBox(width: 10),
+                          const Icon(
+                            Icons.sell,
+                            color: Color(0xffF9998A),
+                            size: 15,
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            "100+",
+                            style: AppTextStyles.body2().copyWith(
+                              color: const Color(0xff8E97A6),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Container(
+                        margin: const EdgeInsets.symmetric(vertical: 10),
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: const Color(0xffF7EDD0).withOpacity(0.7),
+                          borderRadius: BorderRadius.circular(8),
                         ),
-                        const SizedBox(width: 10),
-                        const Icon(
-                          Icons.sell,
-                          color: Color(0xffF9998A),
-                          size: 15,
-                        ),
-                        const SizedBox(width: 5),
-                        Text(
-                          "100+",
+                        child: Text(
+                          S.of(context).healthy,
                           style: AppTextStyles.body2().copyWith(
-                            color: const Color(0xff8E97A6),
+                            color: const Color(0xffDAA31A),
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
-                      ],
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10),
-                      padding: const EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        color: const Color(0xffF7EDD0).withOpacity(0.7),
-                        borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Text(
-                        S.of(context).healthy,
-                        style: AppTextStyles.body2().copyWith(
-                          color: const Color(0xffDAA31A),
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 5),
-                Image.asset(picture),
+                foodResponse.image != null
+                    ? Center(
+                        child: Container(
+                          width: 130.0,
+                          height: 130.0,
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(30.0),
+                            ),
+                            border: Border.all(
+                              color: AppColors.lightPrimaryColor,
+                              width: 2.0,
+                            ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(28.0),
+                            child: CachedNetworkImage(
+                              imageUrl: foodResponse.image!,
+                              placeholder: (context, url) =>
+                                  ThreeBounceLoading(),
+                              fit: BoxFit.cover,
+                              errorWidget: (context, url, error) =>
+                                  SvgPicture.asset(
+                                AssetsConst.food,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    : Image.asset(
+                        AssetsConst.food,
+                        height: 110,
+                      ),
               ],
             ),
             Padding(
@@ -447,7 +445,7 @@ class StoreView extends GetView<StoreController> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    money.toString(),
+                    foodResponse.price.toString(),
                     style: AppTextStyles.big().copyWith(
                       color: AppColors.defaultTextColor,
                       fontWeight: FontWeight.w700,

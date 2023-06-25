@@ -15,11 +15,27 @@ class HomeController extends GetxController
     const SettingView(),
   ];
 
+  late CartManager _cartManager;
+  CartModel? _cartModel;
+
+  List<FoodResponse>? _foodResponses;
+  int? _cartQuantity;
+  set cartQuantity(int? value) => _cartQuantity = value;
+  // ignore: unnecessary_getters_setters
+  int? get cartQuantity => _cartQuantity;
+
   Widget currentScreen = const HomeSubView();
 
   @override
   void onInit() {
     WidgetsBinding.instance.addObserver(this);
+    _cartManager = Get.find<CartManager>();
+    _cartModel = _cartManager.getCart();
+    _foodResponses = _cartModel?.foodResponses;
+
+    if (_foodResponses != null && _foodResponses!.isNotEmpty) {
+      _cartQuantity = _foodResponses!.length;
+    }
     super.onInit();
   }
 

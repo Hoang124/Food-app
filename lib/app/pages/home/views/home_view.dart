@@ -23,10 +23,41 @@ class HomeView extends GetView<HomeController> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.white,
         onPressed: _cartClick,
-        child: const Icon(
-          Icons.add_shopping_cart_sharp,
-          color: AppColors.primaryColor,
-          size: 30,
+        // child: const Icon(
+        //   Icons.add_shopping_cart_sharp,
+        //   color: AppColors.primaryColor,
+        //   size: 30,
+        // ),
+        child: Stack(
+          children: [
+            Container(
+              height: 55,
+              width: 55,
+              decoration: const BoxDecoration(
+                color: AppColors.white,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.add_shopping_cart_sharp,
+                color: AppColors.primaryColor,
+                size: 30,
+              ),
+            ),
+            Positioned(
+              top: -2,
+              right: 9,
+              child: Center(
+                child: Text(
+                  controller.cartQuantity != null
+                      ? controller.cartQuantity.toString()
+                      : '',
+                  style: AppTextStyles.subHeading1().copyWith(
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

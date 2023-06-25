@@ -33,6 +33,18 @@ class FoodDetailView extends GetView<FoodDetailController> {
     }
   }
 
+  void _showRestaurant(RestaurantModel restaurantModel) {
+    Get.toNamed(Routes.store, arguments: restaurantModel);
+  }
+
+  void insertFaFood(int userId, int foodId) {
+    controller.insertFavoriteFood(userId, foodId);
+  }
+
+  void deleteFaFood(int userId, int foodId) {
+    controller.deleteFavoriteFood(userId, foodId);
+  }
+
   Widget _buildBody(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.defaultBackground,
@@ -44,17 +56,28 @@ class FoodDetailView extends GetView<FoodDetailController> {
             color: AppColors.primaryColor,
           ),
           onPressed: () {
-            Get.back();
+            Get.offAllNamed(Routes.home);
           },
         ),
         actions: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(right: 20),
-            child: SvgPicture.asset(
-              controller.foodResponse?.isFavorite == true
-                  ? AssetsConst.tymIcon
-                  : AssetsConst.tymIconUn,
-              height: 20,
+          GestureDetector(
+            onTap: () {
+              controller.isFavorite
+                  ? deleteFaFood(Prefs.getInt(AppKeys.userID),
+                      controller.foodResponse!.id!)
+                  : insertFaFood(Prefs.getInt(AppKeys.userID),
+                      controller.foodResponse!.id!);
+            },
+            child: Obx(
+              () => Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: SvgPicture.asset(
+                  controller.isFavorite == true
+                      ? AssetsConst.tymIcon
+                      : AssetsConst.tymIconUn,
+                  height: 20,
+                ),
+              ),
             ),
           ),
         ],
@@ -386,7 +409,7 @@ class FoodDetailView extends GetView<FoodDetailController> {
                         children: [
                           InkWell(
                             onTap: () {
-                              Get.toNamed(Routes.store);
+                              _showRestaurant(controller.restaurantModel!);
                             },
                             child: Text(
                               S.of(context).showRestaurent,
