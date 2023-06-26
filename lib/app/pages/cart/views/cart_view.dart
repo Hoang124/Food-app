@@ -15,6 +15,10 @@ class CartView extends GetView<CartController> {
     );
   }
 
+  void _useCurrentLocation() {
+    controller.getCurrentLocation();
+  }
+
   void deleteCart(int id) {
     controller.deleteCart(id);
   }
@@ -466,21 +470,24 @@ class CartView extends GetView<CartController> {
           maxLines: 1,
           fillColor: AppColors.lightPrimaryColor,
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              const Icon(
-                Icons.location_on,
-                color: AppColors.primaryColor,
-              ),
-              const SizedBox(width: 6),
-              Text(
-                "Use my current location",
-                style: AppTextStyles.body2()
-                    .copyWith(color: AppColors.primaryColor),
-              ),
-            ],
+        GestureDetector(
+          onTap: _useCurrentLocation,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.location_on,
+                  color: AppColors.primaryColor,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  "Use my current location",
+                  style: AppTextStyles.body2()
+                      .copyWith(color: AppColors.primaryColor),
+                ),
+              ],
+            ),
           ),
         )
       ],

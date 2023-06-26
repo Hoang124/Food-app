@@ -10,3 +10,4 @@ export 'setting/setting.dart';
 export 'favorate_food/favorate_food.dart';
 export 'comment/comment.dart';
 export 'feedback/feedback.dart';
+export 'history_order/history_order.dart';

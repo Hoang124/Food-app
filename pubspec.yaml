@@ -97,6 +97,11 @@ dependencies:
 
   flutter_rating_bar: ^4.0.1
   flutter_stripe: ^8.0.0
+
+  #google_map
+  google_maps_flutter: ^2.1.7
+  geolocator: ^9.0.0
+  geocoding: ^2.0.3
  
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
