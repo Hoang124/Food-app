@@ -81,6 +81,12 @@ class AppPages {
       page: () => const FeedBackView(),
       binding: FeedbackBinding(),
       transition: Transition.rightToLeft,
+    ),
+     GetPage<dynamic>(
+      name: Routes.history,
+      page: () => const HistoryOrderView(),
+      binding: HistoryOrderBinding(),
+      transition: Transition.rightToLeft,
     )
   ];
 }
