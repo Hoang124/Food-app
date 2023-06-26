@@ -287,7 +287,7 @@ class CartView extends GetView<CartController> {
                         _dismissibleWidget(context, foodResponse))
                     .toList(),
               )
-            : SizedBox.shrink(),
+            :const  SizedBox.shrink(),
       ),
     );
   }
@@ -368,7 +368,6 @@ class CartView extends GetView<CartController> {
           textInputAction: TextInputAction.done,
           maxLines: 1,
           fillColor: AppColors.lightPrimaryColor,
-          validator: (String? value) {},
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),

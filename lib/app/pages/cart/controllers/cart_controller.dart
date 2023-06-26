@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:foodapp/app/constants/constants.dart';
 import 'package:foodapp/app/core.dart';
 
 class CartController extends GetxController {
@@ -78,6 +77,7 @@ class CartController extends GetxController {
       try {
         await _stripeService.payment(
             Prefs.getInt(AppKeys.userID).toString(), totalPrice.toInt());
+      // ignore: empty_catches
       } catch (e) {}
       List<OrderDetailModel> orderDetailList = foodResponses
           .map((foodRes) => OrderDetailModel(
@@ -93,7 +93,8 @@ class CartController extends GetxController {
         totalPrice: totalPrice,
         orderDetailList: orderDetailList,
       );
-      FoodOrder(orderModel);
+      foodOrder(orderModel);
+    // ignore: empty_catches
     } catch (e) {}
   }
 
@@ -103,7 +104,7 @@ class CartController extends GetxController {
         .reduce((value, element) => value + element);
   }
 
-  Future<void> FoodOrder(OrderModel orderModel) async {
+  Future<void> foodOrder(OrderModel orderModel) async {
     ProcessingDialog processingDialog = ProcessingDialog.show();
     final res = await _orderService.order(orderModel);
     if (res.isSuccess()) {

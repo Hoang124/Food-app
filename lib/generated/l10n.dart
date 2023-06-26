@@ -719,6 +719,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Write something for us!`
+  String get writeSometh {
+    return Intl.message(
+      'Write something for us!',
+      name: 'writeSometh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tell us your feedback `
+  String get tellWithUs {
+    return Intl.message(
+      'Tell us your feedback ',
+      name: 'tellWithUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit Feedback`
+  String get submit {
+    return Intl.message(
+      'Submit Feedback',
+      name: 'submit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivered Successfully`
+  String get deliveriedOK {
+    return Intl.message(
+      'Delivered Successfully',
+      name: 'deliveriedOK',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your review of the order `
+  String get enterFeedback {
+    return Intl.message(
+      'Please enter your review of the order ',
+      name: 'enterFeedback',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -727,6 +777,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'vi'),
     ];
   }
 

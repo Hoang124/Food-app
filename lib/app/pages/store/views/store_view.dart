@@ -165,30 +165,30 @@ class StoreView extends GetView<StoreController> {
     );
   }
 
-  void _showBottomSheet(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) async {
-        showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          backgroundColor: AppColors.white,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20.0),
-              topRight: Radius.circular(20.0),
-            ),
-          ),
-          builder: (BuildContext context) {
-            return ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: MediaQuery.of(context).size.height * 0.8,
-                ),
-                child: Container());
-          },
-        );
-      },
-    );
-  }
+  // void _showBottomSheet(BuildContext context) {
+  //   WidgetsBinding.instance.addPostFrameCallback(
+  //     (_) async {
+  //       showModalBottomSheet(
+  //         context: context,
+  //         isScrollControlled: true,
+  //         backgroundColor: AppColors.white,
+  //         shape: const RoundedRectangleBorder(
+  //           borderRadius: BorderRadius.only(
+  //             topLeft: Radius.circular(20.0),
+  //             topRight: Radius.circular(20.0),
+  //           ),
+  //         ),
+  //         builder: (BuildContext context) {
+  //           return ConstrainedBox(
+  //               constraints: BoxConstraints(
+  //                 maxHeight: MediaQuery.of(context).size.height * 0.8,
+  //               ),
+  //               child: Container());
+  //         },
+  //       );
+  //     },
+  //   );
+  // }
 
   Widget _onboardingMain(BuildContext context, String image, String title) {
     return Column(
