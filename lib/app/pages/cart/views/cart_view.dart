@@ -46,20 +46,22 @@ class CartView extends GetView<CartController> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(15.0),
-          child: controller.foodResponses.isEmpty
-              ? Center(child: Image.asset(AssetsConst.cartEmpty))
-              : SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _mainReviewPaymentView(context),
-                      const SizedBox(height: 20),
-                      _totalWidget(context),
-                      _addAddress(context),
-                      _addBank(context),
-                    ],
+          child: Obx(
+            () => controller.foodResponses.isEmpty
+                ? Center(child: Image.asset(AssetsConst.cartEmpty))
+                : SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _mainReviewPaymentView(context),
+                        const SizedBox(height: 20),
+                        _totalWidget(context),
+                        _addAddress(context),
+                        _addBank(context),
+                      ],
+                    ),
                   ),
-                ),
+          ),
         ),
       ),
     );

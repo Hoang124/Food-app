@@ -77,7 +77,7 @@ class CartController extends GetxController {
       try {
         await _stripeService.payment(
             Prefs.getInt(AppKeys.userID).toString(), totalPrice.toInt());
-      // ignore: empty_catches
+        // ignore: empty_catches
       } catch (e) {}
       List<OrderDetailModel> orderDetailList = foodResponses
           .map((foodRes) => OrderDetailModel(
@@ -94,7 +94,7 @@ class CartController extends GetxController {
         orderDetailList: orderDetailList,
       );
       foodOrder(orderModel);
-    // ignore: empty_catches
+      // ignore: empty_catches
     } catch (e) {}
   }
 
@@ -120,6 +120,10 @@ class CartController extends GetxController {
     foodResponses.removeWhere((element) => element.id == id);
     if (foodResponses.isNotEmpty) {
       calcTotalPrice();
+      _cartModel!.foodResponses = foodResponses;
+      _cartManager.saveCart(_cartModel);
+    } else {
+      _cartManager.deleteCart();
     }
     _foodResponses.refresh();
   }
