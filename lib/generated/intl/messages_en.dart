@@ -57,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "healthy": MessageLookupByLibrary.simpleMessage("Healthy"),
         "helpCenter": MessageLookupByLibrary.simpleMessage("Customer Support"),
         "hi": m0,
+        "historyOrder": MessageLookupByLibrary.simpleMessage("Order History"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "invalidEmailAddress": MessageLookupByLibrary.simpleMessage(
             "Please enter your email address in format: yourname@example.com"),

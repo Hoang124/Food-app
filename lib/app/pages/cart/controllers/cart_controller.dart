@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:foodapp/app/core.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 
 class CartController extends GetxController {
   late CartManager _cartManager;
@@ -24,6 +26,10 @@ class CartController extends GetxController {
   late OrderService _orderService;
 
   TextEditingController addAddress = TextEditingController();
+  Position? position;
+  final RxnString _myAddress = RxnString();
+  set myAddress(String value) => _myAddress.value = value;
+  String? get getMyAddress => _myAddress.value;
 
   @override
   void onInit() {
@@ -36,6 +42,48 @@ class CartController extends GetxController {
     _stripeService = Get.find<StripeService>();
     _orderService = Get.find<OrderService>();
     super.onInit();
+  }
+
+  Future<void> getCurrentLocation() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Người dùng từ chối cho phép truy cập vị trí
+        // Hiển thị thông báo yêu cầu quyền truy cập vị trí
+      }
+    }
+
+    if (permission == LocationPermission.whileInUse ||
+        permission == LocationPermission.always) {
+      getMyPositionCurrent();
+      // Xử lý dữ liệu vị trí
+    }
+  }
+
+  Future<bool> getMyPositionCurrent() async {
+    position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    getAddressFromCoordinates();
+    return true;
+  }
+
+  Future<void> getAddressFromCoordinates() async {
+    ProcessingDialog processingDialog = ProcessingDialog.show();
+    if (position != null) {
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+        position!.latitude,
+        position!.longitude,
+      );
+      Placemark placemark = placemarks.first;
+
+      String address = '';
+
+      address =
+          "${placemark.subThoroughfare} ${placemark.thoroughfare}, ${placemark.subLocality}, ${placemark.administrativeArea}, ${placemark.country}";
+      addAddress.text = address;
+    }
+    processingDialog.hide();
   }
 
   void plusQuantity(int id) {

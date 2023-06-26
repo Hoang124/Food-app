@@ -71,5 +71,6 @@
     "submit": "Submit Feedback",
     "deliveriedOK": "Delivered Successfully",
     "enterFeedback": "Please enter your review of the order ",
-    "selectSource": "Select Source"
+    "selectSource": "Select Source",
+    "historyOrder": "Order History"
 }
