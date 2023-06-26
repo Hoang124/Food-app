@@ -60,16 +60,11 @@
     "niceDay": "Have nice day",
     "english": "English",
     "vietnamese": "VietNamese",
-    "changePass": "Change Password",
+    "changePass": "Thay đổi mật khẩu",
     "notifi": "Notification",
     "helpCenter": "Customer Support",
     "logout": "Log Out",
     "about": "About",
-    "yourFavorate": "My Favorate",
-    "writeSometh": "Write something for us!",
-    "tellWithUs": "Tell us your feedback ",
-    "submit": "Submit Feedback",
-    "deliveriedOK": "Delivered Successfully",
-    "enterFeedback": "Please enter your review of the order ",
-    "selectSource": "Select Source"
+    "yourFavorate": "My Favorate"
+   
 }

@@ -1,5 +1,5 @@
 // DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
-// This is a library that provides messages for a en locale. All the
+// This is a library that provides messages for a vi locale. All the
 // messages from the main program should be duplicated here with the same
 // function name.
 
@@ -18,7 +18,7 @@ final messages = new MessageLookup();
 typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 
 class MessageLookup extends MessageLookupByLibrary {
-  String get localeName => 'en';
+  String get localeName => 'vi';
 
   static String m0(name) => "Hi ${name}";
 
@@ -30,10 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "appName": MessageLookupByLibrary.simpleMessage("AppFood"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
-        "changePass": MessageLookupByLibrary.simpleMessage("Change Password"),
+        "changePass": MessageLookupByLibrary.simpleMessage("Thay đổi mật khẩu"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
-        "deliveriedOK":
-            MessageLookupByLibrary.simpleMessage("Delivered Successfully"),
         "delivery": MessageLookupByLibrary.simpleMessage("Delivery"),
         "desOnboarding1":
             MessageLookupByLibrary.simpleMessage("With Best Of Love"),
@@ -45,8 +43,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "emailInput": MessageLookupByLibrary.simpleMessage("Enter your email"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
-        "enterFeedback": MessageLookupByLibrary.simpleMessage(
-            "Please enter your review of the order "),
         "erEmailOrPasswordInvalid": MessageLookupByLibrary.simpleMessage(
             "Your email or password is incorrect"),
         "forgotPassword":
@@ -95,7 +91,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your phone number"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing..."),
         "reviewPayment": MessageLookupByLibrary.simpleMessage("Review Payment"),
-        "selectSource": MessageLookupByLibrary.simpleMessage("Select Source"),
         "showComment": MessageLookupByLibrary.simpleMessage("Show Comment"),
         "showRestaurent":
             MessageLookupByLibrary.simpleMessage("View Restautant"),
@@ -104,10 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signupsucess": MessageLookupByLibrary.simpleMessage(
             "Successful registration, login to continue."),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
-        "submit": MessageLookupByLibrary.simpleMessage("Submit Feedback"),
         "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),
-        "tellWithUs":
-            MessageLookupByLibrary.simpleMessage("Tell us your feedback "),
         "titleLogin":
             MessageLookupByLibrary.simpleMessage("Login Your Account"),
         "titleOnboarding1": MessageLookupByLibrary.simpleMessage("Find Food"),
@@ -119,8 +111,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "vietnamese": MessageLookupByLibrary.simpleMessage("VietNamese"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome!"),
-        "writeSometh":
-            MessageLookupByLibrary.simpleMessage("Write something for us!"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "yourFavorate": MessageLookupByLibrary.simpleMessage("My Favorate")
       };

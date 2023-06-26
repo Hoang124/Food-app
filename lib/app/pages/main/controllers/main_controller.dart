@@ -62,8 +62,8 @@ class MainController extends GetxController {
     loginResp = _loginManager.getUser();
     //Delay for show Splash screen
     await Future.delayed(const Duration(seconds: 2), () {
-      // Get.offNamed(Routes.signIn);
-      checkFistLaunch();
+      Get.offNamed(Routes.cart);
+     // checkFistLaunch();
     });
   }
 

@@ -20,49 +20,87 @@ class CartView extends GetView<CartController> {
   }
 
   Widget _buildBody(BuildContext context) {
-    return Obx(
-      () => Scaffold(
-        backgroundColor: controller.foodResponses.isEmpty
-            ? AppColors.fullWhite
-            : AppColors.defaultBackground,
-        appBar: AppBar(
-          iconTheme: const IconThemeData(
-            color: AppColors.white,
-            size: 30,
-          ),
-          backgroundColor: AppColors.primaryColor,
-          centerTitle: true,
-          title: Text(
-            "Review Payment",
-            style: AppTextStyles.body1().copyWith(color: AppColors.white),
-          ),
+    return Scaffold(
+      backgroundColor: controller.foodResponses.isEmpty
+          ? AppColors.fullWhite
+          : AppColors.defaultBackground,
+      appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: AppColors.white,
+          size: 30,
         ),
-        bottomNavigationBar: Visibility(
-          visible: controller.foodResponses.isNotEmpty,
-          child: GestureDetector(
-            onTap: controller.payment,
-            child: _reviewPaymentBtn(context),
-          ),
-        ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: controller.foodResponses.isEmpty
-                ? Center(child: Image.asset(AssetsConst.cartEmpty))
-                : SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _mainReviewPaymentView(context),
-                        const SizedBox(height: 20),
-                        _totalWidget(context),
-                        _addAddress(context),
-                      ],
-                    ),
-                  ),
-          ),
+        backgroundColor: AppColors.primaryColor,
+        centerTitle: true,
+        title: Text(
+          "Review Payment",
+          style: AppTextStyles.body1().copyWith(color: AppColors.white),
         ),
       ),
+      bottomNavigationBar: Visibility(
+        visible: controller.foodResponses.isNotEmpty,
+        child: GestureDetector(
+          onTap: controller.payment,
+          child: _reviewPaymentBtn(context),
+        ),
+      ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: controller.foodResponses.isEmpty
+              ? Center(child: Image.asset(AssetsConst.cartEmpty))
+              : SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _mainReviewPaymentView(context),
+                      const SizedBox(height: 20),
+                      _totalWidget(context),
+                      _addAddress(context),
+                      _addBank(context),
+                    ],
+                  ),
+                ),
+        ),
+      ),
+    );
+  }
+
+  Widget _addBank(BuildContext context) {
+    return Column(
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            S.of(context).selectSource,
+            style: AppTextStyles.body1().copyWith(fontWeight: FontWeight.w700),
+          ),
+        ),
+        Column(
+          children: DefaultValues.bankList.asMap().entries.map(
+            (e) {
+              return _bankWidget(
+                context,
+                DefaultValues.bankList[e.key],
+              );
+            },
+          ).toList(),
+        ),
+        Column(
+          children: List.generate(
+            DefaultValues.paymentMethodList.length,
+            (index) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: BuildPaymentItem(
+                    title: DefaultValues.paymentMethodList[index]['title']
+                        .toString(),
+                    asset: DefaultValues.paymentMethodList[index]['asset']
+                        .toString()),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 
@@ -287,7 +325,7 @@ class CartView extends GetView<CartController> {
                         _dismissibleWidget(context, foodResponse))
                     .toList(),
               )
-            : SizedBox.shrink(),
+            : const SizedBox.shrink(),
       ),
     );
   }
@@ -322,6 +360,65 @@ class CartView extends GetView<CartController> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _bankWidget(BuildContext context, BankModel bankModel) {
+    return InkWell(
+      onTap: () {
+        //_seclectedBank(bankModel);
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: AnimatedContainer(
+          curve: Curves.easeIn,
+          duration: const Duration(milliseconds: 350),
+          child: Container(
+            decoration: BoxDecoration(
+                color: 0 == bankModel.id
+                    ? AppColors.primaryColor.withOpacity(0.7)
+                    : AppColors.grey.shade500,
+                borderRadius: BorderRadius.circular(16)),
+            padding: const EdgeInsets.all(12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      bankModel.logo,
+                      height: 30,
+                    ),
+                    const SizedBox(width: 12),
+                    SizedBox(
+                      width: Get.width * 0.62,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          BuildTextTitle(
+                            text: bankModel.nameBank,
+                            color: 0 == bankModel.id
+                                ? AppColors.main.shade400
+                                : AppColors.grey,
+                          ),
+                          BuildTextBody(
+                              text: bankModel.desBank,
+                              color: 0 == bankModel.id
+                                  ? AppColors.main.shade400
+                                  : AppColors.grey)
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                0 == bankModel.id
+                    ? SvgPicture.asset(AssetsConst.activeCircle)
+                    : SvgPicture.asset(AssetsConst.disableCircle)
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -368,7 +465,6 @@ class CartView extends GetView<CartController> {
           textInputAction: TextInputAction.done,
           maxLines: 1,
           fillColor: AppColors.lightPrimaryColor,
-          validator: (String? value) {},
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -388,6 +484,78 @@ class CartView extends GetView<CartController> {
           ),
         )
       ],
+    );
+  }
+}
+
+class BuildPaymentItem extends StatelessWidget {
+  const BuildPaymentItem({
+    Key? key,
+    required this.title,
+    required this.asset,
+  }) : super(key: key);
+  final String title;
+  final String asset;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.grey[00],
+          borderRadius: BorderRadius.circular(16),
+        ),
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SvgPicture.asset(asset),
+                const SizedBox(width: 12),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    BuildTextTitle(text: title, color: AppColors.grey),
+                  ],
+                ),
+              ],
+            ),
+            SvgPicture.asset(AssetsConst.greaterSymbol)
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class BuildTextTitle extends StatelessWidget {
+  const BuildTextTitle({Key? key, required this.text, required this.color})
+      : super(key: key);
+  final String text;
+  final Color? color;
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTextStyles.tiny()
+          .copyWith(fontWeight: FontWeight.w600, color: color),
+    );
+  }
+}
+
+class BuildTextBody extends StatelessWidget {
+  const BuildTextBody({Key? key, required this.text, required this.color})
+      : super(key: key);
+  final String text;
+  final Color? color;
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: AppTextStyles.tiny()
+          .copyWith(fontWeight: FontWeight.w400, color: color),
     );
   }
 }

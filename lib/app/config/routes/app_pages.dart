@@ -75,6 +75,12 @@ class AppPages {
       page: () => const CommentView(),
       binding: CommentBinding(),
       transition: Transition.rightToLeft,
+    ),
+    GetPage<dynamic>(
+      name: Routes.feedback,
+      page: () => const FeedBackView(),
+      binding: FeedbackBinding(),
+      transition: Transition.rightToLeft,
     )
   ];
 }

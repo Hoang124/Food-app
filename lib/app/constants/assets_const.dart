@@ -9,6 +9,8 @@ class AssetsConst {
   static const String food = "${preImgPath}food.png";
   static const String avatarr = "${preImgPath}avatar.jpg";
   static const String cartEmpty = "${preImgPath}cart_empty.jpg";
+  static const String verifed = "${preImgPath}deliveri.jpg";
+  static const String pointer = "${preIconPath}pointer.png";
 
   //icons
   static const String logoSplash = "${preIconPath}logo_splash.svg";
@@ -48,4 +50,14 @@ class AssetsConst {
   static const String icAbout = "${preIconPath}icon_about.svg";
   static const String icLogout = "${preIconPath}icon_logout.svg";
   static const String icLanguage = "${preIconPath}icon_language.svg";
+  static const String greaterSymbol = "${preIconPath}greater_symbol.svg";
+  static const String momo = "${preIconPath}momo.svg";
+  static const String techcombank = "${preIconPath}techcombank.svg";
+  static const String vietinbank = "${preIconPath}vietinbank.svg";
+  static const String stripeIc = "${preIconPath}stripe_ic.svg";
+  static const String addRectangle = "${preIconPath}add_rectangle.svg";
+  static const String activeCircle = "${preIconPath}active_circle.svg";
+  static const String disableCircle = "${preIconPath}disable_circle.svg";
+  static const String leftArrow = "${preIconPath}left_arrow.svg";
+  static const String activeStar = "${preIconPath}active_star.svg";
 }
