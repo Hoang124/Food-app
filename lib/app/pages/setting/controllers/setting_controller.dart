@@ -27,13 +27,12 @@ class SettingController extends GetxController {
 
   late final SessionManager _sessionM;
 
-  late final AuthHttpService _authHttpService;
+
 
   @override
   void onInit() {
     _loginManager = Get.find<LoginManager>();
     _sessionM = Get.find<SessionManager>();
-    _authHttpService = Get.find<AuthHttpService>();
     initLanguageSupported();
     String langCode = Prefs.getString(AppKeys.languageKey);
     _languageSelected = (languageSupported.firstWhereOrNull(
