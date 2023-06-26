@@ -37,14 +37,13 @@ class HistoryOrderView extends GetView<HistoryOrderController> {
       ),
     );
   }
+
   Widget _orderItem(
     BuildContext context,
     FoodResponse foodResponse,
   ) {
     return GestureDetector(
-      onTap: () {
-       
-      },
+      onTap: () {},
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 10),
         padding: const EdgeInsets.symmetric(
