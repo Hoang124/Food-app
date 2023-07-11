@@ -39,7 +39,7 @@ class SearchView extends GetView<SearchController> {
             color: AppColors.white,
           ),
           onPressed: () {
-            Get.offAllNamed(Routes.home);
+            Get.back();
           },
         ),
       ),
@@ -89,6 +89,7 @@ class SearchView extends GetView<SearchController> {
               textInputAction: TextInputAction.done,
               onFieldSubmitted: (value) {
                 _search();
+                return null;
               },
             ),
           ),
@@ -141,30 +142,31 @@ class SearchView extends GetView<SearchController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   foodResponse?.image != null
-                      ? Center(
-                          child: Container(
-                            width: 130.0,
-                            height: 130.0,
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(30.0),
+                      ? Expanded(
+                          child: Center(
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(20.0),
+                                ),
+                                border: Border.all(
+                                  color: AppColors.lightPrimaryColor,
+                                  width: 2.0,
+                                ),
                               ),
-                              border: Border.all(
-                                color: AppColors.lightPrimaryColor,
-                                width: 2.0,
-                              ),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(28.0),
-                              child: CachedNetworkImage(
-                                imageUrl: foodResponse?.image ?? "",
-                                placeholder: (context, url) =>
-                                    ThreeBounceLoading(),
-                                fit: BoxFit.cover,
-                                errorWidget: (context, url, error) =>
-                                    SvgPicture.asset(
-                                  AssetsConst.food,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20.0),
+                                child: CachedNetworkImage(
+                                  imageUrl: foodResponse?.image ?? "",
+                                  placeholder: (context, url) =>
+                                      ThreeBounceLoading(),
                                   fit: BoxFit.cover,
+                                  errorWidget: (context, url, error) =>
+                                      SvgPicture.asset(
+                                    AssetsConst.food,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                             ),
@@ -172,29 +174,27 @@ class SearchView extends GetView<SearchController> {
                         )
                       : const SizedBox(),
                   const SizedBox(height: 20),
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        foodResponse?.name ?? "",
-                        style: AppTextStyles.body1().copyWith(
-                          color: AppColors.defaultTextColor,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      foodResponse?.name ?? "",
+                      style: AppTextStyles.body1().copyWith(
+                        color: AppColors.defaultTextColor,
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   const SizedBox(height: 5),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // Text(
-                      //   "24min - ",
-                      //   style: AppTextStyles.tiny().copyWith(
-                      //     color: const Color(0xff8E97A6),
-                      //   ),
-                      // ),
+                      Text(
+                        controller.converDistance(foodResponse?.distance ?? 0),
+                        style: AppTextStyles.tiny().copyWith(
+                          color: const Color(0xff8E97A6),
+                        ),
+                      ),
                       SvgPicture.asset(AssetsConst.star),
                       const SizedBox(width: 5),
                       Text(

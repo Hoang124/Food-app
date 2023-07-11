@@ -16,6 +16,10 @@ class HistoryOrderView extends GetView<HistoryOrderController> {
     Get.toNamed(Routes.foodDetail, arguments: foodResponse);
   }
 
+  void _feedBackClick(FoodResponse foodResponse) {
+    Get.toNamed(Routes.feedback, arguments: foodResponse.id);
+  }
+
   Widget _buildBody(BuildContext context) {
     return Obx(
       () => Scaffold(
@@ -63,11 +67,12 @@ class HistoryOrderView extends GetView<HistoryOrderController> {
           orderResponse,
         ),
         trailing: Text(S.of(context).detail),
+        // ignore: unnecessary_null_comparison
         children: orderResponse != null
             ? orderResponse.orderDetailList != null &&
                     orderResponse.orderDetailList!.isNotEmpty
                 ? orderResponse.orderDetailList!
-                    .map((e) => _orderDetailItem(context, e))
+                    .map((e) => _orderDetailItem(context, e, orderResponse))
                     .toList()
                 : []
             : [],
@@ -75,8 +80,8 @@ class HistoryOrderView extends GetView<HistoryOrderController> {
     );
   }
 
-  Widget _orderDetailItem(
-      BuildContext context, OrderDetailResponse orderDetailResponse) {
+  Widget _orderDetailItem(BuildContext context,
+      OrderDetailResponse orderDetailResponse, OrderResponse orderResponse) {
     return GestureDetector(
       onTap: () {
         _orderDetailItemClick(orderDetailResponse.foodItemResponse!);
@@ -90,6 +95,7 @@ class HistoryOrderView extends GetView<HistoryOrderController> {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               child: Row(
@@ -170,12 +176,29 @@ class HistoryOrderView extends GetView<HistoryOrderController> {
                       .format(orderDetailResponse.subTotal),
                   style: AppTextStyles.body1().copyWith(
                       color: AppColors.blackColor, fontWeight: FontWeight.w400),
-                )
+                ),
+                Visibility(
+                    visible: controller.checkTimeButtonFeedback(
+                        orderResponse.receiveTime ?? 0),
+                    child:
+                        _feedbackWidget(orderDetailResponse.foodItemResponse)),
               ],
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _feedbackWidget(FoodResponse? foodResponse) {
+    return ElevatedButton(
+      onPressed: () {
+        if (foodResponse != null) {
+          _feedBackClick(foodResponse);
+        }
+      },
+      style: FilledBtnStyle.enable(borderRadius: 20),
+      child: Text(S.of(Get.context!).feedBack),
     );
   }
 
@@ -249,13 +272,16 @@ class HistoryOrderView extends GetView<HistoryOrderController> {
                             children: [
                               Text(
                                 S.of(context).totalPrice,
-                                style: AppTextStyles.body1(),
+                                style: AppTextStyles.body2()
+                                    .copyWith(color: AppColors.black),
                               ),
-                              Text(
-                                NumberFormat.currency(
-                                        locale: 'vi_VN', symbol: '₫')
-                                    .format(orderResponse.totalPrice),
-                                style: AppTextStyles.body1(),
+                              Expanded(
+                                child: Text(
+                                  NumberFormat.currency(
+                                          locale: 'vi_VN', symbol: '₫')
+                                      .format(orderResponse.totalPrice),
+                                  style: AppTextStyles.body1(),
+                                ),
                               )
                             ],
                           ),

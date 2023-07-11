@@ -26,13 +26,16 @@ class FoodResponseAdapter extends TypeAdapter<FoodResponse> {
       restaurantId: fields[6] as int?,
       isFavorite: fields[7] as bool?,
       quantity: fields[8] as int?,
+      distance: fields[9] as double?,
+      lat: fields[10] as String?,
+      lng: fields[11] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, FoodResponse obj) {
     writer
-      ..writeByte(9)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -50,7 +53,13 @@ class FoodResponseAdapter extends TypeAdapter<FoodResponse> {
       ..writeByte(7)
       ..write(obj.isFavorite)
       ..writeByte(8)
-      ..write(obj.quantity);
+      ..write(obj.quantity)
+      ..writeByte(9)
+      ..write(obj.distance)
+      ..writeByte(10)
+      ..write(obj.lat)
+      ..writeByte(11)
+      ..write(obj.lng);
   }
 
   @override
@@ -78,6 +87,9 @@ FoodResponse _$FoodResponseFromJson(Map<String, dynamic> json) => FoodResponse(
       restaurantId: json['restaurantId'] as int?,
       isFavorite: json['isFavorite'] as bool?,
       quantity: json['quantity'] as int?,
+      distance: (json['distance'] as num?)?.toDouble(),
+      lat: json['lat'] as String?,
+      lng: json['lng'] as String?,
     );
 
 Map<String, dynamic> _$FoodResponseToJson(FoodResponse instance) =>
@@ -91,4 +103,7 @@ Map<String, dynamic> _$FoodResponseToJson(FoodResponse instance) =>
       'restaurantId': instance.restaurantId,
       'isFavorite': instance.isFavorite,
       'quantity': instance.quantity,
+      'distance': instance.distance,
+      'lat': instance.lat,
+      'lng': instance.lng,
     };

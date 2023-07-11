@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:foodapp/app/core.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 
 class FoodDetailController extends GetxController {
-  Rx<FoodResponse> _foodResponse = Rx<FoodResponse>(FoodResponse());
+  final Rx<FoodResponse> _foodResponse = Rx<FoodResponse>(FoodResponse());
   set foodResponse(FoodResponse value) => _foodResponse.value = value;
   FoodResponse get foodResponse => _foodResponse.value;
 
@@ -71,7 +72,6 @@ class FoodDetailController extends GetxController {
 
   void addFoodToCart() {
     int quantity = numFood;
-    bool check = false;
     // ProcessingDialog processingDialog = ProcessingDialog.show();
     FoodResponse? food = foodResponses
         .firstWhereOrNull((element) => foodResponse.id == element.id);
@@ -89,7 +89,15 @@ class FoodDetailController extends GetxController {
               "You are adding another restaurant's dish. Do you want to delete the old restaurant's dishes?";
           confirmStopRent(
               Get.context!, message, handleConfirmAddFoodDifferentRestaurant);
+        } else {
+          foodResponse.quantity = numFood;
+          foodResponses.add(foodResponse);
+          saveFoodResponses();
         }
+      } else {
+        foodResponse.quantity = numFood;
+        foodResponses.add(foodResponse);
+        saveFoodResponses();
       }
     }
     // processingDialog.hide();
@@ -126,6 +134,13 @@ class FoodDetailController extends GetxController {
           .getRestaurantByID(foodResponse.restaurantId!);
       if (result.isSuccess() && result.data != null) {
         restaurantModel = result.data;
+        if (restaurantModel?.foodItemRespList != null) {
+          for (FoodResponse food in restaurantModel!.foodItemRespList!) {
+            food.distance = HomeSubController().caculateDistance(LatLng(
+                double.tryParse(restaurantModel!.lat ?? "") ?? 0,
+                double.tryParse(restaurantModel!.lng ?? "") ?? 0));
+          }
+        }
       }
     } else {}
     return true;
@@ -225,5 +240,12 @@ class FoodDetailController extends GetxController {
         );
       },
     );
+  }
+
+  String converDistance(double distance) {
+    if (distance > 1000) {
+      return "${distance.toInt() / 1000} km";
+    }
+    return "${distance.toInt()} m";
   }
 }

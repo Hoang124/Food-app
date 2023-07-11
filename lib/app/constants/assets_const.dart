@@ -11,6 +11,7 @@ class AssetsConst {
   static const String cartEmpty = "${preImgPath}cart_empty.jpg";
   static const String verifed = "${preImgPath}deliveri.jpg";
   static const String pointer = "${preIconPath}pointer.png";
+  static const String notifycationEmpty = "${preImgPath}notify_empty.jpg";
 
   //icons
   static const String logoSplash = "${preIconPath}logo_splash.svg";

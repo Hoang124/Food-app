@@ -1,6 +1,7 @@
 // ignore_for_file: lines_longer_than_80_chars
 class AppApi {
   static const String apiVer = "";
+  static const String apiAI = "http://192.168.1.153:8000";
   //static resources
   //auth
   static const String login = "$apiVer/auth/login";
@@ -20,8 +21,9 @@ class AppApi {
   static String getRecommendFood = "$apiVer/food/recommend";
   static String getSearchFood = "$apiVer/food/recommend/";
   static String getRecommendFoodId(int userId, int topItem) =>
-      "http://192.168.1.153:8000/recommend-food/$userId/$topItem";
+      "$apiAI/recommend-food/$userId/$topItem";
 
   static String getRecommendFoodIdSearch(int userId) =>
-      "http://192.168.1.153:8000/recommend-food/$userId";
+      "$apiAI/recommend-food/$userId";
+  static String feedback = "$apiVer/review";
 }

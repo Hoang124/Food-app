@@ -24,6 +24,12 @@ class FoodResponse {
   bool? isFavorite;
   @HiveField(8)
   int? quantity;
+  @HiveField(9)
+  double? distance;
+  @HiveField(10)
+  String? lat;
+  @HiveField(11)
+  String? lng;
 
   FoodResponse({
     this.id,
@@ -35,6 +41,9 @@ class FoodResponse {
     this.restaurantId,
     this.isFavorite,
     this.quantity,
+    this.distance,
+    this.lat, 
+    this.lng,
   });
 
   factory FoodResponse.fromJson(Map<String, dynamic> json) =>

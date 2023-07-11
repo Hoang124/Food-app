@@ -51,6 +51,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter your review of the order "),
         "erEmailOrPasswordInvalid": MessageLookupByLibrary.simpleMessage(
             "Your email or password is incorrect"),
+        "feedBack": MessageLookupByLibrary.simpleMessage("Feedback"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "goToCart": MessageLookupByLibrary.simpleMessage("Go To Cart"),

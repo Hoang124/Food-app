@@ -18,7 +18,6 @@ class HomeView extends GetView<HomeController> {
 
   Widget _buildBody(BuildContext context) {
     return Scaffold(
-      extendBody: true,
       backgroundColor: AppColors.defaultBackground,
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.white,

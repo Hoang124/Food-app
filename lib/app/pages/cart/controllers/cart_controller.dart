@@ -31,6 +31,10 @@ class CartController extends GetxController {
   set myAddress(String value) => _myAddress.value = value;
   String? get getMyAddress => _myAddress.value;
 
+  final RxBool _isEnable = false.obs;
+  set isEnable(bool value) => _isEnable.value = value;
+  bool? get getIsEnable => _isEnable.value;
+
   @override
   void onInit() {
     _cartManager = Get.find<CartManager>();
@@ -59,6 +63,7 @@ class CartController extends GetxController {
       getMyPositionCurrent();
       // Xử lý dữ liệu vị trí
     }
+    isEnable = addAddress.text.isNotEmpty;
   }
 
   Future<bool> getMyPositionCurrent() async {
@@ -82,6 +87,7 @@ class CartController extends GetxController {
       address =
           "${placemark.subThoroughfare} ${placemark.thoroughfare}, ${placemark.subLocality}, ${placemark.administrativeArea}, ${placemark.country}";
       addAddress.text = address;
+      isEnable = addAddress.text.isNotEmpty;
     }
     processingDialog.hide();
   }
@@ -125,23 +131,24 @@ class CartController extends GetxController {
       try {
         await _stripeService.payment(
             Prefs.getInt(AppKeys.userID).toString(), totalPrice.toInt());
+        List<OrderDetailModel> orderDetailList = foodResponses
+            .map((foodRes) => OrderDetailModel(
+                foodId: foodRes.id,
+                price: foodRes.price,
+                quantity: foodRes.quantity ?? 1))
+            .toList();
+        OrderModel orderModel = OrderModel(
+          address: addAddress.text,
+          discount: 0,
+          paymentMethod: null,
+          restaurantId: foodResponses[0].restaurantId,
+          totalPrice: totalPrice,
+          orderDetailList: orderDetailList,
+        );
+        foodOrder(orderModel);
         // ignore: empty_catches
       } catch (e) {}
-      List<OrderDetailModel> orderDetailList = foodResponses
-          .map((foodRes) => OrderDetailModel(
-              foodId: foodRes.id,
-              price: foodRes.price,
-              quantity: foodRes.quantity ?? 1))
-          .toList();
-      OrderModel orderModel = OrderModel(
-        address: addAddress.text,
-        discount: 0,
-        paymentMethod: null,
-        restaurantId: foodResponses[0].restaurantId,
-        totalPrice: totalPrice,
-        orderDetailList: orderDetailList,
-      );
-      foodOrder(orderModel);
+
       // ignore: empty_catches
     } catch (e) {}
   }

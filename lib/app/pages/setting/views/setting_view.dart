@@ -20,7 +20,7 @@ class SettingView extends GetView<SettingController> {
   //void _notificationClick() {}
   void _helpCenterClick() {}
   void _aboutClick() {
-    Get.toNamed(Routes.feedback);
+    //Get.toNamed(Routes.feedback);
   }
 
   void _logoutClick() {

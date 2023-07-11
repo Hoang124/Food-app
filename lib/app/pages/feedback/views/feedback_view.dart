@@ -10,7 +10,9 @@ class FeedBackView extends GetView<FeedbackController> {
     controller.isShowFeedback = true;
   }
 
-  void _onSubmitFeedback() async {}
+  void _onSubmitFeedback() async {
+    controller.feedbackClick();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,8 @@ class FeedBackView extends GetView<FeedbackController> {
         elevation: 0.0,
         leading: IconButton(
           onPressed: () {
-            Get.offAllNamed(Routes.home);
+            Get.back();
+            //Get.offAllNamed(Routes.home);
           },
           icon: SvgPicture.asset(
             AssetsConst.leftArrow,

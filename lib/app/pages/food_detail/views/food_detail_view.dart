@@ -179,7 +179,8 @@ class FoodDetailView extends GetView<FoodDetailController> {
                         Row(
                           children: [
                             Text(
-                              "24min - ",
+                              controller.converDistance(
+                                  controller.foodResponse.distance ?? 0),
                               style: AppTextStyles.body2().copyWith(
                                 color: const Color(0xff8E97A6),
                               ),
@@ -517,7 +518,7 @@ class FoodDetailView extends GetView<FoodDetailController> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "24min - ",
+                        controller.converDistance(foodResponse.distance ?? 0),
                         style: AppTextStyles.tiny().copyWith(
                           color: const Color(0xff8E97A6),
                         ),
@@ -592,17 +593,7 @@ class FoodDetailView extends GetView<FoodDetailController> {
             ? controller.restaurantModel != null &&
                     controller.restaurantModel!.foodItemRespList != null
                 ? Row(
-                    // children: controller.restaurantModel!.foodItemRespList!
-                    //     .asMap()
-                    //     .entries
-                    //     .where((e) =>
-                    //         controller
-                    //             .restaurantModel!.foodItemRespList![e.key] !=
-                    //         controller.foodResponse!.id)
-                    //     .map((e) {
-                    //   return _cardMostPopular(context,
-                    //       controller.restaurantModel!.foodItemRespList![e.key]);
-                    // }).toList(),
+          
                     children: controller.restaurantModel!.foodItemRespList!
                         .where((e) => e.id != controller.foodResponse.id)
                         .map((e) {

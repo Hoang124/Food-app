@@ -239,58 +239,62 @@ class StoreView extends GetView<StoreController> {
               ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                controller.restaurantModel != null
-                    ? controller.restaurantModel!.name!
-                    : '',
-                style: AppTextStyles.heading2().copyWith(
-                  color: AppColors.defaultTextColor,
-                  fontWeight: FontWeight.w500,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  controller.restaurantModel != null
+                      ? controller.restaurantModel!.name!
+                      : '',
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: AppTextStyles.heading2().copyWith(
+                    color: AppColors.defaultTextColor,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    Icons.location_on_outlined,
-                    color: AppColors.lightPink,
-                  ),
-                  Text(
-                    "2,4km - ",
-                    style: AppTextStyles.body2().copyWith(
-                      color: const Color(0xff8E97A6),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(
+                      Icons.location_on_outlined,
+                      color: AppColors.lightPink,
                     ),
-                  ),
-                  SvgPicture.asset(
-                    AssetsConst.star,
-                    height: 20,
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    "4.8",
-                    style: AppTextStyles.body2().copyWith(
-                      color: const Color(0xff8E97A6),
+                    Text(
+                      "2,4km - ",
+                      style: AppTextStyles.body2().copyWith(
+                        color: const Color(0xff8E97A6),
+                      ),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  const Icon(
-                    Icons.sell,
-                    color: Color(0xffF9998A),
-                    size: 15,
-                  ),
-                  const SizedBox(width: 5),
-                  Text(
-                    "100+",
-                    style: AppTextStyles.body2().copyWith(
-                      color: const Color(0xff8E97A6),
+                    SvgPicture.asset(
+                      AssetsConst.star,
+                      height: 20,
                     ),
-                  ),
-                ],
-              ),
-            ],
+                    const SizedBox(width: 5),
+                    Text(
+                      "4.8",
+                      style: AppTextStyles.body2().copyWith(
+                        color: const Color(0xff8E97A6),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    const Icon(
+                      Icons.sell,
+                      color: Color(0xffF9998A),
+                      size: 15,
+                    ),
+                    const SizedBox(width: 5),
+                    Text(
+                      "100+",
+                      style: AppTextStyles.body2().copyWith(
+                        color: const Color(0xff8E97A6),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),

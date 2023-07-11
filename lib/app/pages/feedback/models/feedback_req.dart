@@ -1,20 +1,17 @@
 class FeedbackRequest {
-  int? idRent;
+  int? foodId;
   String? comment;
-  String? reasonFall;
-  int? numStar;
+  int? rate;
   FeedbackRequest({
     this.comment,
-    this.idRent,
-    this.numStar,
-    this.reasonFall,
+    this.foodId,
+    this.rate,
   });
   Map<String, dynamic> toJson() {
     return {
-      "idRent": idRent,
+      "foodId": foodId,
       "comment": comment,
-      "reasonFall": reasonFall,
-      "numStar": numStar,
+      "rate": rate,
     };
   }
 }

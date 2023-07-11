@@ -135,11 +135,13 @@ class HomeSubView extends GetView<HomeSubController> {
               padding: const EdgeInsets.only(left: 5),
               child: Row(
                 children: [
-                  Text(
-                    "Lien Chieu, Da Nang",
-                    style: AppTextStyles.tiny().copyWith(
-                      color: AppColors.darkGrey,
-                      fontWeight: FontWeight.w500,
+                  Obx(
+                    () => Text(
+                      controller.address,
+                      style: AppTextStyles.tiny().copyWith(
+                        color: AppColors.darkGrey,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 5),
@@ -184,7 +186,8 @@ class HomeSubView extends GetView<HomeSubController> {
             keyboardType: TextInputType.text,
             textInputAction: TextInputAction.done,
             onFieldSubmitted: (value) {
-              Get.offAllNamed(Routes.search, arguments: value);
+              Get.toNamed(Routes.search, arguments: value);
+              return null;
             },
           ),
         ),
@@ -227,6 +230,7 @@ class HomeSubView extends GetView<HomeSubController> {
       physics: const BouncingScrollPhysics(),
       child: Obx(
         () => controller.isLoading
+            // ignore: unnecessary_null_comparison
             ? controller.listFood != null
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -365,7 +369,7 @@ class HomeSubView extends GetView<HomeSubController> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "24min - ",
+                        controller.converDistance(foodResponse.distance ?? 0),
                         style: AppTextStyles.tiny().copyWith(
                           color: const Color(0xff8E97A6),
                         ),
@@ -385,7 +389,7 @@ class HomeSubView extends GetView<HomeSubController> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 115,
                         child: Text(
                           NumberFormat.currency(locale: 'vi_VN', symbol: '₫')
@@ -501,17 +505,12 @@ class HomeSubView extends GetView<HomeSubController> {
                     children: [
                       Row(
                         children: [
+                          const Icon(Icons.location_on_outlined),
+                          const SizedBox(width: 10),
                           Text(
-                            "24min - ",
-                            style: AppTextStyles.tiny().copyWith(
-                              color: const Color(0xff8E97A6),
-                            ),
-                          ),
-                          SvgPicture.asset(AssetsConst.star),
-                          const SizedBox(width: 5),
-                          Text(
-                            "4.8",
-                            style: AppTextStyles.tiny().copyWith(
+                            controller
+                                .converDistance(restaurantModel.distance ?? 0),
+                            style: AppTextStyles.body1().copyWith(
                               color: const Color(0xff8E97A6),
                             ),
                           ),

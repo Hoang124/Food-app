@@ -56,6 +56,7 @@ class FilledBtnStyle {
   static ButtonStyle disable({
     SizeButtonType sizeType = SizeButtonType.large,
     EdgeInsetsGeometry? customPadding,
+      bool isFullWidth = false,
     double borderRadius = 30,
   }) {
     return ElevatedButton.styleFrom(
@@ -66,7 +67,7 @@ class FilledBtnStyle {
       ),
       splashFactory: NoSplash.splashFactory,
       padding: _getBtnPadding(customPadding: customPadding, sizeType: sizeType),
-      minimumSize: const Size(48, 10),
+        minimumSize: Size(isFullWidth ? Get.width : 48, 10),
     );
   }
 }

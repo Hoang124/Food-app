@@ -51,10 +51,7 @@ class CartView extends GetView<CartController> {
       ),
       bottomNavigationBar: Visibility(
         visible: controller.foodResponses.isNotEmpty,
-        child: GestureDetector(
-          onTap: controller.payment,
-          child: _reviewPaymentBtn(context),
-        ),
+        child: _reviewPaymentBtn(context),
       ),
       body: SafeArea(
         child: Padding(
@@ -311,21 +308,32 @@ class CartView extends GetView<CartController> {
   }
 
   Widget _reviewPaymentBtn(BuildContext context) {
-    return Padding(
-      padding: MediaQuery.of(context).viewInsets,
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: ElevatedButton(
-          onPressed: null,
-          style: FilledBtnStyle.enable(
-            isFullWidth: true,
-            borderRadius: 16,
-          ),
-          child: Text(
-            S.of(context).payment,
-            style: AppTextStyles.subHeading1().copyWith(
-              color: AppColors.white,
-              fontWeight: FontWeight.w600,
+    return Obx(
+      () => Padding(
+        padding: MediaQuery.of(context).viewInsets,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: ElevatedButton(
+            onPressed: () {
+              if (controller.getIsEnable!) {
+                controller.payment();
+              } else {}
+            },
+            style: controller.getIsEnable == true
+                ? FilledBtnStyle.enable(
+                    isFullWidth: true,
+                    borderRadius: 16,
+                  )
+                : FilledBtnStyle.disable(
+                    isFullWidth: true,
+                    borderRadius: 16,
+                  ),
+            child: Text(
+              S.of(context).payment,
+              style: AppTextStyles.subHeading1().copyWith(
+                color: AppColors.white,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ),

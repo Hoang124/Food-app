@@ -14,6 +14,7 @@ class RestaurantModel {
   String? image;
   String? phoneNumber;
   List<FoodResponse>? foodItemRespList;
+  double? distance;
   RestaurantModel({
     this.id,
     this.name,
@@ -25,8 +26,9 @@ class RestaurantModel {
     this.image,
     this.phoneNumber,
     this.foodItemRespList,
+    this.distance,
   });
-    factory RestaurantModel.fromJson(Map<String, dynamic> json) =>
+  factory RestaurantModel.fromJson(Map<String, dynamic> json) =>
       _$RestaurantModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$RestaurantModelToJson(this);
