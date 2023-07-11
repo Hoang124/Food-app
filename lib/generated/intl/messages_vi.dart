@@ -20,98 +20,114 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'vi';
 
-  static String m0(name) => "Hi ${name}";
+  static String m0(name) => "Xin chào ${name}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "about": MessageLookupByLibrary.simpleMessage("About"),
-        "addToCard": MessageLookupByLibrary.simpleMessage("Add To Card"),
-        "addedItems": MessageLookupByLibrary.simpleMessage("Added Items"),
+        "about": MessageLookupByLibrary.simpleMessage("Giới thiệu"),
+        "addToCard": MessageLookupByLibrary.simpleMessage("Thêm Vào Thẻ"),
+        "all": MessageLookupByLibrary.simpleMessage("tất cả"),
         "appName": MessageLookupByLibrary.simpleMessage("AppFood"),
-        "back": MessageLookupByLibrary.simpleMessage("Back"),
-        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "back": MessageLookupByLibrary.simpleMessage("trở lại"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
         "changePass": MessageLookupByLibrary.simpleMessage("Thay đổi mật khẩu"),
-        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
-        "delivery": MessageLookupByLibrary.simpleMessage("Delivery"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Xác nhận"),
+        "delivery": MessageLookupByLibrary.simpleMessage("Giao hang"),
         "desOnboarding1":
-            MessageLookupByLibrary.simpleMessage("With Best Of Love"),
+            MessageLookupByLibrary.simpleMessage("Với tình yêu đẹp nhất"),
         "desOnboarding2":
-            MessageLookupByLibrary.simpleMessage("With Super Riders"),
+            MessageLookupByLibrary.simpleMessage("Với Siêu Tay Đua"),
         "desOnboarding3":
-            MessageLookupByLibrary.simpleMessage("With Fantastic Tastes"),
-        "description": MessageLookupByLibrary.simpleMessage("Description"),
-        "done": MessageLookupByLibrary.simpleMessage("Done"),
-        "emailInput": MessageLookupByLibrary.simpleMessage("Enter your email"),
-        "english": MessageLookupByLibrary.simpleMessage("English"),
+            MessageLookupByLibrary.simpleMessage("Với hương vị tuyệt vời"),
+        "description": MessageLookupByLibrary.simpleMessage("Mô tả"),
+        "detail": MessageLookupByLibrary.simpleMessage("Chi tiết"),
+        "done": MessageLookupByLibrary.simpleMessage("Hoàn thành"),
+        "emailInput":
+            MessageLookupByLibrary.simpleMessage("Nhập email của bạn"),
+        "english": MessageLookupByLibrary.simpleMessage("tiếng anh"),
+        "enterFeedback": MessageLookupByLibrary.simpleMessage(
+            "Vui lòng nhập đánh giá của bạn về đơn hàng "),
         "erEmailOrPasswordInvalid": MessageLookupByLibrary.simpleMessage(
-            "Your email or password is incorrect"),
+            "Email hoặc mật khẩu của bạn không đúng"),
         "forgotPassword":
-            MessageLookupByLibrary.simpleMessage("Forgot password?"),
-        "goToCart": MessageLookupByLibrary.simpleMessage("Go To Cart"),
+            MessageLookupByLibrary.simpleMessage("Quên mật khẩu?"),
+        "goToCart": MessageLookupByLibrary.simpleMessage("Vào giỏ hàng"),
         "haveAccount":
-            MessageLookupByLibrary.simpleMessage("Have an account already?"),
-        "healthy": MessageLookupByLibrary.simpleMessage("Healthy"),
-        "helpCenter": MessageLookupByLibrary.simpleMessage("Customer Support"),
+            MessageLookupByLibrary.simpleMessage("Bạn đã có tài khoản chưa?"),
+        "healthy": MessageLookupByLibrary.simpleMessage("Khỏe mạnh"),
+        "helpCenter": MessageLookupByLibrary.simpleMessage("Hỗ trợ khách hàng"),
         "hi": m0,
-        "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "historyOrder":
+            MessageLookupByLibrary.simpleMessage("Lịch sử đặt hàng"),
+        "home": MessageLookupByLibrary.simpleMessage("Trang chủ"),
         "invalidEmailAddress": MessageLookupByLibrary.simpleMessage(
-            "Please enter your email address in format: yourname@example.com"),
+            "Vui lòng nhập địa chỉ email của bạn theo định dạng: yourname@example.com"),
         "invalidPasswordLength":
-            MessageLookupByLibrary.simpleMessage("At least eight characters"),
+            MessageLookupByLibrary.simpleMessage("Ít nhất tám ký tự"),
         "invalidPasswordOneCapitalLetter":
-            MessageLookupByLibrary.simpleMessage("At least one capital letter"),
+            MessageLookupByLibrary.simpleMessage("Ít nhất một chữ hoa"),
         "invalidPasswordOneLetter":
-            MessageLookupByLibrary.simpleMessage("At least one letter"),
+            MessageLookupByLibrary.simpleMessage("Ít nhất một chữ cái"),
         "invalidPasswordOneNumber":
-            MessageLookupByLibrary.simpleMessage("At least one number"),
-        "invalidPasswordOneSpecialLetter":
-            MessageLookupByLibrary.simpleMessage("At least one special letter"),
-        "language": MessageLookupByLibrary.simpleMessage("Language"),
-        "location": MessageLookupByLibrary.simpleMessage("Location"),
-        "logout": MessageLookupByLibrary.simpleMessage("Log Out"),
-        "mostPopular": MessageLookupByLibrary.simpleMessage("Most Popular"),
-        "nameCart": MessageLookupByLibrary.simpleMessage("Cart"),
-        "nameInput": MessageLookupByLibrary.simpleMessage("Enter your name"),
-        "nearby": MessageLookupByLibrary.simpleMessage("Nearby Restautant"),
-        "next": MessageLookupByLibrary.simpleMessage("Next"),
-        "niceDay": MessageLookupByLibrary.simpleMessage("Have nice day"),
-        "no": MessageLookupByLibrary.simpleMessage("No"),
-        "noAccount":
-            MessageLookupByLibrary.simpleMessage("Create new account?"),
-        "notifi": MessageLookupByLibrary.simpleMessage("Notification"),
-        "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+            MessageLookupByLibrary.simpleMessage("Ít nhất một số"),
+        "invalidPasswordOneSpecialLetter": MessageLookupByLibrary.simpleMessage(
+            "Ít nhất một chữ cái đặc biệt"),
+        "language": MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),
+        "location": MessageLookupByLibrary.simpleMessage("Địa điểm"),
+        "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
+        "mostPopular": MessageLookupByLibrary.simpleMessage("Phổ biến nhất"),
+        "nameCart": MessageLookupByLibrary.simpleMessage("Giỏ hàng"),
+        "nameInput": MessageLookupByLibrary.simpleMessage("Nhập tên của bạn"),
+        "nearby": MessageLookupByLibrary.simpleMessage("Nhà hàng gần đó"),
+        "next": MessageLookupByLibrary.simpleMessage("Tiếp theo"),
+        "niceDay":
+            MessageLookupByLibrary.simpleMessage("Chúc một ngày tốt lành"),
+        "no": MessageLookupByLibrary.simpleMessage("Không"),
+        "noAccount": MessageLookupByLibrary.simpleMessage("Tạo tài khoản mới?"),
+        "notifi": MessageLookupByLibrary.simpleMessage("Thông báo"),
+        "ok": MessageLookupByLibrary.simpleMessage("Đồng ý"),
         "passwordAgain":
-            MessageLookupByLibrary.simpleMessage("Enter your password again"),
+            MessageLookupByLibrary.simpleMessage("Nhập lại mật khẩu của bạn"),
         "passwordAganNotMatch":
-            MessageLookupByLibrary.simpleMessage("Password not match"),
+            MessageLookupByLibrary.simpleMessage("Mật khẩu không khớp"),
         "passwordInput":
-            MessageLookupByLibrary.simpleMessage("Enter your password"),
-        "payment": MessageLookupByLibrary.simpleMessage("Payment"),
+            MessageLookupByLibrary.simpleMessage("Nhập mật khẩu của bạn"),
+        "payment": MessageLookupByLibrary.simpleMessage("Thanh toán"),
         "phoneNumberInput":
-            MessageLookupByLibrary.simpleMessage("Enter your phone number"),
-        "processing": MessageLookupByLibrary.simpleMessage("Processing..."),
-        "reviewPayment": MessageLookupByLibrary.simpleMessage("Review Payment"),
-        "showComment": MessageLookupByLibrary.simpleMessage("Show Comment"),
-        "showRestaurent":
-            MessageLookupByLibrary.simpleMessage("View Restautant"),
-        "signIn": MessageLookupByLibrary.simpleMessage("Login"),
-        "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+            MessageLookupByLibrary.simpleMessage("Nhập số điện thoại của bạn"),
+        "recommend": MessageLookupByLibrary.simpleMessage("khuyên dùng"),
+        "reviewPayment":
+            MessageLookupByLibrary.simpleMessage("Xem lại Thanh toán"),
+        "search": MessageLookupByLibrary.simpleMessage("tìm kiếm"),
+        "selectSource": MessageLookupByLibrary.simpleMessage("Chọn nguồn"),
+        "showComment":
+            MessageLookupByLibrary.simpleMessage("Hiển thị Bình luận"),
+        "showRestaurent": MessageLookupByLibrary.simpleMessage("Xem Nhà hàng"),
+        "signUp": MessageLookupByLibrary.simpleMessage("Đăng ký"),
         "signupsucess": MessageLookupByLibrary.simpleMessage(
-            "Successful registration, login to continue."),
-        "skip": MessageLookupByLibrary.simpleMessage("Skip"),
-        "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),
+            "Đăng ký thành công, đăng nhập để tiếp tục."),
+        "skip": MessageLookupByLibrary.simpleMessage("Bỏ qua"),
+        "subTotal": MessageLookupByLibrary.simpleMessage("Tổng phụ"),
+        "submit": MessageLookupByLibrary.simpleMessage("Gửi phản hồi"),
+        "subtotal": MessageLookupByLibrary.simpleMessage("Tổng phụ"),
+        "tellWithUs": MessageLookupByLibrary.simpleMessage(
+            "Hãy cho chúng tôi biết phản hồi của bạn "),
         "titleLogin":
-            MessageLookupByLibrary.simpleMessage("Login Your Account"),
-        "titleOnboarding1": MessageLookupByLibrary.simpleMessage("Find Food"),
+            MessageLookupByLibrary.simpleMessage("Đăng nhập tài khoản của bạn"),
+        "titleOnboarding1": MessageLookupByLibrary.simpleMessage("Tìm đồ ăn"),
         "titleOnboarding2":
-            MessageLookupByLibrary.simpleMessage("Fast Delivery "),
+            MessageLookupByLibrary.simpleMessage("Giao hàng nhanh"),
         "titleOnboarding3":
-            MessageLookupByLibrary.simpleMessage("Skilled Chefs"),
-        "titleRegister": MessageLookupByLibrary.simpleMessage("Sign Up"),
-        "total": MessageLookupByLibrary.simpleMessage("Total"),
-        "vietnamese": MessageLookupByLibrary.simpleMessage("VietNamese"),
-        "welcome": MessageLookupByLibrary.simpleMessage("Welcome!"),
-        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
-        "yourFavorate": MessageLookupByLibrary.simpleMessage("My Favorate")
+            MessageLookupByLibrary.simpleMessage("Đầu bếp lành nghề"),
+        "titleRegister": MessageLookupByLibrary.simpleMessage("Đăng ký"),
+        "total": MessageLookupByLibrary.simpleMessage("Tổng"),
+        "totalPrice": MessageLookupByLibrary.simpleMessage("Tổng giá: "),
+        "vietnamese": MessageLookupByLibrary.simpleMessage("tiếng việt"),
+        "welcome": MessageLookupByLibrary.simpleMessage("Xin chào!"),
+        "writeSometh":
+            MessageLookupByLibrary.simpleMessage("Viết gì đó cho chúng tôi!"),
+        "yes": MessageLookupByLibrary.simpleMessage("Đồng ý"),
+        "yourFavorate":
+            MessageLookupByLibrary.simpleMessage("Yêu thích của tôi")
       };
 }
