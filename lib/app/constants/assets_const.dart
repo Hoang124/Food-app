@@ -60,4 +60,16 @@ class AssetsConst {
   static const String disableCircle = "${preIconPath}disable_circle.svg";
   static const String leftArrow = "${preIconPath}left_arrow.svg";
   static const String activeStar = "${preIconPath}active_star.svg";
+  static const String allFood = "${preIconPath}all_food.svg";
+  static const String anVat = "${preIconPath}an_vat.svg";
+  static const String bun = "${preIconPath}bun.svg";
+  static const String chao = "${preIconPath}chao.svg";
+  static const String che = "${preIconPath}che.svg";
+  static const String com = "${preIconPath}com.svg";
+  static const String doUong = "${preIconPath}do_uong.svg";
+  static const String fastFood = "${preIconPath}fast_food.svg";
+  static const String mi = "${preIconPath}mi.svg";
+  static const String pho = "${preIconPath}pho.svg";
+  static const String mostPopular = "${preIconPath}most_popular.svg";
+  static const String history = "${preIconPath}history.svg";
 }

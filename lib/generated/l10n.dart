@@ -710,10 +710,10 @@ class S {
     );
   }
 
-  /// `My Favorate`
+  /// `My Favorite`
   String get yourFavorate {
     return Intl.message(
-      'My Favorate',
+      'My Favorite',
       name: 'yourFavorate',
       desc: '',
       args: [],
@@ -785,6 +785,66 @@ class S {
     return Intl.message(
       'Order History',
       name: 'historyOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total price: `
+  String get totalPrice {
+    return Intl.message(
+      'Total price: ',
+      name: 'totalPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Detail`
+  String get detail {
+    return Intl.message(
+      'Detail',
+      name: 'detail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sub total`
+  String get subTotal {
+    return Intl.message(
+      'Sub total',
+      name: 'subTotal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message(
+      'Search',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message(
+      'All',
+      name: 'all',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recommend`
+  String get recommend {
+    return Intl.message(
+      'Recommend',
+      name: 'recommend',
       desc: '',
       args: [],
     );

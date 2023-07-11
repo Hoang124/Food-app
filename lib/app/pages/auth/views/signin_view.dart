@@ -238,18 +238,6 @@ class SignInView extends GetView<SignInController> {
               ),
             ),
             const SizedBox(height: 30),
-            Center(
-              child: Text.rich(
-                TextSpan(
-                    text: S.of(context).forgotPassword,
-                    style: AppTextStyles.body1().copyWith(
-                      color: AppColors.main.shade200,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = _forgotPasswordOnClicked),
-              ),
-            ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(

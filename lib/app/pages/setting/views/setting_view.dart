@@ -27,6 +27,10 @@ class SettingView extends GetView<SettingController> {
     controller.logoutUser();
   }
 
+  void _historyClick() {
+    Get.toNamed(Routes.history);
+  }
+
   Widget _buildBody(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.defaultBackground,
@@ -114,6 +118,12 @@ class SettingView extends GetView<SettingController> {
                 S.of(context).about,
                 AssetsConst.icAbout,
                 _aboutClick,
+              ),
+              _contentWidget(
+                context,
+                "History",
+                AssetsConst.history,
+                _historyClick,
               ),
               _contentWidget(
                 context,

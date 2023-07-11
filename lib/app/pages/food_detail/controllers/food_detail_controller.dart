@@ -1,8 +1,11 @@
+import 'package:flutter/material.dart';
 import 'package:foodapp/app/core.dart';
 import 'package:intl/intl.dart';
 
 class FoodDetailController extends GetxController {
-  FoodResponse? foodResponse;
+  Rx<FoodResponse> _foodResponse = Rx<FoodResponse>(FoodResponse());
+  set foodResponse(FoodResponse value) => _foodResponse.value = value;
+  FoodResponse get foodResponse => _foodResponse.value;
 
   final RxInt _numFood = 1.obs;
   set numFood(int value) => _numFood.value = value;
@@ -43,9 +46,7 @@ class FoodDetailController extends GetxController {
       foodResponses = _cartModel!.foodResponses!;
     }
 
-    if (foodResponse != null) {
-      isFavorite = foodResponse!.isFavorite!;
-    }
+    isFavorite = foodResponse.isFavorite ?? false;
 
     _favorateFoodService = Get.find<FavorateFoodService>();
 
@@ -62,52 +63,67 @@ class FoodDetailController extends GetxController {
     }
   }
 
-  bool addFoodToCart() {
+  void changeFoodResponse(FoodResponse foodRe) {
+    foodResponse = foodRe;
+    numFood = 1;
+    isFavorite = foodRe.isFavorite!;
+  }
+
+  void addFoodToCart() {
     int quantity = numFood;
-    ProcessingDialog processingDialog = ProcessingDialog.show();
-    if (foodResponse != null) {
-      FoodResponse? food = foodResponses
-          .firstWhereOrNull((element) => foodResponse!.id == element.id);
-      if (food != null) {
-        if (food.quantity != null) {
-          food.quantity = food.quantity! + quantity;
-        } else {
-          food.quantity = quantity;
+    bool check = false;
+    // ProcessingDialog processingDialog = ProcessingDialog.show();
+    FoodResponse? food = foodResponses
+        .firstWhereOrNull((element) => foodResponse.id == element.id);
+    if (food != null) {
+      if (food.quantity != null) {
+        food.quantity = food.quantity! + quantity;
+      } else {
+        food.quantity = quantity;
+      }
+      saveFoodResponses();
+    } else {
+      if (foodResponses.isNotEmpty) {
+        if (foodResponses[0].restaurantId != foodResponse.restaurantId) {
+          String message =
+              "You are adding another restaurant's dish. Do you want to delete the old restaurant's dishes?";
+          confirmStopRent(
+              Get.context!, message, handleConfirmAddFoodDifferentRestaurant);
         }
-      } else {
-        foodResponse!.quantity = quantity;
-        foodResponses.add(foodResponse!);
       }
-      if (_cartModel != null) {
-        _cartModel!.foodResponses = foodResponses;
-        _cartManager.saveCart(_cartModel);
-      } else {
-        int userId = Prefs.getInt(AppKeys.userID);
-        _cartModel = CartModel(
-          foodResponses: foodResponses,
-          idUser: userId,
-        );
-        _cartManager.saveCart(_cartModel);
-      }
-      numFood = 1;
     }
-    processingDialog.hide();
-    return true;
+    // processingDialog.hide();
+  }
+
+  void saveFoodResponses() {
+    if (_cartModel != null) {
+      _cartModel!.foodResponses = foodResponses;
+      _cartManager.saveCart(_cartModel);
+    } else {
+      int userId = Prefs.getInt(AppKeys.userID);
+      _cartModel = CartModel(
+        foodResponses: foodResponses,
+        idUser: userId,
+      );
+      _cartManager.saveCart(_cartModel);
+    }
+    numFood = 1;
+    Get.toNamed(Routes.cart);
   }
 
   String getMomey() {
-    if (foodResponse != null && foodResponse!.price != null) {
+    if (foodResponse.price != null) {
       return NumberFormat.currency(locale: 'vi_VN', symbol: '₫')
-          .format(foodResponse!.price! * numFood);
+          .format(foodResponse.price! * numFood);
     } else {
       return "0";
     }
   }
 
   Future<bool> getRestaurantById() async {
-    if (foodResponse != null && foodResponse!.restaurantId != null) {
+    if (foodResponse.restaurantId != null) {
       final result = await _restaurantService
-          .getRestaurantByID(foodResponse!.restaurantId!);
+          .getRestaurantByID(foodResponse.restaurantId!);
       if (result.isSuccess() && result.data != null) {
         restaurantModel = result.data;
       }
@@ -129,5 +145,85 @@ class FoodDetailController extends GetxController {
       isFavorite = false;
       _isFavorite.refresh();
     }
+  }
+
+  void handleConfirmAddFoodDifferentRestaurant() {
+    foodResponses = [];
+    foodResponse.quantity = numFood;
+    foodResponses.add(foodResponse);
+    Navigator.of(Get.context!).pop();
+    saveFoodResponses();
+  }
+
+// Confirm dialog
+  void confirmStopRent(
+    BuildContext context,
+    String message,
+    Function? handle,
+  ) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: Stack(
+            children: [
+              ListView(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(top: 30),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 15,
+                    ),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 15),
+                        Text(
+                          message,
+                          style: AppTextStyles.body1().copyWith(
+                            color: AppColors.primaryColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          textAlign: TextAlign.justify,
+                        ),
+                        const SizedBox(height: 30),
+                        OutlinedButton(
+                          onPressed: () {
+                            if (handle != null) {
+                              handle.call();
+                            } else {
+                              Navigator.of(context).pop();
+                            }
+                          },
+                          style: OutlineButtonStyle.enable(
+                              isFullWidth: true,
+                              outlineColor: AppColors.primaryColor),
+                          child: Text(
+                            S.of(context).confirm,
+                            style: AppTextStyles.body2().copyWith(
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

@@ -17,4 +17,5 @@ abstract class Routes {
   static const comment = '/comment';
   static const feedback = '/feedback';
   static const history = '/history';
+  static const search = '/search';
 }

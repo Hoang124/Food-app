@@ -3,6 +3,7 @@ import 'package:foodapp/app/core.dart';
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
+    Get.put(AIService());
     Get.put<FoodHttpService>(FoodHttpService());
     Get.put(RestaurantService());
     Get.put<HomeController>(HomeController());

@@ -10,7 +10,13 @@ class HomeSubController extends GetxController
   set indexTabBar(int value) => _indexTabBar.value = value;
   late FoodHttpService _foodHttpService;
   late RestaurantService _restaurantService;
-  List<FoodResponse>? listFood;
+  late AIService _aiService;
+
+  final RxList<FoodResponse> _listFood = <FoodResponse>[].obs;
+  set listFood(List<FoodResponse> value) => _listFood.value = value;
+  // ignore: invalid_use_of_protected_member
+  List<FoodResponse> get listFood => _listFood.value;
+
   List<RestaurantModel>? restaurantList;
 
   final RxBool _isLoading = false.obs;
@@ -23,6 +29,7 @@ class HomeSubController extends GetxController
 
   @override
   void onInit() {
+    _aiService = Get.find<AIService>();
     _foodHttpService = Get.find<FoodHttpService>();
     _restaurantService = Get.find<RestaurantService>();
     tabController = TabController(length: 5, vsync: this)
@@ -35,15 +42,37 @@ class HomeSubController extends GetxController
           }
         },
       );
-    getFoods().then((value) => isLoading = true);
+    getRecommendFood().then((value) => isLoading = true);
     getRestaurants().then((value) => isResLoading = true);
     super.onInit();
   }
 
-  Future<void> getFoods() async {
-    final result = await _foodHttpService.getFoods(1);
+  Future<void> getRecommendFood() async {
+    final result =
+        await _aiService.getRecommendFood(Prefs.getInt(AppKeys.userID));
+    final foodResult;
     if (result.isSuccess() && result.data != null) {
-      listFood = result.data;
+      foodResult =
+          await _foodHttpService.getRecommedFood(result.data['recommendFood']);
+      if (foodResult.isSuccess() && foodResult.data != null) {
+        listFood = foodResult.data ?? [];
+      }
+    } else {
+      getFoods(2);
+    }
+  }
+
+  Future<void> getFoods(int pageNumber) async {
+    final result = await _foodHttpService.getFoods(pageNumber);
+    if (result.isSuccess() && result.data != null) {
+      listFood = result.data ?? [];
+    }
+  }
+
+  Future<void> getFoodByCategory(int id) async {
+    final result = await _foodHttpService.getFoodByCategory(id, 1);
+    if (result.isSuccess() && result.data != null) {
+      listFood = result.data ?? [];
     }
   }
 

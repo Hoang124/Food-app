@@ -77,7 +77,7 @@ class MainController extends GetxController {
     } else {
       bool isNotFirstLaunch = Prefs.getBool(AppKeys.firstLaunch);
       if (isNotFirstLaunch) {
-        Get.offNamed(Routes.signIn);
+        Get.offNamed(Routes.onboarding);
       } else {
         await Prefs.saveBool(AppKeys.firstLaunch, true);
         Get.offNamed<void>(Routes.onboarding);

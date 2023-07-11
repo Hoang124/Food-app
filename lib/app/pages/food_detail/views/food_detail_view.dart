@@ -27,10 +27,7 @@ class FoodDetailView extends GetView<FoodDetailController> {
   }
 
   void _goToCart() {
-    bool check = controller.addFoodToCart();
-    if (check) {
-      Get.toNamed(Routes.cart);
-    }
+    controller.addFoodToCart();
   }
 
   void _showRestaurant(RestaurantModel restaurantModel) {
@@ -45,57 +42,63 @@ class FoodDetailView extends GetView<FoodDetailController> {
     controller.deleteFavoriteFood(userId, foodId);
   }
 
+  void foodItemClick(FoodResponse foodResponse) {
+    controller.changeFoodResponse(foodResponse);
+  }
+
   Widget _buildBody(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.defaultBackground,
-      appBar: AppBar(
-        backgroundColor: AppColors.primaryColor.withOpacity(0.5),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-            color: AppColors.primaryColor,
-          ),
-          onPressed: () {
-            Get.offAllNamed(Routes.home);
-          },
-        ),
-        actions: <Widget>[
-          GestureDetector(
-            onTap: () {
-              controller.isFavorite
-                  ? deleteFaFood(Prefs.getInt(AppKeys.userID),
-                      controller.foodResponse!.id!)
-                  : insertFaFood(Prefs.getInt(AppKeys.userID),
-                      controller.foodResponse!.id!);
+    return Obx(
+      () => Scaffold(
+        backgroundColor: AppColors.defaultBackground,
+        appBar: AppBar(
+          backgroundColor: AppColors.primaryColor.withOpacity(0.5),
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+              color: AppColors.primaryColor,
+            ),
+            onPressed: () {
+              Get.offAllNamed(Routes.home);
             },
-            child: Obx(
-              () => Padding(
-                padding: const EdgeInsets.only(right: 20),
-                child: SvgPicture.asset(
-                  controller.isFavorite == true
-                      ? AssetsConst.tymIcon
-                      : AssetsConst.tymIconUn,
-                  height: 20,
+          ),
+          actions: <Widget>[
+            GestureDetector(
+              onTap: () {
+                controller.isFavorite
+                    ? deleteFaFood(Prefs.getInt(AppKeys.userID),
+                        controller.foodResponse.id!)
+                    : insertFaFood(Prefs.getInt(AppKeys.userID),
+                        controller.foodResponse.id!);
+              },
+              child: Obx(
+                () => Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: SvgPicture.asset(
+                    controller.isFavorite == true
+                        ? AssetsConst.tymIcon
+                        : AssetsConst.tymIconUn,
+                    height: 20,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-      bottomNavigationBar: _bottomNavigator(context),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _topWidget(context),
-            const SizedBox(height: 30),
-            _contentWidget(context),
-            const SizedBox(height: 20),
-            _infoStore(context),
-            _foodOdStore(context),
-            _commentWidget(context)
           ],
+        ),
+        bottomNavigationBar: _bottomNavigator(context),
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _topWidget(context),
+              const SizedBox(height: 30),
+              _contentWidget(context),
+              const SizedBox(height: 20),
+              _infoStore(context),
+              _foodOdStore(context),
+              _commentWidget(context)
+            ],
+          ),
         ),
       ),
     );
@@ -109,7 +112,7 @@ class FoodDetailView extends GetView<FoodDetailController> {
       child: Center(
         child: Transform.translate(
             offset: const Offset(0, 30),
-            child: controller.foodResponse!.image != null
+            child: controller.foodResponse.image != null
                 ? Container(
                     width: 250.0,
                     height: 250.0,
@@ -125,7 +128,7 @@ class FoodDetailView extends GetView<FoodDetailController> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30.0),
                       child: CachedNetworkImage(
-                        imageUrl: controller.foodResponse!.image!,
+                        imageUrl: controller.foodResponse.image!,
                         placeholder: (context, url) => ThreeBounceLoading(),
                         fit: BoxFit.cover,
                         errorWidget: (context, url, error) => SvgPicture.asset(
@@ -162,7 +165,7 @@ class FoodDetailView extends GetView<FoodDetailController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      controller.foodResponse?.name ?? "",
+                      controller.foodResponse.name ?? "",
                       style: AppTextStyles.subLead().copyWith(
                         color: AppColors.defaultTextColor,
                         fontWeight: FontWeight.w500,
@@ -187,7 +190,7 @@ class FoodDetailView extends GetView<FoodDetailController> {
                             ),
                             const SizedBox(width: 5),
                             Text(
-                              controller.foodResponse?.rate.toString() ?? "0",
+                              controller.foodResponse.rate.toString(),
                               style: AppTextStyles.body2().copyWith(
                                 color: const Color(0xff8E97A6),
                               ),
@@ -239,7 +242,7 @@ class FoodDetailView extends GetView<FoodDetailController> {
           ),
           const SizedBox(height: 10),
           Text(
-            controller.foodResponse?.description ?? "",
+            controller.foodResponse.description ?? "",
             style: AppTextStyles.body2().copyWith(
               color: AppColors.darkGrey,
               fontWeight: FontWeight.w400,
@@ -263,11 +266,15 @@ class FoodDetailView extends GetView<FoodDetailController> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GestureDetector(
-            onTap: _minusClick,
-            child: const Icon(
-              Icons.remove,
-              color: AppColors.white,
+          Obx(
+            () => GestureDetector(
+              onTap: _minusClick,
+              child: Icon(
+                Icons.remove,
+                color: controller.numFood <= 1
+                    ? AppColors.white.withOpacity(0.5)
+                    : AppColors.white,
+              ),
             ),
           ),
           const SizedBox(width: 15),
@@ -439,7 +446,9 @@ class FoodDetailView extends GetView<FoodDetailController> {
     FoodResponse foodResponse,
   ) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        foodItemClick(foodResponse);
+      },
       child: Stack(
         children: [
           Container(
@@ -583,13 +592,23 @@ class FoodDetailView extends GetView<FoodDetailController> {
             ? controller.restaurantModel != null &&
                     controller.restaurantModel!.foodItemRespList != null
                 ? Row(
+                    // children: controller.restaurantModel!.foodItemRespList!
+                    //     .asMap()
+                    //     .entries
+                    //     .where((e) =>
+                    //         controller
+                    //             .restaurantModel!.foodItemRespList![e.key] !=
+                    //         controller.foodResponse!.id)
+                    //     .map((e) {
+                    //   return _cardMostPopular(context,
+                    //       controller.restaurantModel!.foodItemRespList![e.key]);
+                    // }).toList(),
                     children: controller.restaurantModel!.foodItemRespList!
-                        .asMap()
-                        .entries
+                        .where((e) => e.id != controller.foodResponse.id)
                         .map((e) {
-                    return _cardMostPopular(context,
-                        controller.restaurantModel!.foodItemRespList![e.key]);
-                  }).toList())
+                      return _cardMostPopular(context, e);
+                    }).toList(),
+                  )
                 : const SizedBox()
             : ThreeBounceLoading(),
       ),
@@ -600,7 +619,7 @@ class FoodDetailView extends GetView<FoodDetailController> {
     return Padding(
       padding: const EdgeInsets.all(15.0),
       child: ElevatedButton(
-          onPressed: () => _commentClick(controller.foodResponse?.id),
+          onPressed: () => _commentClick(controller.foodResponse.id),
           style: FilledBtnStyle.enable(
             isFullWidth: true,
             borderRadius: 16,

@@ -1,6 +1,7 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:foodapp/app/core.dart';
 import 'package:flutter/material.dart';
+import 'package:foodapp/app/pages/cart/models/category_model.dart';
 import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -22,6 +23,15 @@ class HomeSubView extends GetView<HomeSubController> {
     Get.toNamed(Routes.store, arguments: restaurantModel);
   }
 
+  void _categoryClick(CategoryModel categoryModel) {
+    controller.indexTabBar = categoryModel.id;
+    if (categoryModel.id == 0) {
+      controller.getRecommendFood();
+    } else {
+      controller.getFoodByCategory(categoryModel.id);
+    }
+  }
+
   Widget _buildBody(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.defaultBackground,
@@ -36,59 +46,15 @@ class HomeSubView extends GetView<HomeSubController> {
                 const SizedBox(height: 30),
                 _searchWidget(context),
                 const SizedBox(height: 30),
-                Obx(
-                  () => SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: TabBar(
-                      controller: controller.tabController,
-                      splashFactory: NoSplash.splashFactory,
-                      isScrollable: true,
-                      indicator: const UnderlineTabIndicator(
-                        borderSide: BorderSide.none,
-                      ),
-                      physics: const NeverScrollableScrollPhysics(),
-                      overlayColor: MaterialStateProperty.all<Color>(
-                        Colors.transparent,
-                      ),
-                      tabs: [
-                        _builTabBar(
-                          context,
-                          "Pizza",
-                          0,
-                          AssetsConst.pizza,
-                          const Color(0xffFFDE8A),
-                        ),
-                        _builTabBar(
-                          context,
-                          "Hotdog",
-                          1,
-                          AssetsConst.hotdog,
-                          const Color(0xffEEBBAF),
-                        ),
-                        _builTabBar(
-                          context,
-                          "Donat",
-                          2,
-                          AssetsConst.doughnut,
-                          const Color(0xffEDB66B),
-                        ),
-                        _builTabBar(
-                          context,
-                          "Ice",
-                          3,
-                          AssetsConst.ice,
-                          const Color(0xff5A85FF),
-                        ),
-                        _builTabBar(
-                          context,
-                          "Asian",
-                          4,
-                          AssetsConst.zongzi,
-                          const Color(0xff38AD68),
-                        ),
-                      ],
-                    ),
-                  ),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                      children: DefaultValues.categoryList
+                          .asMap()
+                          .entries
+                          .map((e) => _builTabBar(
+                              context, DefaultValues.categoryList[e.key]))
+                          .toList()),
                 ),
                 const SizedBox(height: 30),
                 _mainHomeView(context),
@@ -100,10 +66,12 @@ class HomeSubView extends GetView<HomeSubController> {
     );
   }
 
-  Widget _builTabBar(
-      BuildContext context, String text, int index, String icon, Color color) {
-    return DisableAccessibility(
-      child: Tab(
+  Widget _builTabBar(BuildContext context, CategoryModel categoryModel) {
+    return Obx(
+      () => GestureDetector(
+        onTap: () {
+          _categoryClick(categoryModel);
+        },
         child: Container(
           padding: const EdgeInsets.symmetric(
             horizontal: 15,
@@ -111,17 +79,17 @@ class HomeSubView extends GetView<HomeSubController> {
           ),
           margin: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
-            color: controller.indexTabBar == index
+            color: controller.indexTabBar == categoryModel.id
                 ? AppColors.primaryColor
-                : color.withOpacity(0.7),
+                : Color(categoryModel.color).withOpacity(0.7),
             borderRadius: BorderRadius.circular(17),
           ),
           child: Row(
             children: [
               Text(
-                text,
+                categoryModel.name,
                 style: AppTextStyles.body2().copyWith(
-                    color: controller.indexTabBar == index
+                    color: controller.indexTabBar == categoryModel.id
                         ? AppColors.white
                         : AppColors.primaryColor),
                 maxLines: 2,
@@ -130,7 +98,7 @@ class HomeSubView extends GetView<HomeSubController> {
               ),
               const SizedBox(width: 10),
               SvgPicture.asset(
-                icon,
+                categoryModel.image,
                 height: 20,
               )
             ],
@@ -214,6 +182,10 @@ class HomeSubView extends GetView<HomeSubController> {
           child: TextFieldSearch(
             inputController: controller.textEditingController,
             keyboardType: TextInputType.text,
+            textInputAction: TextInputAction.done,
+            onFieldSubmitted: (value) {
+              Get.offAllNamed(Routes.search, arguments: value);
+            },
           ),
         ),
         Container(
@@ -265,11 +237,14 @@ class HomeSubView extends GetView<HomeSubController> {
                           color: AppColors.defaultTextColor,
                         ),
                       ),
-                      Row(
-                        children: controller.listFood!.asMap().entries.map((e) {
-                          return _cardMostPopular(
-                              context, controller.listFood![e.key]);
-                        }).toList(),
+                      Obx(
+                        () => Row(
+                          children:
+                              controller.listFood.asMap().entries.map((e) {
+                            return _cardMostPopular(
+                                context, controller.listFood[e.key]);
+                          }).toList(),
+                        ),
                       ),
                     ],
                   )
@@ -410,15 +385,18 @@ class HomeSubView extends GetView<HomeSubController> {
                     mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        NumberFormat.currency(locale: 'vi_VN', symbol: '₫')
-                            .format(foodResponse.price ?? 0),
-                        style: AppTextStyles.subHeading1().copyWith(
-                          color: AppColors.defaultTextColor,
-                          fontWeight: FontWeight.w700,
+                      Container(
+                        width: 115,
+                        child: Text(
+                          NumberFormat.currency(locale: 'vi_VN', symbol: '₫')
+                              .format(foodResponse.price ?? 0),
+                          style: AppTextStyles.subHeading1().copyWith(
+                            color: AppColors.defaultTextColor,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
-                      const SizedBox(width: 40),
+                      // const SizedBox(width: 40),
                       Expanded(
                         child: Container(
                           height: 35,

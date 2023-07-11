@@ -29,6 +29,15 @@ class CartView extends GetView<CartController> {
           ? AppColors.fullWhite
           : AppColors.defaultBackground,
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+            color: AppColors.white,
+          ),
+          onPressed: () {
+            Get.back();
+          },
+        ),
         iconTheme: const IconThemeData(
           color: AppColors.white,
           size: 30,
@@ -167,7 +176,8 @@ class CartView extends GetView<CartController> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        foodResponse.price.toString(),
+                        NumberFormat.currency(locale: 'vi_VN', symbol: '₫')
+                            .format(foodResponse.price),
                         style: AppTextStyles.body1(),
                       )
                     ],
@@ -302,18 +312,21 @@ class CartView extends GetView<CartController> {
 
   Widget _reviewPaymentBtn(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(15, 10, 15, 30),
-      child: ElevatedButton(
-        onPressed: null,
-        style: FilledBtnStyle.enable(
-          isFullWidth: true,
-          borderRadius: 16,
-        ),
-        child: Text(
-          S.of(context).payment,
-          style: AppTextStyles.subHeading1().copyWith(
-            color: AppColors.white,
-            fontWeight: FontWeight.w600,
+      padding: MediaQuery.of(context).viewInsets,
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: ElevatedButton(
+          onPressed: null,
+          style: FilledBtnStyle.enable(
+            isFullWidth: true,
+            borderRadius: 16,
+          ),
+          child: Text(
+            S.of(context).payment,
+            style: AppTextStyles.subHeading1().copyWith(
+              color: AppColors.white,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ),
@@ -373,7 +386,7 @@ class CartView extends GetView<CartController> {
   Widget _bankWidget(BuildContext context, BankModel bankModel) {
     return InkWell(
       onTap: () {
-        //_seclectedBank(bankModel);
+        // _seclectedBank(bankModel);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8),

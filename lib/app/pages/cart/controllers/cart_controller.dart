@@ -131,7 +131,7 @@ class CartController extends GetxController {
           .map((foodRes) => OrderDetailModel(
               foodId: foodRes.id,
               price: foodRes.price,
-              quantity: foodRes.quantity))
+              quantity: foodRes.quantity ?? 1))
           .toList();
       OrderModel orderModel = OrderModel(
         address: addAddress.text,

@@ -243,7 +243,9 @@ class StoreView extends GetView<StoreController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                controller.restaurantModel!.name!,
+                controller.restaurantModel != null
+                    ? controller.restaurantModel!.name!
+                    : '',
                 style: AppTextStyles.heading2().copyWith(
                   color: AppColors.defaultTextColor,
                   fontWeight: FontWeight.w500,
@@ -323,7 +325,7 @@ class StoreView extends GetView<StoreController> {
   ) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routes.foodDetail);
+        Get.toNamed(Routes.foodDetail, arguments: foodResponse);
       },
       child: Container(
         margin: const EdgeInsets.all(10),
@@ -361,7 +363,7 @@ class StoreView extends GetView<StoreController> {
                           SvgPicture.asset(AssetsConst.star),
                           const SizedBox(width: 5),
                           Text(
-                            "4.8",
+                            foodResponse.rate.toString(),
                             style: AppTextStyles.tiny().copyWith(
                               color: const Color(0xff8E97A6),
                             ),

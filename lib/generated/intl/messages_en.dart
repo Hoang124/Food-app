@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("About"),
         "addToCard": MessageLookupByLibrary.simpleMessage("Add To Card"),
         "addedItems": MessageLookupByLibrary.simpleMessage("Added Items"),
+        "all": MessageLookupByLibrary.simpleMessage("All"),
         "appName": MessageLookupByLibrary.simpleMessage("AppFood"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -42,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "desOnboarding3":
             MessageLookupByLibrary.simpleMessage("With Fantastic Tastes"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
+        "detail": MessageLookupByLibrary.simpleMessage("Detail"),
         "done": MessageLookupByLibrary.simpleMessage("Done"),
         "emailInput": MessageLookupByLibrary.simpleMessage("Enter your email"),
         "english": MessageLookupByLibrary.simpleMessage("English"),
@@ -95,7 +97,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneNumberInput":
             MessageLookupByLibrary.simpleMessage("Enter your phone number"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing..."),
+        "recommend": MessageLookupByLibrary.simpleMessage("Recommend"),
         "reviewPayment": MessageLookupByLibrary.simpleMessage("Review Payment"),
+        "search": MessageLookupByLibrary.simpleMessage("Search"),
         "selectSource": MessageLookupByLibrary.simpleMessage("Select Source"),
         "showComment": MessageLookupByLibrary.simpleMessage("Show Comment"),
         "showRestaurent":
@@ -105,6 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "signupsucess": MessageLookupByLibrary.simpleMessage(
             "Successful registration, login to continue."),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
+        "subTotal": MessageLookupByLibrary.simpleMessage("Sub total"),
         "submit": MessageLookupByLibrary.simpleMessage("Submit Feedback"),
         "subtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),
         "tellWithUs":
@@ -118,11 +123,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Skilled Chefs"),
         "titleRegister": MessageLookupByLibrary.simpleMessage("Sign Up"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
+        "totalPrice": MessageLookupByLibrary.simpleMessage("Total price: "),
         "vietnamese": MessageLookupByLibrary.simpleMessage("VietNamese"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome!"),
         "writeSometh":
             MessageLookupByLibrary.simpleMessage("Write something for us!"),
         "yes": MessageLookupByLibrary.simpleMessage("Yes"),
-        "yourFavorate": MessageLookupByLibrary.simpleMessage("My Favorate")
+        "yourFavorate": MessageLookupByLibrary.simpleMessage("My Favorite")
       };
 }
